@@ -8,7 +8,7 @@ using MinecraftMapper;
 
 namespace MinecraftMapper.Migrations
 {
-    [DbContext(typeof(MapContext))]
+    [DbContext(typeof(MapperContext))]
     partial class MapContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

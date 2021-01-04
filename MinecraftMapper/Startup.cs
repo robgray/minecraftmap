@@ -57,7 +57,7 @@ namespace MinecraftMapper
         
         protected void ConfigureDbContext(IServiceCollection services)
         {
-            services.AddDbContext<MapContext>(options =>
+            services.AddDbContext<MapperContext>(options =>
             {
                 options
                     .UseLoggerFactory(LoggerFactory.Create(x => x.AddDebug()))

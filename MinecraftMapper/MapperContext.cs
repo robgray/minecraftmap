@@ -3,11 +3,11 @@ using MinecraftMapper.Entities;
 
 namespace MinecraftMapper
 {
-    public class MapContext : DbContext
+    public class MapperContext : DbContext
     {
-        public MapContext(DbContextOptions options)  : base(options) { }
+        public MapperContext(DbContextOptions options)  : base(options) { }
         
-        public DbSet<Map> Maps { get; set; }
+        public DbSet<Realm> Maps { get; set; }
         public DbSet<LocationType> LocationTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -15,7 +15,7 @@ namespace MinecraftMapper
             modelBuilder.Entity<Location>()
                 .OwnsOne(l => l.Coordinate);
 
-            modelBuilder.Entity<Map>()
+            modelBuilder.Entity<Realm>()
                 .OwnsOne(m => m.RespawnLocation);
             
             base.OnModelCreating(modelBuilder);

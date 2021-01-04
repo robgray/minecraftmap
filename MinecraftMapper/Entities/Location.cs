@@ -13,6 +13,6 @@ namespace MinecraftMapper.Entities
         public string Notes { get; set; }
         
         public Guid MapId { get; set; }
-        public Map Map { get; set; }
+        public Realm Realm { get; set; }
     }
 }

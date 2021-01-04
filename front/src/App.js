@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import 'office-ui-fabric-react/dist/css/fabric.css';
+import Map from './components/MinecraftMap';
+import React, { useState } from "react";
+import { initializeIcons, Stack } from '@fluentui/react';
+import { realm } from './api/testData';
+import Sidebar from "./components/Sidebar";
 
 function App() {
+  initializeIcons();
+
+  const [realmData, setRealmData] = useState(realm);
+  const sidebarItemStyles = {
+    root: {
+      width: "200px"
+    }
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Stack horizontal>
+      <Stack.Item styles={sidebarItemStyles}>
+        <Sidebar data={realmData}/>
+      </Stack.Item>
+      <Stack.Item>
+        <div id="map">
+          <Map />
+        </div>
+      </Stack.Item>
+    </Stack>
   );
-}
+}   
 
 export default App;

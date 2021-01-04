@@ -9,7 +9,7 @@ using MinecraftMapper;
 
 namespace MinecraftMapper.Migrations
 {
-    [DbContext(typeof(MapContext))]
+    [DbContext(typeof(MapperContext))]
     [Migration("20201212024259_InitialCreate")]
     partial class InitialCreate
     {

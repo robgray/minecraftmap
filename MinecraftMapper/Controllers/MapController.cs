@@ -14,13 +14,13 @@ namespace MinecraftMapper.Controllers
     [Route("api/[controller]")]
     public class MapController : ControllerBase
     {
-        private MapContext _context;
-        public MapController(MapContext context)
+        private MapperContext _context;
+        public MapController(MapperContext context)
         {
             _context = context;
         }
 
-        protected IQueryable<Map> Maps => _context.Maps.Include(m => m.Locations).ThenInclude(l => l.Type);
+        protected IQueryable<Realm> Maps => _context.Maps.Include(m => m.Locations).ThenInclude(l => l.Type);
 
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -37,7 +37,7 @@ namespace MinecraftMapper.Controllers
                 return BadRequest($"Map called '{newMap.Name}' already exists.  Name must be unique.");
             }
             
-            var map = new Map()
+            var map = new Realm()
             {
                 Name = newMap.Name
             };
@@ -83,8 +83,6 @@ namespace MinecraftMapper.Controllers
         public async Task<IActionResult> PostLocation(Guid mapId, [FromBody] NewLocationRequest newLocation)
         {
             var map = await Maps
-                .Include(m => m.Locations)
-                .ThenInclude(l => l.Type)
                 .FirstOrDefaultAsync(m => m.Id == mapId);
             
             if (map == null)
@@ -111,7 +109,6 @@ namespace MinecraftMapper.Controllers
         public async Task<IActionResult> DeleteLocation(Guid mapId, Guid locationId)
         {
             var map = await Maps
-                .Include(l => l.Locations)
                 .FirstOrDefaultAsync(m => m.Id == mapId);
             if (map == null)
                 return NotFound($"Map with Id={mapId} not found");
@@ -124,6 +121,27 @@ namespace MinecraftMapper.Controllers
                 await _context.SaveChangesAsync();
             }
 
+            return NoContent();
+        }
+
+        [HttpPut("{mapId}/location/{locationId}")]
+        public async Task<IActionResult> UpdateLocation(Guid mapId, Guid locationId, UpdateLocationRequest updateLocation)
+        {
+            var map = await Maps
+                .FirstOrDefaultAsync(x => x.Id == mapId);
+            if (map == null)
+                return NotFound($"Map with Id={mapId} not found");
+            
+            var location = map.Locations.FirstOrDefault(l => l.Id == locationId);
+            if (location == null) return NotFound("Location to update could not be found.  Nothing to update");
+            
+            location.Name = updateLocation.Name;
+            location.Coordinate.X = updateLocation.X;
+            location.Coordinate.Y = updateLocation.Y;
+            location.Coordinate.Z = updateLocation.Z;
+            location.Notes = updateLocation.Notes;
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }

@@ -9,8 +9,8 @@ namespace MinecraftMapper.Controllers
     [Route("api/[controller]")]
     public class LocationTypesController : ControllerBase
     {
-        private MapContext _context;
-        public LocationTypesController(MapContext context)
+        private MapperContext _context;
+        public LocationTypesController(MapperContext context)
         {
             _context = context;
         }

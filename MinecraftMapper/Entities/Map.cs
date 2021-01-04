@@ -1,56 +1,79 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace MinecraftMapper.Entities
 {
     public class Map : EntityBase
     {
-        private ICollection<Location> _locations;
-
-        public Map()
-        {
-            _locations = new List<Location>();
-        }
+        public int MapNumber { get; private set; }
+        public Coordinate SouthWestBound { get; set; }
+        public Coordinate NorthEastBound { get; set; }
         
-        [Required]
-        [MaxLength(200)]
-        public string Name { get; set; }
+        public Guid? NorthMapId { get; private set; }
+        public Map NorthMap { get; private set; }
         
-        public Coordinate RespawnLocation { get; set; }
+        public Guid? SouthMapId { get; private set; }v inecr
+        public Map SouthMap { get; private set; }
+        
+        public Guid? EastMapId { get; private set; }
+        public Map EastMap { get; private set; }
+        
+        public Guid? WestMapId { get; private set; }
+        public Map WestMap { get; private set; }
 
-        public IEnumerable<Location> Locations => _locations;
-
-        public void Add(Location location)
+        public Map ExpandMapWest()
         {
-            if (location.Id == Guid.Empty)
+            if (WestMap == null) return WestMap;
+            var westMap = new Map()
             {
-                location.Map = this;
-                location.MapId = this.Id;
+                Id = Guid.NewGuid()
+            };
 
-                _locations.Add(location);
-                return;
-            }
-            
-            if (location.MapId != this.Id)
-            {
-                throw new Exception("Cannot add to a location for another map");
-            }
-            
-            if (_locations.All(l => l.Id != location.Id))
-            {
-                _locations.Add(location);
-            }
+            WestMapId = westMap.Id;
+            WestMap = westMap;
+
+            return WestMap;
         }
 
-        public void Remove(Location location)
+        public Map ExpandMapEast()
         {
-            if (_locations.All(l => l.Id != location.Id)) return;
-            _locations.Remove(location);
-                
-            location.Map = null;
-            location.MapId = Guid.Empty;
+            if (EastMap == null) return EastMap;
+            var eastMap = new Map()
+            {
+                Id = Guid.NewGuid()
+            };
+
+            EastMapId = eastMap.Id;
+            EastMap = eastMap;
+
+            return EastMap;
+        }
+
+        public Map ExpandMapNorth()
+        {
+            if (NorthMap == null) return NorthMap;
+            var northMap = new Map()
+            {
+                Id = Guid.NewGuid()
+            };
+
+            NorthMapId = northMap.Id;
+            NorthMap = northMap;
+
+            return NorthMap;
+        }
+        
+        public Map ExpandMapSouth()
+        {
+            if (SouthMap == null) return SouthMap;
+            var southMap = new Map()
+            {
+                Id = Guid.NewGuid()
+            };
+
+            SouthMapId = southMap.Id;
+            SouthMap = southMap;
+
+            return SouthMap;
         }
     }
 }
