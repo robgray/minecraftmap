@@ -7,13 +7,11 @@ import { realm } from './api/testData';
 import Sidebar from "./components/Sidebar";
 import { ILocation, INewLocation } from "./api/location";
 import Guid from "./api/guid";
-import IUpdateLocation from "./IUpdateLocation";
-import { getuid } from 'process';
 
+initializeIcons();
 
 const App: React.FC = () => {
-  initializeIcons();
-
+  
   const [locations, setLocations] = useState(realm.locations);
   const sidebarItemStyles = {
     root: {
@@ -31,6 +29,8 @@ const App: React.FC = () => {
   }
 
   const addLocation = (location: INewLocation) => {
+    console.log("new location", location);
+
     const tempLocations = [...locations];
     const newLocation: ILocation = {
       id: "123123123123123",
@@ -40,6 +40,8 @@ const App: React.FC = () => {
     tempLocations.push(newLocation);
 
     setLocations(tempLocations);
+
+    console.log("locations", locations);
   }
 
   const deleteLocation = (id: Guid) => {

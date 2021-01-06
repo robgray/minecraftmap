@@ -38,9 +38,13 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                 closeButtonAriaLabel="Close">
                 <Stack>
                     <Stack.Item>
-                        <TextField label="Name" required={true} value={name} />
-                        <Categories value={categoryId} />
-                        <CoordinateControl X={coordinate.X} Y={coordinate.Y} Z={coordinate.Z} />
+                        <TextField label="Name" required={true} value={name} onChange={(e, newValue) => setName(newValue ? newValue : "")}/>
+                        <Categories value={categoryId} onChange={(e, o) => {
+                            if (o) setCategoryId(o.key.toString())
+                         }} />
+                        <CoordinateControl X={coordinate.X} Y={coordinate.Y} Z={coordinate.Z} onChange={(coord) => {
+                            setCoordinate({ X: coord.X.toString(), Y: coord.Y.toString(), Z: coord.Z.toString() })
+                        }} />
                         <Stack horizontal>
                             <Stack.Item align="end" styles={stackItemStyles}>
                                 <PrimaryButton text="Save" onClick={() => props.saveNewLocation(

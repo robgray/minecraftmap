@@ -3,12 +3,13 @@ import LocationsList from './LocationList/LocationsList'
 import { ILocation } from "../api/location";
 import { ActionButton, IIconProps } from 'office-ui-fabric-react';
 import { INewLocation } from "../api/location";
+import Guid from "../api/guid";
 
 interface ISidebarProps
 {
     locations: ILocation[],
     addLocation: ((newLocation: INewLocation) => void),
-    deleteLocation: Function,
+    deleteLocation: ((id: Guid) => void),
 }
 
 const Sidebar : React.FC<ISidebarProps> = (props: ISidebarProps) => {

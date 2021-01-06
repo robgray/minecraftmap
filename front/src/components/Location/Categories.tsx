@@ -4,14 +4,15 @@ import { locationTypes } from "../../api/testData";
 
 interface ICategoriesProps
 {
-    value: string
+    value: string;
+    onChange: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption, index?: number) => void;
 }
 
 
 const Categories: React.FC<ICategoriesProps> = (props: ICategoriesProps) => {
 
     const [locationTypeItems] = useState(locationTypes.map<IDropdownOption>(lt => { 
-        return { key : lt.id, text : lt.name }; 
+        return { key : lt.id, text : lt.name };    
     }));
     
     return (
@@ -19,7 +20,9 @@ const Categories: React.FC<ICategoriesProps> = (props: ICategoriesProps) => {
             label="Category"
             options={locationTypeItems}
             selectedKey={props.value}
-            required={true} />
+            required={true} 
+            onChange={props.onChange}
+            />
     );
 }
 
