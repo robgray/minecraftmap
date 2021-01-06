@@ -6,16 +6,12 @@ import { ILocation } from "../../api/location";
 import Guid from "../../api/guid";
 
 interface ILocationListProps {
-    locations: ILocation[]
+    locations: ILocation[],
+    onDelete: Function
 };
 
 const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) => {   
     const sectionStackTokens: IStackTokens = { childrenGap: 5 };
-
-    const deleteLocation = (id: string | undefined) => {
-        // TODO: hook this up for delete.
-        console.log("Id", id);
-    }
 
     return (
         <Stack tokens={sectionStackTokens}>
@@ -24,12 +20,10 @@ const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) 
             </Stack.Item>
             {props.locations.map(location => {
                 return (
-                    <Stack.Item>
-                        <ListItem 
-                            location={location} 
-                            onDelete={() => deleteLocation(location.id)} />
-                    </Stack.Item>
-                )})}
+                        <ListItem key={location.id}
+                        location={location} 
+                        onDelete={() => props.onDelete(location.id)} />
+                            )})}
         </Stack>
     );
 }

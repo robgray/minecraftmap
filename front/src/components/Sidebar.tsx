@@ -1,17 +1,20 @@
-import EditLocation from './EditLocation/EditLocation';
+import { EditLocation, EditLocationMode } from './EditLocation/EditLocation';
 import LocationsList from './LocationList/LocationsList'
-import { IRealm } from "../api/realm";
+import { ILocation } from "../api/location";
 
 interface ISidebarProps
 {
-    data: IRealm
+    locations: ILocation[],
+    addLocation: Function,
+    updateLocation: Function,
+    deleteLocation: Function,
 }
 
 const Sidebar : React.FC<ISidebarProps> = (props: ISidebarProps) => {
     return (
       <>
-        <EditLocation saveNewLocation={() => console.log("save")} updateLocation={() => console.log("edit")} mode={"edit"} />
-        <LocationsList locations={props.data.locations} />
+        <EditLocation saveNewLocation={props.addLocation} updateLocation={props.updateLocation} mode={EditLocationMode.New} />
+        <LocationsList locations={props.locations} onDelete={props.deleteLocation} />
       </>
     );
   }

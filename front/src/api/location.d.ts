@@ -5,7 +5,8 @@ interface ILocation {
     name: string;
     typeId: Guid;
     notes?: string | null;
-    coordinate: ICoordinate
+    coordinate: ICoordinate;
+    map: number;
 }
 
 interface ICoordinate {

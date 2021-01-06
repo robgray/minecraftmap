@@ -12,10 +12,15 @@ const stackItemStyles: IStackItemStyles = {
     },
   };
 
+enum EditLocationMode {
+    New,
+    Edit
+}
+
 interface IEditLocationProps {
     saveNewLocation: Function,
     updateLocation: Function,
-    mode: string 
+    mode: EditLocationMode 
 }
 
 const addIcon: IIconProps = { iconName: 'Add' };
@@ -38,7 +43,7 @@ const EditLocation = (props: IEditLocationProps) => {
             <Stack.Item>
                 <Stack horizontal>
                     <Stack.Item align="start">
-                        <Text variant="large">{(props.mode == "edit" ? "Edit" : "New") + " Location"}</Text>
+                        <Text variant="large">{(props.mode === EditLocationMode.Edit ? "Edit" : "New") + " Location"}</Text>
                     </Stack.Item>
                     <Stack.Item align="end">
                         <ActionButton onClick={() => console.log("close panel")} iconProps={crossIcon} />
@@ -61,4 +66,4 @@ const EditLocation = (props: IEditLocationProps) => {
     );
 }
 
-export default EditLocation;
+export { EditLocation, EditLocationMode };

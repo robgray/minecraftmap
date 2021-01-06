@@ -2,10 +2,10 @@ import { useContext, useState }  from 'react';
 import { MapContainer, Marker, Popup, LayerGroup } from 'react-leaflet';
 import { CRS, LatLngBounds, LatLngTuple } from 'leaflet';
 import { LayerContext } from './context/LayerContext';
-import { IRealm } from '../api/realm';
+import { ILocation } from '../api/location';
 
 interface IMinecraftMapProps {
-    data: IRealm
+    locations: ILocation[];
 }
 
 const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) => {
@@ -28,7 +28,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     }
 
     const { point } = useContext(LayerContext);
-    const [ locations, setLocations] = useState((): LatLngTuple[] => props.data.locations.map(location => [ location.coordinate.X, location.coordinate.Y]));
+    const [ locations, setLocations] = useState((): LatLngTuple[] => props.locations.map(location => [ location.coordinate.X, location.coordinate.Y]));
     const [ bounds, setBounds] = useState(() => getBoundsFromLocations(locations))
     const [ zoomLevel, setZoomLevel] = useState(-10);
     const [ center, setCenter] = useState(bounds.getCenter());
@@ -38,8 +38,8 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
             <LayerGroup>
                 {point}
             </LayerGroup>
-            {props.data.locations.map(location => (
-                <Marker position={[location.coordinate.X, location.coordinate.Y]}>
+            {props.locations.map(location => (
+                <Marker position={[location.coordinate.X, location.coordinate.Y]} key={location.id}>
                     <Popup>{location.name}</Popup>
                 </Marker>
             ))}
