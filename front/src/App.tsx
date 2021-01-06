@@ -5,10 +5,13 @@ import React, { useState } from "react";
 import { initializeIcons, Stack } from '@fluentui/react';
 import { realm } from './api/testData';
 import Sidebar from "./components/Sidebar";
-import { ILocation } from "./api/location";
+import { ILocation, INewLocation } from "./api/location";
 import Guid from "./api/guid";
+import IUpdateLocation from "./IUpdateLocation";
+import { getuid } from 'process';
 
-function App() {
+
+const App: React.FC = () => {
   initializeIcons();
 
   const [locations, setLocations] = useState(realm.locations);
@@ -27,12 +30,16 @@ function App() {
     }
   }
 
-  const addLocation = (location: ILocation) => {
-    alert("add location");
-  }
+  const addLocation = (location: INewLocation) => {
+    const tempLocations = [...locations];
+    const newLocation: ILocation = {
+      id: "123123123123123",
+      map: 0,
+      ...location
+    }
+    tempLocations.push(newLocation);
 
-  const updateLocation = (location: ILocation) => {
-    alert("update location");
+    setLocations(tempLocations);
   }
 
   const deleteLocation = (id: Guid) => {
@@ -58,7 +65,6 @@ function App() {
       <Stack.Item styles={sidebarItemStyles} align="start">
         <Sidebar locations={locations} 
           addLocation={addLocation} 
-          updateLocation={updateLocation}
           deleteLocation={deleteLocation} />
       </Stack.Item>
       <Stack.Item styles={mapStackItemStyles} align="end">

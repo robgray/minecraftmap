@@ -1,7 +1,8 @@
+import { NullLiteral } from "typescript";
 import Guid from "./guid";
 
 interface ILocation {
-    id?: Guid;
+    id: Guid;
     name: string;
     typeId: Guid;
     notes?: string | null;
@@ -15,4 +16,10 @@ interface ICoordinate {
     X: number
 }
 
-export { ILocation, ICoordinate };
+interface INewLocation {
+    name: string;
+    typeId: Guid;
+    coordinate: ICoordinate;
+}
+
+export { ILocation, ICoordinate, INewLocation };
