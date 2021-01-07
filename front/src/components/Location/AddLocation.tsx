@@ -22,7 +22,7 @@ interface IAddLocationProps {
 const addIcon: IIconProps = { iconName: 'Add' };
 
 const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
-    const crossIcon: IIconProps = { iconName: 'Cancel' };
+    
     const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
     const [ name, setName ] = useState("");
     const [ categoryId, setCategoryId ] = useState("");
@@ -35,7 +35,7 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
     }
 
     return (
-        <div>
+        <>
             <ActionButton iconProps={addIcon} 
                 allowDisabledFocus 
                 onClick={() => {
@@ -76,7 +76,7 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                     </Stack.Item>
                 </Stack>
             </Panel>
-        </div>
+        </>
     );
 }
 

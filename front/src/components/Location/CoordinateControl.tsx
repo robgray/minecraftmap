@@ -1,5 +1,5 @@
 import { IStackTokens, TextField, Stack } from 'office-ui-fabric-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ICoordinate } from "../../api/location";
 
 interface ICoordinatesProps {
@@ -18,41 +18,38 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
     const [ z, setZ ] = useState(props.Z);
 
     const updateChangedX = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
-        
         event.stopPropagation();
         if (!newValue) return;
         setX(newValue);
 
         props.onChange({
-            X: parseInt(x),
+            X: parseInt(newValue),
+            Z: parseInt(z),
             Y: parseInt(y),
-            Z: parseInt(z)
         });
     }
 
     const updateChangedY = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
-
         event.stopPropagation();
         if (!newValue) return;
         setY(newValue);
 
         props.onChange({
             X: parseInt(x),
-            Y: parseInt(y),
-            Z: parseInt(z)
+            Z: parseInt(z),
+            Y: parseInt(newValue),
         });
     }
 
     const updateChangedZ = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
-
         event.stopPropagation();
         if (!newValue) return;
         setZ(newValue);
 
         props.onChange({
             X: parseInt(x),
+            Z: parseInt(newValue),
             Y: parseInt(y),
-            Z: parseInt(z)
         });
     }
 

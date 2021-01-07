@@ -71,8 +71,12 @@ const App: React.FC = () => {
   }
 
   const centerAtLocation = (location: ILocation) => {
-    console.log("received new location center request", location.coordinate);
-    setCenter(location.coordinate);
+    centerAtCoordinate(location.coordinate);
+  }
+
+  const centerAtCoordinate = (coordinate: ICoordinate) => {
+    console.log("zoom to coord", coordinate);
+    setCenter(coordinate);
   }
 
   return (
@@ -82,6 +86,7 @@ const App: React.FC = () => {
           addLocation={addLocation} 
           deleteLocation={deleteLocation}
           onLocationClicked={centerAtLocation}
+          onZoomClick={centerAtCoordinate}
            />
       </Stack.Item>
       <Stack.Item styles={mapStackItemStyles} align="end">
