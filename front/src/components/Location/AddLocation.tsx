@@ -28,9 +28,20 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
     const [ categoryId, setCategoryId ] = useState("");
     const [ coordinate, setCoordinate ] = useState({ X: "", Z: "", Y: "" })
 
+    const clearPanel = () => {
+        setName("");
+        setCategoryId("");
+        setCoordinate({ X: "", Z: "", Y:  ""});
+    }
+
     return (
         <div>
-            <ActionButton iconProps={addIcon} allowDisabledFocus onClick={openPanel}>Add Location</ActionButton>
+            <ActionButton iconProps={addIcon} 
+                allowDisabledFocus 
+                onClick={() => {
+                    clearPanel();
+                    openPanel();
+                }}>Add Location</ActionButton>
             <Panel
                 headerText="Add Location"
                 isOpen={isOpen}
@@ -47,7 +58,8 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                         }} />
                         <Stack horizontal>
                             <Stack.Item align="end" styles={stackItemStyles}>
-                                <PrimaryButton text="Save" onClick={() => props.saveNewLocation(
+                                <PrimaryButton text="Save" onClick={() => { 
+                                    props.saveNewLocation(
                                     {
                                         name: name,
                                         coordinate: { 
@@ -56,8 +68,9 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                                             Z: Number.parseInt(coordinate.Z)
                                         },
                                         typeId: categoryId
-                                    }
-                                )} />
+                                    });
+                                    dismissPanel();
+                                }} />
                             </Stack.Item>
                         </Stack>
                     </Stack.Item>
