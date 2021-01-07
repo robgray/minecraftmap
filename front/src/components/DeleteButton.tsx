@@ -1,4 +1,4 @@
-import { IIconProps, ActionButton, IButtonStyles } from 'office-ui-fabric-react';
+import { IIconProps, ActionButton } from 'office-ui-fabric-react';
 
 interface IDeleteButtonProps
 {

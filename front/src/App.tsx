@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { initializeIcons, Stack } from '@fluentui/react';
 import { realm } from './api/testData';
 import Sidebar from "./components/Sidebar";
-import { ILocation, INewLocation } from "./api/location";
+import { ILocation, INewLocation, ICoordinate } from "./api/location";
 import Guid from "./api/guid";
 
 initializeIcons();
@@ -13,6 +13,8 @@ initializeIcons();
 const App: React.FC = () => {
   
   const [locations, setLocations] = useState(realm.locations);
+  const [center, setCenter] = useState<ICoordinate | undefined>(undefined);
+
   const sidebarItemStyles = {
     root: {
       padding: 5,
@@ -31,12 +33,18 @@ const App: React.FC = () => {
   const addLocation = (location: INewLocation) => {
     console.log("new location", location);
 
+    // Send new location request to server
+    // Get new map Id back
+
     const tempLocations = [...locations];
+
+    // newLocation will come back from the server.
     const newLocation: ILocation = {
       id: "123123123123123",
       map: 0,
       ...location
     }
+
     tempLocations.push(newLocation);
 
     setLocations(tempLocations);
@@ -62,15 +70,22 @@ const App: React.FC = () => {
     console.log("deleted location", locations);
   }
 
+  const centerAtLocation = (location: ILocation) => {
+    console.log("received new location center request", location.coordinate);
+    setCenter(location.coordinate);
+  }
+
   return (
     <Stack horizontal>
       <Stack.Item styles={sidebarItemStyles} align="start">
         <Sidebar locations={locations} 
           addLocation={addLocation} 
-          deleteLocation={deleteLocation} />
+          deleteLocation={deleteLocation}
+          onLocationClicked={centerAtLocation}
+           />
       </Stack.Item>
       <Stack.Item styles={mapStackItemStyles} align="end">
-        <Map locations={locations}  />
+        <Map locations={locations} center={center}  />
       </Stack.Item>
     </Stack>
   );

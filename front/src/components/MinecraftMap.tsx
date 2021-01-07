@@ -1,11 +1,26 @@
-import { useContext, useState }  from 'react';
-import { MapContainer, Marker, Popup, LayerGroup } from 'react-leaflet';
-import { CRS, LatLngBounds, LatLngTuple } from 'leaflet';
+import { useContext, useEffect, useState }  from 'react';
+import { MapContainer, Marker, Popup, LayerGroup, useMap } from 'react-leaflet';
+import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
 import { LayerContext } from './context/LayerContext';
-import { ILocation } from '../api/location';
+import { ILocation, ICoordinate } from '../api/location';
 
 interface IMinecraftMapProps {
     locations: ILocation[];
+    center?: ICoordinate;
+}
+
+interface IMapProps {
+    center?: ICoordinate;
+}
+
+const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
+    const map = useMap();
+    
+    if (props.center) {
+        map.flyTo(new LatLng(-props.center.Y, props.center.X));
+    }
+
+    return null;
 }
 
 const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) => {
@@ -28,13 +43,17 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     }
 
     const { point } = useContext(LayerContext);
-    const [ locations, setLocations] = useState((): LatLngTuple[] => props.locations.map(location => [ location.coordinate.X, location.coordinate.Y]));
-    const [ bounds, setBounds] = useState(() => getBoundsFromLocations(locations))
-    const [ zoomLevel, setZoomLevel] = useState(-10);
-    const [ center, setCenter] = useState(bounds.getCenter());
+    const bounds = getBoundsFromLocations(props.locations.map(location => [ location.coordinate.X, location.coordinate.Y]));
+    const center = bounds.getCenter();
 
     return (
-        <MapContainer center={center} zoom={zoomLevel} scrollWheelZoom={true} crs={CRS.Simple} bounds={bounds}>
+        <MapContainer 
+            center={center} 
+            zoom={-10} 
+            scrollWheelZoom={true} 
+            crs={CRS.Simple} 
+            bounds={bounds}>
+            <TheMap center={props.center} />
             <LayerGroup>
                 {point}
             </LayerGroup>

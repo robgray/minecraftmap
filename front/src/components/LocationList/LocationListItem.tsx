@@ -1,16 +1,17 @@
-import { Stack, IStackTokens, Text, IStackItemStyles, DefaultPalette, IStackStyles } from 'office-ui-fabric-react';
-import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens, ICardItemStyles, ICardItemTokens } from '@uifabric/react-cards';
-import { ICoordinate, ILocation } from "../../api/location";
+import { Text } from 'office-ui-fabric-react';
+import { Card, ICardTokens, ICardItemStyles, ICardItemTokens } from '@uifabric/react-cards';
+import { ILocation } from "../../api/location";
 import { DeleteButton } from "../DeleteButton";
 import { CoordinateLabel } from "./CoordinateLabel";
 import Guid from "../../api/guid";
 
-interface ILocationProps {
+interface ILocationListItemProps {
     location: ILocation;
-    onDelete: Function;
+    onDelete: ((id: Guid) => void);
+    onLocationClicked: ((location: ILocation) => void);
 }
 
-const ListItem: React.FC<ILocationProps> = (props: ILocationProps) => {
+const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProps) => {
 
     const mapNumberSectionStyle: ICardItemStyles = {
         root: {
@@ -19,9 +20,6 @@ const ListItem: React.FC<ILocationProps> = (props: ILocationProps) => {
             padding: 10,
             marginRight: 5
           }
-    }
-    const mapNameStyles: ICardSectionStyles = {
-
     }
     const deleteStyles: ICardItemStyles = {
         root: {
@@ -35,7 +33,7 @@ const ListItem: React.FC<ILocationProps> = (props: ILocationProps) => {
     const cardTokens: ICardTokens = { childrenMargin: 8 };
 
     return (
-        <Card horizontal tokens={cardTokens}>
+        <Card horizontal tokens={cardTokens} onClick={() => props.onLocationClicked(props.location)}>
             <Card.Item styles={mapNumberSectionStyle}>
                 <Text variant="xLarge">{props.location.map}</Text>
             </Card.Item>
