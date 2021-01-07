@@ -39,7 +39,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
                 {point}
             </LayerGroup>
             {props.locations.map(location => (
-                <Marker position={[location.coordinate.X, location.coordinate.Y]} key={location.id}>
+                <Marker position={[-location.coordinate.Y, location.coordinate.X]} key={location.id}>
                     <Popup>{location.name}</Popup>
                 </Marker>
             ))}
