@@ -48,10 +48,12 @@ const realm: IRealm = {
 const locationTypes: ILocationType[] = [
     {
         id: "b7e14e9c-25f5-4863-826e-c8cf8c4d6307",
+        iconClass: "",
         name: "City"
     },
     {
         id: "9f03e0df-7c55-43c7-b2bb-8cf56c6678f9",
+        iconClass: "",
         name: "Portal"
     }
 ]

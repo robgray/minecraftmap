@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
     // newLocation will come back from the server.
     const newLocation: ILocation = {
-      id: "123123123123123",
+      id: (new Date()).toISOString(),
       map: 0,
       ...location
     }
@@ -67,7 +67,6 @@ const App: React.FC = () => {
     }
   
     setLocations(tempLocations);
-    console.log("deleted location", locations);
   }
 
   const centerAtLocation = (location: ILocation) => {
@@ -75,7 +74,6 @@ const App: React.FC = () => {
   }
 
   const centerAtCoordinate = (coordinate: ICoordinate) => {
-    console.log("zoom to coord", coordinate);
     setCenter(coordinate);
   }
 

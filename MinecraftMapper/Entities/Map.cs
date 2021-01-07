@@ -11,7 +11,7 @@ namespace MinecraftMapper.Entities
         public Guid? NorthMapId { get; private set; }
         public Map NorthMap { get; private set; }
         
-        public Guid? SouthMapId { get; private set; }v inecr
+        public Guid? SouthMapId { get; private set; }
         public Map SouthMap { get; private set; }
         
         public Guid? EastMapId { get; private set; }

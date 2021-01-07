@@ -23,6 +23,8 @@
         <e p="Migrations" t="Include">
           <e p="20201212024259_InitialCreate.cs" t="Include" />
           <e p="20201212024259_InitialCreate.Designer.cs" t="Include" />
+          <e p="20210107130825_RespawnLocation.cs" t="Include" />
+          <e p="20210107130825_RespawnLocation.Designer.cs" t="Include" />
           <e p="InitialCreateDataLoader.cs" t="Include" />
           <e p="MapContextModelSnapshot.cs" t="Include" />
           <e p="MigrationBuilderInsertHelpers.cs" t="Include" />

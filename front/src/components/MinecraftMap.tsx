@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState }  from 'react';
+import { useContext }  from 'react';
 import { MapContainer, Marker, Popup, LayerGroup, useMap } from 'react-leaflet';
 import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
 import { LayerContext } from './context/LayerContext';
@@ -49,7 +49,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     return (
         <MapContainer 
             center={center} 
-            zoom={-10} 
+            zoom={0} 
             scrollWheelZoom={true} 
             crs={CRS.Simple} 
             bounds={bounds}>
