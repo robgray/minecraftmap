@@ -4,6 +4,12 @@ import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
 import { LayerContext } from './context/LayerContext';
 import { ILocation, ICoordinate } from '../api/location';
 
+// Shrink_factor makes it easier to work with the large values for x and y that minecraft produces
+// in the leaftlet.js map these are far apart when zoomed out.
+// By decreasing the scale we can move them closer together and make better use of the 
+// zoom functionality of the map.
+const SHRINK_FACTOR = 100;
+
 interface IMinecraftMapProps {
     locations: ILocation[];
     center?: ICoordinate;
@@ -17,7 +23,7 @@ const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
     const map = useMap();
     
     if (props.center) {
-        map.flyTo(new LatLng(-props.center.y, props.center.x));
+        map.flyTo(new LatLng(-props.center.y/SHRINK_FACTOR, props.center.x/SHRINK_FACTOR));
     }
 
     return null;
@@ -39,7 +45,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
             if (point[1] < smallestY) smallestY = point[1];
             if (point[1] > largestY) largestY = point[1];
         });
-        return new LatLngBounds([smallestX, smallestY], [largestX, largestY]);
+        return new LatLngBounds([smallestX/SHRINK_FACTOR, smallestY/SHRINK_FACTOR], [largestX/SHRINK_FACTOR, largestY/SHRINK_FACTOR]);
     }
 
     const { point } = useContext(LayerContext);
@@ -49,7 +55,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     return (
         <MapContainer 
             center={center} 
-            zoom={0} 
+            zoom={4} 
             scrollWheelZoom={true} 
             crs={CRS.Simple} 
             bounds={bounds}>
@@ -58,7 +64,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
                 {point}
             </LayerGroup>
             {props.locations.map(location => (
-                <Marker position={[-location.coordinate.y, location.coordinate.x]} key={location.id}>
+                <Marker position={[-(location.coordinate.y/SHRINK_FACTOR), location.coordinate.x/SHRINK_FACTOR]} key={location.id}>
                     <Popup>{location.name}</Popup>
                 </Marker>
             ))}
