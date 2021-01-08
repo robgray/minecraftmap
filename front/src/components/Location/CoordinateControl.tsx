@@ -1,11 +1,11 @@
 import { IStackTokens, TextField, Stack } from 'office-ui-fabric-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ICoordinate } from "../../api/location";
 
 interface ICoordinatesProps {
-    X: string;
-    Z: string;
-    Y: string;
+    x: string;
+    z: string;
+    y: string;
     onChange: (coordinate: ICoordinate) => void;
 }
 
@@ -13,9 +13,9 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
 
     const stackTokens: Partial<IStackTokens> = { childrenGap: 5 };
 
-    const [ x, setX ] = useState(props.X);
-    const [ y, setY ] = useState(props.Y);
-    const [ z, setZ ] = useState(props.Z);
+    const [ x, setX ] = useState(props.x);
+    const [ y, setY ] = useState(props.y);
+    const [ z, setZ ] = useState(props.z);
 
     const updateChangedX = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
         event.stopPropagation();
@@ -23,9 +23,9 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
         setX(newValue);
 
         props.onChange({
-            X: parseInt(newValue),
-            Z: parseInt(z),
-            Y: parseInt(y),
+            x: parseInt(newValue),
+            z: parseInt(z),
+            y: parseInt(y),
         });
     }
 
@@ -35,9 +35,9 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
         setY(newValue);
 
         props.onChange({
-            X: parseInt(x),
-            Z: parseInt(z),
-            Y: parseInt(newValue),
+            x: parseInt(x),
+            z: parseInt(z),
+            y: parseInt(newValue),
         });
     }
 
@@ -47,9 +47,9 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
         setZ(newValue);
 
         props.onChange({
-            X: parseInt(x),
-            Z: parseInt(newValue),
-            Y: parseInt(y),
+            x: parseInt(x),
+            z: parseInt(newValue),
+            y: parseInt(y),
         });
     }
 

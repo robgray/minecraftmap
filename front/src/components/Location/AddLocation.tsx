@@ -1,4 +1,4 @@
-import { PrimaryButton, TextField, Stack, IStackItemStyles, Text } from 'office-ui-fabric-react';
+import { PrimaryButton, TextField, Stack, IStackItemStyles } from 'office-ui-fabric-react';
 import React, { useState } from "react";
 import { useBoolean } from '@uifabric/react-hooks';
 import { ActionButton, IIconProps } from 'office-ui-fabric-react';
@@ -22,16 +22,16 @@ interface IAddLocationProps {
 const addIcon: IIconProps = { iconName: 'Add' };
 
 const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
-    
+
     const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
     const [ name, setName ] = useState("");
     const [ categoryId, setCategoryId ] = useState("");
-    const [ coordinate, setCoordinate ] = useState({ X: "", Z: "", Y: "" })
+    const [ coordinate, setCoordinate ] = useState({ x: "", z: "", y: "" })
 
     const clearPanel = () => {
         setName("");
         setCategoryId("");
-        setCoordinate({ X: "", Z: "", Y:  ""});
+        setCoordinate({ x: "", z: "", y: ""});
     }
 
     return (
@@ -53,8 +53,8 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                         <Categories value={categoryId} onChange={(e, o) => {
                             if (o) setCategoryId(o.key.toString())
                          }} />
-                        <CoordinateControl X={coordinate.X} Y={coordinate.Y} Z={coordinate.Z} onChange={(coord) => {
-                            setCoordinate({ X: coord.X.toString(), Y: coord.Y.toString(), Z: coord.Z.toString() })
+                        <CoordinateControl x={coordinate.x} y={coordinate.y} z={coordinate.z} onChange={(coord) => {
+                            setCoordinate({ x: coord.x.toString(), y: coord.y.toString(), z: coord.z.toString() })
                         }} />
                         <Stack horizontal>
                             <Stack.Item align="end" styles={stackItemStyles}>
@@ -63,9 +63,9 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                                     {
                                         name: name,
                                         coordinate: { 
-                                            X: Number.parseInt(coordinate.X),
-                                            Y: Number.parseInt(coordinate.Y),
-                                            Z: Number.parseInt(coordinate.Z)
+                                            x: Number.parseInt(coordinate.x),
+                                            y: Number.parseInt(coordinate.y),
+                                            z: Number.parseInt(coordinate.z)
                                         },
                                         typeId: categoryId
                                     });

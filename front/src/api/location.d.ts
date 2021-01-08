@@ -1,4 +1,3 @@
-import { NullLiteral } from "typescript";
 import Guid from "./guid";
 
 interface ILocation {
@@ -11,9 +10,9 @@ interface ILocation {
 }
 
 interface ICoordinate {
-    Y: number,
-    Z: number,
-    X: number
+    x: number,    
+    z: number,
+    y: number,
 }
 
 interface INewLocation {

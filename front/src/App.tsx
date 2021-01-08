@@ -1,19 +1,31 @@
 import './App.css';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import Map from './components/MinecraftMap';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { initializeIcons, Stack } from '@fluentui/react';
-import { realm } from './api/testData';
 import Sidebar from "./components/Sidebar";
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
+import { ApiClient, INewLocationRequest } from "./api/apiClient";
 import Guid from "./api/guid";
 
+ApiClient.settings.initialize();
 initializeIcons();
 
 const App: React.FC = () => {
-  
-  const [locations, setLocations] = useState(realm.locations);
+
+  const [locations, setLocations] = useState([] as ILocation[]);
   const [center, setCenter] = useState<ICoordinate | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const realm = await ApiClient.methods.getRealm(ApiClient.settings.RealmKey);
+      if (realm != null) {
+        setLocations(realm.locations);
+      }
+    }
+
+    fetchData();
+  }, [])
 
   const sidebarItemStyles = {
     root: {
@@ -31,42 +43,37 @@ const App: React.FC = () => {
   }
 
   const addLocation = (location: INewLocation) => {
-    console.log("new location", location);
 
-    // Send new location request to server
-    // Get new map Id back
-
-    const tempLocations = [...locations];
-
-    // newLocation will come back from the server.
-    const newLocation: ILocation = {
-      id: (new Date()).toISOString(),
-      map: 0,
-      ...location
+    const postData = async (newLocation: INewLocationRequest) => {
+      const realm = await ApiClient.methods.saveLocation(ApiClient.settings.RealmKey, newLocation);
+      if (realm && realm.locations && realm.locations.length > 0) {
+        setLocations(realm.locations);
+      } else {
+        setLocations([] as ILocation[]);
+      }
     }
 
-    tempLocations.push(newLocation);
-
-    setLocations(tempLocations);
+    postData({
+      name: location.name,
+      x: location.coordinate.x,
+      y: location.coordinate.y,
+      z: location.coordinate.z,
+      locationTypeId: location.typeId
+    });
 
     console.log("locations", locations);
   }
 
   const deleteLocation = (id: Guid) => {
-    const tempLocations = [...locations];
-    let locIndex = -1
-    tempLocations.find((loc, index) => {
-      if (loc.id === id) {
-        locIndex = index;
-        return true;
+
+    const deleteData = async (locationId: Guid) => {
+      const realm = await ApiClient.methods.deleteLocation(ApiClient.settings.RealmKey, locationId);
+      if (realm) {
+        setLocations(realm.locations);
       }
-      return false;
-    });
-    if (locIndex > -1) {
-      tempLocations.splice(locIndex, 1);
     }
-  
-    setLocations(tempLocations);
+
+    deleteData(id);
   }
 
   const centerAtLocation = (location: ILocation) => {

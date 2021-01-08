@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
-import { locationTypes } from "../../api/testData";
 import { ApiClient } from "../../api/apiClient";
 
 interface ICategoriesProps
@@ -12,9 +11,7 @@ interface ICategoriesProps
 
 const Categories: React.FC<ICategoriesProps> = (props: ICategoriesProps) => {
 
-    const [locationTypeItems, setLocationTypeItems] = useState(locationTypes.map<IDropdownOption>(lt => { 
-        return { key : lt.id, text : lt.name };    
-    }));
+    const [locationTypeItems, setLocationTypeItems] = useState([] as IDropdownOption[]);
 
     useEffect(() => {
         const fetchData = async () => {

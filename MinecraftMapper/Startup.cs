@@ -32,7 +32,11 @@ namespace MinecraftMapper
             {
                 options.AddDefaultPolicy(builder =>
                 {
-                    builder.WithOrigins("*");
+                    builder
+                        .WithOrigins("*")
+                        .WithHeaders("Content-Type")
+                        .WithMethods("GET", "POST", "PUT", "DELETE");
+
                 });
             });
             services.AddControllers()

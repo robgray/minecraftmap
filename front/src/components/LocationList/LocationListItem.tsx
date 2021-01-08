@@ -35,7 +35,7 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
     return (
         <Card horizontal tokens={cardTokens} onClick={() => props.onLocationClicked(props.location)}>
             <Card.Item styles={mapNumberSectionStyle}>
-                <Text variant="xLarge">{props.location.map}</Text>
+                <Text variant="xLarge">{"n/a"}</Text>
             </Card.Item>
             <Card.Section>
                 <Text block>{props.location.name}</Text>

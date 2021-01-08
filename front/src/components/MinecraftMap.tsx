@@ -17,7 +17,7 @@ const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
     const map = useMap();
     
     if (props.center) {
-        map.flyTo(new LatLng(-props.center.Y, props.center.X));
+        map.flyTo(new LatLng(-props.center.y, props.center.x));
     }
 
     return null;
@@ -43,7 +43,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     }
 
     const { point } = useContext(LayerContext);
-    const bounds = getBoundsFromLocations(props.locations.map(location => [ location.coordinate.X, location.coordinate.Y]));
+    const bounds = getBoundsFromLocations(props.locations.map(location => [-location.coordinate.y, location.coordinate.x, ]));
     const center = bounds.getCenter();
 
     return (
@@ -58,7 +58,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
                 {point}
             </LayerGroup>
             {props.locations.map(location => (
-                <Marker position={[-location.coordinate.Y, location.coordinate.X]} key={location.id}>
+                <Marker position={[-location.coordinate.y, location.coordinate.x]} key={location.id}>
                     <Popup>{location.name}</Popup>
                 </Marker>
             ))}

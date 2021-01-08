@@ -24,10 +24,10 @@ const zoomIcon: IIconProps = { iconName: 'Zoom' };
 const ZoomToCoordinate: React.FC<IZoomToCoordinate> = (props: IZoomToCoordinate) => {
 
     const [ isOpen, { setTrue: openPanel, setFalse: dismissPanel } ] = useBoolean(false);
-    const [ coordinate, setCoordinate ] = useState({ X: "", Z: "", Y: "" })
+    const [ coordinate, setCoordinate ] = useState({ x: "", z: "", y: "" })
 
     const clearPanel = () => {
-        setCoordinate({ X: "", Z: "", Y: ""});
+        setCoordinate({ x: "", z: "", y: ""});
     }
 
     return (
@@ -44,17 +44,17 @@ const ZoomToCoordinate: React.FC<IZoomToCoordinate> = (props: IZoomToCoordinate)
                 onDismiss={dismissPanel}
                 closeButtonAriaLabel="Close">
                 <Stack>
-                    <CoordinateControl X={coordinate.X} Y={coordinate.Y} Z={coordinate.Z} onChange={(coord) => {
-                        setCoordinate({ X: coord.X.toString(), Y: coord.Y.toString(), Z: coord.Z.toString() })
+                    <CoordinateControl x={coordinate.x} y={coordinate.y} z={coordinate.z} onChange={(coord) => {
+                        setCoordinate({ x: coord.x.toString(), y: coord.y.toString(), z: coord.z.toString() })
                     }} />
 
                     <Stack horizontal>
                         <Stack.Item align="end" styles={stackItemStyles}>
                         <PrimaryButton text="Zoom" onClick={() => { 
                             const zoomCoord: ICoordinate = {
-                                X: Number.parseInt(coordinate.X),
-                                Y: Number.parseInt(coordinate.Y),
-                                Z: Number.parseInt(coordinate.Z)
+                                x: Number.parseInt(coordinate.x),
+                                y: Number.parseInt(coordinate.y),
+                                z: Number.parseInt(coordinate.z)
                             }
                             props.onZoomClick(zoomCoord);
 
