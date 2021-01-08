@@ -2,10 +2,12 @@ import './App.css';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import Map from './components/MinecraftMap';
 import React, { useEffect, useState } from "react";
-import { initializeIcons, Stack } from '@fluentui/react';
-import Sidebar from "./components/Sidebar";
+import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
 import { ApiClient, INewLocationRequest } from "./api/apiClient";
+import LocationsList from './components/LocationList/LocationsList';
+import { MenuBar } from "./components/MenuBar";
+
 import Guid from "./api/guid";
 
 ApiClient.settings.initialize();
@@ -27,17 +29,30 @@ const App: React.FC = () => {
     fetchData();
   }, [])
 
+  const appStackStyles: IStackStyles = {
+    root: {
+      height: "100vh"
+    }
+  }
+
+  const mainStackStyles = {
+    root: {
+      height: "calc(100vh - 44px)",
+    }
+  }
+
   const sidebarItemStyles = {
     root: {
-      padding: 5,
-      width: 320
+      margin: 0,
+      width: 340,
     }
   }
 
   const mapStackItemStyles = {
     root: {
       display: "flex",
-      paddingLeft: 5,
+      margin: 0,
+      padding: 0,
       width: "100%"
     }
   }
@@ -85,18 +100,22 @@ const App: React.FC = () => {
   }
 
   return (
-    <Stack horizontal>
-      <Stack.Item styles={sidebarItemStyles} align="start">
-        <Sidebar locations={locations} 
-          addLocation={addLocation} 
-          deleteLocation={deleteLocation}
-          onLocationClicked={centerAtLocation}
-          onZoomClick={centerAtCoordinate}
-           />
-      </Stack.Item>
-      <Stack.Item styles={mapStackItemStyles} align="end">
-        <Map locations={locations} center={center}  />
-      </Stack.Item>
+    <Stack styles={appStackStyles}>
+        <MenuBar 
+          saveNewLocation={addLocation} 
+          onZoomClick={centerAtCoordinate} />
+      <Stack horizontal styles={mainStackStyles}>
+        <Stack.Item styles={sidebarItemStyles}>
+          <LocationsList 
+              locations={locations} 
+              onDelete={deleteLocation} 
+              onLocationClicked={centerAtLocation}
+              />
+        </Stack.Item>
+        <Stack.Item styles={mapStackItemStyles}>
+          <Map locations={locations} center={center}  />
+        </Stack.Item>
+      </Stack>  
     </Stack>
   );
 }   

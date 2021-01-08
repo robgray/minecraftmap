@@ -1,5 +1,5 @@
 import { Text } from 'office-ui-fabric-react';
-import { Card, ICardTokens, ICardItemStyles, ICardItemTokens } from '@uifabric/react-cards';
+import { Card, ICardTokens, ICardStyles, ICardItemStyles, ICardItemTokens } from '@uifabric/react-cards';
 import { ILocation } from "../../api/location";
 import { DeleteButton } from "../DeleteButton";
 import { CoordinateLabel } from "./CoordinateLabel";
@@ -31,9 +31,15 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
         padding: "0px 0px 0px 10px"
     }
     const cardTokens: ICardTokens = { childrenMargin: 8 };
+    const cardStyles: ICardStyles = {
+        root: {
+            marginLeft: 5,
+            marginRight: 15
+        }
+    }
 
     return (
-        <Card horizontal tokens={cardTokens} onClick={() => props.onLocationClicked(props.location)}>
+        <Card horizontal tokens={cardTokens} onClick={() => props.onLocationClicked(props.location)} styles={cardStyles}>
             <Card.Item styles={mapNumberSectionStyle}>
                 <Text variant="xLarge">{"n/a"}</Text>
             </Card.Item>

@@ -49,7 +49,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
     }
 
     const { point } = useContext(LayerContext);
-    const bounds = getBoundsFromLocations(props.locations.map(location => [-location.coordinate.y, location.coordinate.x, ]));
+    const bounds = getBoundsFromLocations(props.locations.map(location => [-location.coordinate.y/SHRINK_FACTOR, location.coordinate.x/SHRINK_FACTOR ]));
     const center = bounds.getCenter();
 
     return (
