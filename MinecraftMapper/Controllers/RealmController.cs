@@ -104,12 +104,18 @@ namespace MinecraftMapper.Controllers
                 Y = newLocation.Y
             };
 
-            var location = new Location()
+            var location = new Location
             {
                 MapNumber = -1,
                 Name = newLocation.Name,
                 Coordinate = coordinate,
-                TypeId = newLocation.LocationTypeId
+                TypeId = newLocation.LocationTypeId,
+                HasAnvil = newLocation.HasAnvil,
+                HasBed = newLocation.HasBed,
+                HasPortal = newLocation.HasPortal,
+                HasEnchantmentTable = newLocation.HasEnchantmentTable,
+                HasFurnace = newLocation.HasFurnace,
+                HasEnderChest = newLocation.HasEnderChest
             };
             realm.Add(location);
             await _context.SaveChangesAsync();
@@ -152,9 +158,18 @@ namespace MinecraftMapper.Controllers
             location.Coordinate.Y = updateLocation.Y;
             location.Coordinate.Z = updateLocation.Z;
             location.Notes = updateLocation.Notes;
+            location.HasAnvil = updateLocation.HasAnvil;
+            location.HasBed = updateLocation.HasBed;
+            location.HasPortal = updateLocation.HasPortal;
+            location.HasEnchantmentTable = updateLocation.HasEnchantmentTable;
+            location.HasFurnace = updateLocation.HasFurnace;
+            location.HasEnderChest = updateLocation.HasEnderChest;
+            location.TypeId = updateLocation.LocationTypeId;
+
+            location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
 
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok(location);
         }
     }
 }

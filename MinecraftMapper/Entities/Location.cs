@@ -15,5 +15,12 @@ namespace MinecraftMapper.Entities
 
         public Guid RealmId { get; set; }
         public Realm Realm { get; set; }
+        
+        public bool HasPortal { get; set; }
+        public bool HasEnderChest { get; set; }
+        public bool HasEnchantmentTable { get; set; }
+        public bool HasBed { get; set; }
+        public bool HasAnvil { get; set; }
+        public bool HasFurnace { get; set; }
     }
 }

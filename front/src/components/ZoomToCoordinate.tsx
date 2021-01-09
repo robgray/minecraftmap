@@ -25,7 +25,7 @@ const ZoomToCoordinate: React.FC<IZoomToCoordinate> = (props: IZoomToCoordinate)
 
     const [ coordinate, setCoordinate ] = useState({ x: "", z: "", y: "" })
 
-    useEffect(() => setCoordinate({ x: "", z: "", y: ""}));
+    useEffect(() => setCoordinate({ x: "", z: "", y: ""}), []);
 
     return (
         <Panel

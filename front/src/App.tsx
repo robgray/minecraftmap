@@ -4,7 +4,7 @@ import Map from './components/MinecraftMap';
 import React, { useEffect, useState } from "react";
 import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
-import { ApiClient, INewLocationRequest } from "./api/apiClient";
+import { ApiClient, INewLocationRequest, IUpdateLocationRequest } from "./api/apiClient";
 import LocationsList from './components/LocationList/LocationsList';
 import { MenuBar } from "./components/MenuBar";
 
@@ -73,10 +73,30 @@ const App: React.FC = () => {
       x: location.coordinate.x,
       y: location.coordinate.y,
       z: location.coordinate.z,
-      locationTypeId: location.typeId
+      locationTypeId: location.typeId,
+      hasAnvil: location.hasAnvil,
+      hasBed: location.hasBed,
+      hasEnchantmentTable: location.hasEnchantmentTable,
+      hasFurnace: location.hasFurnace,
+      hasEnderChest: location.hasEnderChest,
+      hasPortal: location.hasPortal
     });
+  }
 
-    console.log("locations", locations);
+  const updateLocation = (location: IUpdateLocationRequest) => {
+
+    const postData = async (location: IUpdateLocationRequest) => {
+      const realm = await ApiClient.methods.updateLocation(ApiClient.settings.RealmKey, location);
+      if (realm && realm.locations && realm.locations.length > 0) {
+        console.log(realm.locations);
+        setLocations(realm.locations);
+      } else {
+        setLocations([] as ILocation[]);
+      }
+    }
+
+    postData(location);
+    console.log(locations);
   }
 
   const deleteLocation = (id: Guid) => {
@@ -110,6 +130,7 @@ const App: React.FC = () => {
               locations={locations} 
               onDelete={deleteLocation} 
               onLocationClicked={centerAtLocation}
+              onUpdateLocation={updateLocation}
               />
         </Stack.Item>
         <Stack.Item styles={mapStackItemStyles}>

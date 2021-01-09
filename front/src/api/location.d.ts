@@ -7,6 +7,12 @@ interface ILocation {
     notes?: string | null;
     coordinate: ICoordinate;
     mapNumber: number;
+    hasAnvil: boolean;
+    hasBed: boolean;
+    hasPortal: boolean;
+    hasFurnace: boolean;
+    hasEnderChest: boolean;
+    hasEnchantmentTable: boolean;
 }
 
 interface ICoordinate {
@@ -19,6 +25,12 @@ interface INewLocation {
     name: string;
     typeId: Guid;
     coordinate: ICoordinate;
+    hasAnvil: boolean;
+    hasBed: boolean;
+    hasPortal: boolean;
+    hasFurnace: boolean;
+    hasEnderChest: boolean;
+    hasEnchantmentTable: boolean;
 }
 
 export { ILocation, ICoordinate, INewLocation };

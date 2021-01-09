@@ -3,6 +3,7 @@ import axios, {AxiosResponse } from "axios";
 import { IRealm } from "./realm";
 import { ILocationType } from "./locationType";
 import Guid from "./guid";
+import { ILocation } from "./location";
 
 export interface INewLocationRequest {
     name: string;
@@ -10,6 +11,29 @@ export interface INewLocationRequest {
     z: number;
     y: number;
     locationTypeId: Guid;
+    hasAnvil: boolean;
+    hasBed: boolean;
+    hasPortal: boolean;
+    hasFurnace: boolean;
+    hasEnderChest: boolean;
+    hasEnchantmentTable: boolean;
+}
+
+export interface IUpdateLocationRequest 
+{
+    id: Guid;
+    name: string;
+    x: number;
+    z: number;
+    y: number;
+    locationTypeId: Guid;
+    hasAnvil: boolean;
+    hasBed: boolean;
+    hasPortal: boolean;
+    hasFurnace: boolean;
+    hasEnderChest: boolean;
+    hasEnchantmentTable: boolean;
+    notes: string;
 }
 
 export const ApiClient  = 
@@ -77,6 +101,29 @@ export const ApiClient  =
             {
                 console.log(error);
                 return null;
+            }
+        },
+
+        async updateLocation(realmId: Guid, location: IUpdateLocationRequest) : Promise<IRealm | null>
+        {
+            try 
+            {
+                const response = await axios.put<ILocation, AxiosResponse<ILocation>>(`/Realm/${realmId}/location/${location.id}`, location);
+                if (ApiClient.data.realm != null) {
+                    const tempLocations = [...ApiClient.data.realm.locations];
+                    const locIndex = tempLocations.findIndex((loc) => loc.id === location.id);
+                    if (locIndex > -1) {
+                        tempLocations[locIndex] = response.data;
+                        ApiClient.data.realm.locations = tempLocations;
+                    }
+                }
+            
+                return ApiClient.data.realm
+            } 
+            catch (error) 
+            {
+                console.log(error);
+                return ApiClient.data.realm;
             }
         },
 

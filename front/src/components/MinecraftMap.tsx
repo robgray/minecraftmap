@@ -1,8 +1,9 @@
 import { useContext }  from 'react';
-import { MapContainer, Marker, Popup, LayerGroup, useMap } from 'react-leaflet';
+import { MapContainer, LayerGroup, useMap } from 'react-leaflet';
 import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
 import { LayerContext } from './context/LayerContext';
 import { ILocation, ICoordinate } from '../api/location';
+import { LocationTypeMarker } from './LocationTypeMarker';
 
 // Shrink_factor makes it easier to work with the large values for x and y that minecraft produces
 // in the leaftlet.js map these are far apart when zoomed out.
@@ -64,9 +65,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
                 {point}
             </LayerGroup>
             {props.locations.map(location => (
-                <Marker position={[-(location.coordinate.y/SHRINK_FACTOR), location.coordinate.x/SHRINK_FACTOR]} key={location.id}>
-                    <Popup>{location.name}</Popup>
-                </Marker>
+                <LocationTypeMarker location={location} shrinkFactor={SHRINK_FACTOR} />
             ))}
         </MapContainer>
     )

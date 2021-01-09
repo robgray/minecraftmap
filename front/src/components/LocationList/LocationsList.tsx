@@ -1,6 +1,7 @@
 import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from 'office-ui-fabric-react';
 import { ListItem } from "./LocationListItem";
 import { ILocation } from "../../api/location";
+import { IUpdateLocationRequest } from "../../api/apiClient";
 
 import Guid from "../../api/guid";
 
@@ -8,6 +9,7 @@ interface ILocationListProps {
     locations: ILocation[];
     onDelete: ((id: Guid) => void);
     onLocationClicked: ((location: ILocation) => void);
+    onUpdateLocation: ((lLocation: IUpdateLocationRequest) => void);
 };
 
 const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) => {   
@@ -38,7 +40,8 @@ const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) 
                             <ListItem key={location.id}
                                 location={location} 
                                 onDelete={() => props.onDelete(location.id)} 
-                                onLocationClicked={props.onLocationClicked}/>
+                                onLocationClicked={props.onLocationClicked}
+                                onUpdateLocation={props.onUpdateLocation} />
                         )
             })}
         </Stack>

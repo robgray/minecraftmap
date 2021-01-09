@@ -32,6 +32,8 @@
           <e p="20210107130825_RespawnLocation.Designer.cs" t="Include" />
           <e p="20210109004916_RemoveMaps.cs" t="Include" />
           <e p="20210109004916_RemoveMaps.Designer.cs" t="Include" />
+          <e p="20210109030621_AddLocationOptions.cs" t="Include" />
+          <e p="20210109030621_AddLocationOptions.Designer.cs" t="Include" />
           <e p="InitialCreateDataLoader.cs" t="Include" />
           <e p="MapContextModelSnapshot.cs" t="Include" />
           <e p="MigrationBuilderInsertHelpers.cs" t="Include" />

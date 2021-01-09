@@ -1,11 +1,11 @@
 import { PrimaryButton, TextField, Stack, IStackItemStyles, Separator, IStackTokens } from 'office-ui-fabric-react';
 import React, { useEffect, useState } from "react";
-import { ActionButton, IIconProps } from 'office-ui-fabric-react';
 import { Checkbox, ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
-import { INewLocation } from "../../api/location";
+import { ILocation, ICoordinate } from "../../api/location";
+import { IUpdateLocationRequest } from "../../api/apiClient";
 
 
 const stackItemStyles: IStackItemStyles = {
@@ -21,46 +21,38 @@ const checkboxStackTokens: IStackTokens = {
     padding: 20
 };
 
-interface IAddLocationProps {
-    saveNewLocation: ((newLocation: INewLocation) => void)
+interface IEditLocationProps {
+    location: ILocation;
+    saveLocation: ((lLocation: IUpdateLocationRequest) => void)
     dismissPanel: (() => void);
     openPanel: (() => void);
     isOpen: boolean;
 }
 
-const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
+const CoordinateToString = (coordinate: ICoordinate) => {
+    return {
+        x: coordinate.x.toString(), 
+        z: coordinate.z.toString(), 
+        y: coordinate.y.toString()
+    };
+};
 
-    const [ name, setName ] = useState("");
-    const [ categoryId, setCategoryId ] = useState("");
-    const [ coordinate, setCoordinate ] = useState({ x: "", z: "", y: "" });
-    const [ hasAnvil, setAnvil ] = useState(false);
-    const [ hasBed, setBed ] = useState(false)
-    const [ hasPortal, setPortal ] = useState(false);
-    const [ hasEnderChest, setEnderChest ] = useState(false);
-    const [ hasEnchantmentTable, setEnchantmentTable ] = useState(false);
-    const [ hasFurnace, setFurnace ] = useState(false);
-    const [ notes, setNotes] = useState("");
+const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) => {
 
-    const clearPanel = () => {
-        setName("");
-        setCategoryId("");
-        setCoordinate({ x: "", z: "", y: ""});
-        setAnvil(false);
-        setBed(false);
-        setEnderChest(false);
-        setEnchantmentTable(false);
-        setPortal(false);
-        setFurnace(false);
-        setNotes("");
-    }
-
-    useEffect(() => {
-        clearPanel();
-    }, []);
+    const [ name, setName ] = useState(props.location.name);
+    const [ categoryId, setCategoryId ] = useState(props.location.typeId);
+    const [ coordinate, setCoordinate ] = useState(CoordinateToString(props.location.coordinate));
+    const [ hasAnvil, setAnvil ] = useState(props.location.hasAnvil);
+    const [ hasBed, setBed ] = useState(props.location.hasBed)
+    const [ hasPortal, setPortal ] = useState(props.location.hasPortal);
+    const [ hasEnderChest, setEnderChest ] = useState(props.location.hasEnderChest);
+    const [ hasEnchantmentTable, setEnchantmentTable ] = useState(props.location.hasEnchantmentTable);
+    const [ hasFurnace, setFurnace ] = useState(props.location.hasFurnace);
+    const [ notes, setNotes] = useState(props.location.notes);
 
     return (
         <Panel
-            headerText="Add Location"
+            headerText="Edit Location"
             isOpen={props.isOpen}
             onDismiss={props.dismissPanel}
             closeButtonAriaLabel="Close">
@@ -82,25 +74,25 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                         <Checkbox label="Furnace" checked={hasFurnace} onChange={(ev:React.FormEvent<HTMLElement | HTMLInputElement> | undefined, checked: boolean | undefined) => setFurnace(!!checked)} />
                         <Checkbox label="Portal" checked={hasPortal} onChange={(ev:React.FormEvent<HTMLElement | HTMLInputElement> | undefined, checked: boolean | undefined) => setPortal(!!checked)} />
                     </Stack>
-                    <TextField label="Notes" multiline rows={5} value={notes} onChange={(e, newValue) => setNotes(newValue ? newValue : "")} />
+                    
                     <Stack horizontal>
                         <Stack.Item align="end" styles={stackItemStyles}>
                             <PrimaryButton text="Save" onClick={() => { 
-                                props.saveNewLocation(
+                                props.saveLocation(
                                 {
+                                    id: props.location.id,
                                     name: name,
-                                    coordinate: { 
-                                        x: Number.parseInt(coordinate.x),
-                                        y: Number.parseInt(coordinate.y),
-                                        z: Number.parseInt(coordinate.z)
-                                    },
-                                    typeId: categoryId,
+                                    x: Number.parseInt(coordinate.x),
+                                    y: Number.parseInt(coordinate.y),
+                                    z: Number.parseInt(coordinate.z),
+                                    locationTypeId: categoryId,
                                     hasAnvil: hasAnvil,
                                     hasBed: hasBed,
                                     hasEnchantmentTable: hasEnchantmentTable,
                                     hasEnderChest: hasEnderChest,
                                     hasPortal: hasPortal,
-                                    hasFurnace: hasFurnace
+                                    hasFurnace: hasFurnace,
+                                    notes: notes ? notes : ""
                                 });
                                 props.dismissPanel();
                             }} />
@@ -112,4 +104,4 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
     );
 }
 
-export { AddLocation };
+export { EditLocation };
