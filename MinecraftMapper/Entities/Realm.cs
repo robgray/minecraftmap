@@ -5,15 +5,9 @@ using System.Linq;
 
 namespace MinecraftMapper.Entities
 {
-    /// <summary>
-    /// Represents a Minecraft Realm, which is composed of individual Maps
-    /// (e.g. Maps a player generates at a cartography table)
-    /// and of individual Locations.
-    /// </summary>
     public class Realm : EntityBase
     {
         private ICollection<Location> _locations;
-        private ICollection<Map> _maps;
         public Realm()
         {
             _locations = new List<Location>();
@@ -32,13 +26,13 @@ namespace MinecraftMapper.Entities
             if (location.Id == Guid.Empty)
             {
                 location.Realm = this;
-                location.MapId = this.Id;
+                location.RealmId = this.Id;
 
                 _locations.Add(location);
                 return;
             }
             
-            if (location.MapId != this.Id)
+            if (location.RealmId != this.Id)
             {
                 throw new Exception("Cannot add to a location for another Realm");
             }
@@ -55,7 +49,7 @@ namespace MinecraftMapper.Entities
             _locations.Remove(location);
                 
             location.Realm = null;
-            location.MapId = Guid.Empty;
+            location.RealmId = Guid.Empty;
         }
     }
 }

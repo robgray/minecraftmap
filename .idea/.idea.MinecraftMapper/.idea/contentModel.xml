@@ -9,15 +9,20 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="LocationTypesController.cs" t="Include" />
-          <e p="MapController.cs" t="Include" />
+          <e p="RealmController.cs" t="Include" />
         </e>
         <e p="Entities" t="Include">
           <e p="Coordinate.cs" t="Include" />
           <e p="EntityBase.cs" t="Include" />
           <e p="Location.cs" t="Include" />
           <e p="LocationType.cs" t="Include" />
-          <e p="Map.cs" t="Include" />
           <e p="Realm.cs" t="Include" />
+        </e>
+        <e p="MapGeneration" t="Include">
+          <e p="IMapNumberGenerator.cs" t="Include" />
+          <e p="MapNumberGenerator.cs" t="Include" />
+          <e p="Ring.cs" t="Include" />
+          <e p="Square.cs" t="Include" />
         </e>
         <e p="MapperContext.cs" t="Include" />
         <e p="Migrations" t="Include">
@@ -25,6 +30,8 @@
           <e p="20201212024259_InitialCreate.Designer.cs" t="Include" />
           <e p="20210107130825_RespawnLocation.cs" t="Include" />
           <e p="20210107130825_RespawnLocation.Designer.cs" t="Include" />
+          <e p="20210109004916_RemoveMaps.cs" t="Include" />
+          <e p="20210109004916_RemoveMaps.Designer.cs" t="Include" />
           <e p="InitialCreateDataLoader.cs" t="Include" />
           <e p="MapContextModelSnapshot.cs" t="Include" />
           <e p="MigrationBuilderInsertHelpers.cs" t="Include" />
@@ -43,7 +50,7 @@
         </e>
         <e p="Requests" t="Include">
           <e p="NewLocationRequest.cs" t="Include" />
-          <e p="NewMapRequest.cs" t="Include" />
+          <e p="NewRealmRequest.cs" t="Include" />
           <e p="UpdateLocationRequest.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />

@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MinecraftMapper.MapGeneration;
 
 namespace MinecraftMapper
 {
@@ -42,6 +43,8 @@ namespace MinecraftMapper
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddScoped<IMapNumberGenerator, MapNumberGenerator>();
             
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "MinecraftMapper", Version = "v1"}); });
             ConfigureDbContext(services);

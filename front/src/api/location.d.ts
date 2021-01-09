@@ -6,7 +6,7 @@ interface ILocation {
     typeId: Guid;
     notes?: string | null;
     coordinate: ICoordinate;
-    map: number;
+    mapNumber: number;
 }
 
 interface ICoordinate {

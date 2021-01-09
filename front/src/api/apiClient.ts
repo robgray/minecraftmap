@@ -35,7 +35,7 @@ export const ApiClient  =
                 {
                     return ApiClient.data.realm;
                 }
-                const response = await axios.get<IRealm>(`/Map/${id}`);
+                const response = await axios.get<IRealm>(`/Realm/${id}`);
                 ApiClient.data.realm = response.data;
                 return response.data;
             } 
@@ -68,7 +68,7 @@ export const ApiClient  =
         {
             try 
             {
-                const response = await axios.post<INewLocationRequest, AxiosResponse<IRealm>>(`/Map/${realmId}/location`, newLocation);
+                const response = await axios.post<INewLocationRequest, AxiosResponse<IRealm>>(`/Realm/${realmId}/location`, newLocation);
                 ApiClient.data.realm = response.data;
             
                 return response.data;
@@ -84,7 +84,7 @@ export const ApiClient  =
         {
             try 
             {
-                await axios.delete<IRealm>(`/Map/${realmId}/location/${locationId}`);
+                await axios.delete<IRealm>(`/Realm/${realmId}/location/${locationId}`);
 
                 let locIndex = -1
                 if (ApiClient.data.realm !== null) {

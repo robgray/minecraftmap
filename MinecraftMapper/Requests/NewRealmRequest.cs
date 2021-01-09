@@ -1,6 +1,6 @@
 ﻿namespace MinecraftMapper.Requests
 {
-    public class NewMapRequest
+    public class NewRealmRequest
     {
         public string Name { get; set; }
     }
