@@ -4,6 +4,7 @@ import { IRealm } from "./realm";
 import { ILocationType } from "./locationType";
 import Guid from "./guid";
 import { ILocation } from "./location";
+import { initializeComponentRef } from "@fluentui/react";
 
 export interface INewLocationRequest {
     name: string;
@@ -40,7 +41,7 @@ export const ApiClient  =
 {
     data: {
         locationTypes: null as ILocationType[] | null,
-        realm: null as IRealm | null
+        realm: null as IRealm | null,
     },
     settings: {
         initialize() 

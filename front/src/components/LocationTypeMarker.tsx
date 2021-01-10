@@ -1,26 +1,41 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { ILocation } from "../api/location";
 import { Marker, Popup } from 'react-leaflet';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
+import { ApiClient } from '../api/apiClient';
+import L from "leaflet";
+
 
 interface ILocationTypeMarkerProps {
     location: ILocation;
     shrinkFactor: number;
 };
 
-
-
-
-
 export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: ILocationTypeMarkerProps) => {
+
+    const getIcon = (location: ILocation) => {
+        const locationType = (ApiClient.data.locationTypes??[]).find(lt => lt.id === location.typeId);
+        const iconColour = locationType ? locationType.iconClass : "blue";
+        return new L.Icon({
+            iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${iconColour}.png`,
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+    }
+
+    const [ icon ] = useState(getIcon(props.location));
 
     return (
         <Marker 
             position={[-(props.location.coordinate.y/props.shrinkFactor), props.location.coordinate.x/props.shrinkFactor]}
             key={props.location.id}
+            icon={icon}
             >
             <Popup>
                 <Text block variant="medium" style={{fontWeight: "bold"}}>{props.location.name}</Text>

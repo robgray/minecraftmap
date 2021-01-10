@@ -9,7 +9,6 @@ namespace MinecraftMapper.Migrations
         {
             builder.InsertLocationType(Guid.NewGuid(), "", "Town");
             builder.InsertLocationType(Guid.NewGuid(), "", "City");
-            builder.InsertLocationType(Guid.NewGuid(), "", "Portal");
             builder.InsertLocationType(Guid.NewGuid(), "", "Base");
             builder.InsertLocationType(Guid.NewGuid(), "", "Shack");
             builder.InsertLocationType(Guid.NewGuid(), "", "Bed-rest");

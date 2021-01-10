@@ -11,6 +11,7 @@ import { MenuBar } from "./components/MenuBar";
 import Guid from "./api/guid";
 
 ApiClient.settings.initialize();
+ApiClient.methods.getLocationTypes();
 initializeIcons();
 
 const App: React.FC = () => {

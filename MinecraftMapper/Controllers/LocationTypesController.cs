@@ -18,7 +18,7 @@ namespace MinecraftMapper.Controllers
         [HttpGet("")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _context.LocationTypes.AsNoTracking().Select(l => new { l.Id, l.IconClass, l.Name}).ToListAsync());
+            return Ok(await _context.LocationTypes.AsNoTracking().Select(l => new { l.Id, l.IconClass, l.Name}).OrderBy(l => l.Name).ToListAsync());
         }
     }
 }
