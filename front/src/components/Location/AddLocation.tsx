@@ -1,7 +1,6 @@
 import { PrimaryButton, TextField, Stack, IStackItemStyles, Separator, IStackTokens } from 'office-ui-fabric-react';
 import React, { useEffect, useState } from "react";
-import { ActionButton, IIconProps } from 'office-ui-fabric-react';
-import { Checkbox, ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
+import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";

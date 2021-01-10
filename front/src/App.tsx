@@ -6,6 +6,7 @@ import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
 import { ApiClient, INewLocationRequest, IUpdateLocationRequest } from "./api/apiClient";
 import LocationsList from './components/LocationList/LocationsList';
+import { ILocationFilter } from "./components/LocationList/LocationFilter";
 import { MenuBar } from "./components/MenuBar";
 
 import Guid from "./api/guid";
@@ -97,7 +98,6 @@ const App: React.FC = () => {
     }
 
     postData(location);
-    console.log(locations);
   }
 
   const deleteLocation = (id: Guid) => {
@@ -120,6 +120,32 @@ const App: React.FC = () => {
     setCenter(coordinate);
   }
 
+  const filterMapLocations = (filter: ILocationFilter) => {
+    // Get all locations again.
+    let tempLocations = [...ApiClient.data.realm?.locations ?? []];
+      tempLocations = tempLocations.filter(location => {
+                      
+          if (filter.hasAnvil && !location.hasAnvil)
+              return false;
+          if (filter.hasBed && !location.hasBed)
+              return false;
+          if (filter.hasEnchantmentTable && !location.hasEnchantmentTable)
+              return false;
+          if (filter.hasEnderChest && !location.hasEnderChest)
+              return false;
+          if (filter.hasFurnace && !location.hasFurnace)
+              return false;
+          if (filter.hasPortal && !location.hasPortal)
+              return false;
+          if (filter.typeId && (location.typeId !== filter.typeId))
+            return false;
+            
+          return true;
+      });
+
+      setLocations(tempLocations);
+  }
+
   return (
     <Stack styles={appStackStyles}>
         <MenuBar 
@@ -132,6 +158,7 @@ const App: React.FC = () => {
               onDelete={deleteLocation} 
               onLocationClicked={centerAtLocation}
               onUpdateLocation={updateLocation}
+              onFilter={filterMapLocations}
               />
         </Stack.Item>
         <Stack.Item styles={mapStackItemStyles}>

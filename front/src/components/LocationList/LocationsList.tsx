@@ -2,6 +2,8 @@ import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from 'offic
 import { ListItem } from "./LocationListItem";
 import { ILocation } from "../../api/location";
 import { IUpdateLocationRequest } from "../../api/apiClient";
+import { LocationsFilter, ILocationFilter } from "./LocationFilter";
+import { useState } from "react";
 
 import Guid from "../../api/guid";
 
@@ -10,6 +12,7 @@ interface ILocationListProps {
     onDelete: ((id: Guid) => void);
     onLocationClicked: ((location: ILocation) => void);
     onUpdateLocation: ((lLocation: IUpdateLocationRequest) => void);
+    onFilter: ((filter: ILocationFilter) => void);
 };
 
 const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) => {   
@@ -34,6 +37,9 @@ const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) 
         <Stack tokens={sectionStackTokens} styles={listStackStyles}>
             <Stack.Item styles={headerStyles}>
                 <Text variant="large">Locations</Text>
+            </Stack.Item>
+            <Stack.Item>
+                <LocationsFilter onFilter={props.onFilter}  />
             </Stack.Item>
             {props.locations.map(location => {
                 return (
