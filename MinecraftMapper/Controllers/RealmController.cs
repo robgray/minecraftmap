@@ -61,7 +61,8 @@ namespace MinecraftMapper.Controllers
             if (realm == null)
                 return NotFound();
             
-            foreach (var location in realm.Locations.Where(loc => loc.MapNumber < 1))
+            // Overwrite all, for now.
+            foreach (var location in realm.Locations)
             {
                 location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
             }
@@ -120,6 +121,8 @@ namespace MinecraftMapper.Controllers
             realm.Add(location);
             await _context.SaveChangesAsync();
 
+            location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(coordinate);
+
             return Created(Url.RouteUrl("Realm", new {realmId}), realm);
         }
         
@@ -166,7 +169,8 @@ namespace MinecraftMapper.Controllers
             location.HasEnderChest = updateLocation.HasEnderChest;
             location.TypeId = updateLocation.LocationTypeId;
 
-            location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
+            //leave until we're confident the coordinate offset is correct.
+            //location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
 
             await _context.SaveChangesAsync();
             return Ok(location);

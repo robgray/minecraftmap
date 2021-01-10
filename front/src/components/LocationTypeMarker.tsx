@@ -19,7 +19,7 @@ export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: IL
             position={[-(props.location.coordinate.y/props.shrinkFactor), props.location.coordinate.x/props.shrinkFactor]}
             key={props.location.id}
             >
-            <Popup>{props.location.name}</Popup>
+            <Popup >{props.location.name}<br/>{props.location.notes}</Popup>
         </Marker>
     )
 }

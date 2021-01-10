@@ -20,6 +20,8 @@
         </e>
         <e p="MapGeneration" t="Include">
           <e p="IMapNumberGenerator.cs" t="Include" />
+          <e p="MapBoundingBox.cs" t="Include" />
+          <e p="MapCoordinate.cs" t="Include" />
           <e p="MapNumberGenerator.cs" t="Include" />
           <e p="Ring.cs" t="Include" />
           <e p="Square.cs" t="Include" />

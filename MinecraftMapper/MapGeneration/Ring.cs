@@ -1,4 +1,6 @@
-﻿namespace MinecraftMapper.MapGeneration
+﻿using System.Collections.Generic;
+
+namespace MinecraftMapper.MapGeneration
 {
 	/// <summary>
 	/// Rings are "layers" of maps outward from the center.
@@ -7,8 +9,8 @@
 	/// ... and so on.
 	/// </summary>
     public class Ring
-    {
-        public Ring(int ringNumber)
+{
+	public Ring(int ringNumber)
 	{
 		Number = ringNumber;
 	}
@@ -33,9 +35,30 @@
 		return GetSize(ring - 1) + 8; 
 	}
 	
-	public (int X, int Y) StartCoordinates => (-(Number - 1), Number);
+	public Square[] GetAllSquares() 
+	{
+		var squares = new List<Square>();
+
+		if (StartNumber == EndNumber)
+		{
+			var coords = GetCoordinatesForSquareNumber(1);
+			squares.Add(new Square(coords.X, coords.Y));
+		}
+		else
+		{
+			for (var i = StartNumber; i <= EndNumber; i++)
+			{
+				var coords = GetCoordinatesForSquareNumber(i);
+				squares.Add(new Square(coords.X, coords.Y));
+			}
+		}
+		
+		return squares.ToArray();
+	}
 	
-	public (int X, int Y) GetCoordinatesForNumber(int number)
+	public (int X, int Y) StartCoordinates => Number == 0 ? (0,0) : (-(Number - 1), Number);
+	
+	public (int X, int Y) GetCoordinatesForSquareNumber(int squareNumber)
 	{
 		// Numbering is always clockwise, so we can do an inefficient check here
 		// If we're going more X we can check the current to see if it's the same 
@@ -44,52 +67,52 @@
 		// finally adding Y.
 		
 		var coords = StartCoordinates; 	// Always anti-clockwise from PositiveY but on same Y axis.
-		if (number == this.StartNumber)
+		if (squareNumber == this.StartNumber)
 		{
 			return coords;
 		}
 		
-		if (number <= PositiveYValue)
+		if (squareNumber <= PositiveYValue)
 		{
-			return (0 - (PositiveYValue - number), Number);
+			return (0 - (PositiveYValue - squareNumber), Number);
 		}
 		
-		if (number <= PositiveXValue)
+		if (squareNumber <= PositiveXValue)
 		{
-			if (number <= QuarterNumber)
+			if (squareNumber <= QuarterNumber)
 			{
-				return (Number - (QuarterNumber - number), Number);
+				return (Number - (QuarterNumber - squareNumber), Number);
 			} else {
-				return (Number, Number - (number - QuarterNumber));
+				return (Number, Number - (squareNumber - QuarterNumber));
 			}
 		}
 		
-		if (number <= NegativeYValue)
+		if (squareNumber <= NegativeYValue)
 		{
-			if (number <= HalfNumber)
+			if (squareNumber <= HalfNumber)
 			{
-				return (Number, -Number - (number - HalfNumber));
+				return (Number, -Number - (squareNumber - HalfNumber));
 			} 
 			else 
 			{
-				return ((NegativeYValue - number), -Number);
+				return ((NegativeYValue - squareNumber), -Number);
 			}
 		} 
 		
-		if (number <= NegativeXValue)
+		if (squareNumber <= NegativeXValue)
 		{
-			if (number <= ThreeQuarterNumber)
+			if (squareNumber <= ThreeQuarterNumber)
 			{
-				return (-Number - (number - ThreeQuarterNumber), -Number);
+				return (-Number - (squareNumber - ThreeQuarterNumber), -Number);
 			} 
 			else 
 			{
-				return (-Number, -Number - (ThreeQuarterNumber - number));
+				return (-Number, -Number - (ThreeQuarterNumber - squareNumber));
 			}
 		} 
 		else 
 		{
-			return (-Number, Number - (EndNumber - number));
+			return (-Number, Number - (EndNumber - squareNumber));
 		}
 	}
 	
@@ -104,8 +127,11 @@
 		return (8 * (ringNumber - 1)) + GetStartNumber(ringNumber - 1);
 	}
 	
-	public static Ring GetRingForNumber(int number)
+	public static Ring GetRingForSquareNumber(int number)
 	{
+		if (number == 1)
+			return new Ring(0);
+		
 		var ringNumber = 0;
 		while (GetEndNumber(ringNumber) < number)
 		{
@@ -115,6 +141,7 @@
 		return new Ring(ringNumber);
 	}
 	
+	/// <summary>Get the square number at the end of this ring</summary>
 	public static int GetEndNumber(int ringNumber)
 	{
 		if (ringNumber == 0)
@@ -191,5 +218,5 @@
 			
 		return 8 + GetNegativeYJump(ringNumber - 1);
 	}
-    }
+}
 }
