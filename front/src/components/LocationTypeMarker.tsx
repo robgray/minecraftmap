@@ -1,12 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ILocation } from "../api/location";
 import { Marker, Popup } from 'react-leaflet';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
-import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
+import { mergeStyles, mergeStyleSets, setIconOptions } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 import { ApiClient } from '../api/apiClient';
 import L from "leaflet";
+import { setConstantValue } from "typescript";
 
 
 interface ILocationTypeMarkerProps {
@@ -14,22 +15,29 @@ interface ILocationTypeMarkerProps {
     shrinkFactor: number;
 };
 
+const getIcon = (location: ILocation) => {
+    const locationType = (ApiClient.data.locationTypes??[]).find(lt => lt.id === location.typeId);
+    const iconColour = locationType ? locationType.iconClass : "blue";
+    const myIcon = new L.Icon({
+        iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${iconColour}.png`,
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+    return myIcon;
+}
+
 export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: ILocationTypeMarkerProps) => {
 
-    const getIcon = (location: ILocation) => {
-        const locationType = (ApiClient.data.locationTypes??[]).find(lt => lt.id === location.typeId);
-        const iconColour = locationType ? locationType.iconClass : "blue";
-        return new L.Icon({
-            iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${iconColour}.png`,
-            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
-        });
-    }
+    
 
-    const [ icon ] = useState(getIcon(props.location));
+    const [ icon, setIcon ] = useState(() => getIcon(props.location));
+    useEffect(() => {
+         setIcon(getIcon(props.location))
+    }, [props])
+
 
     return (
         <Marker 
