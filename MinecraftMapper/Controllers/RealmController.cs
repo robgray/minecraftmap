@@ -62,12 +62,16 @@ namespace MinecraftMapper.Controllers
                 return NotFound();
             
             // Overwrite all, for now.
+            SetMapNumber(realm);
+            return Ok(realm);
+        }
+
+        private void SetMapNumber(Realm realm)
+        {
             foreach (var location in realm.Locations)
             {
                 location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
             }
-
-            return Ok(realm);
         }
 
         [HttpDelete("{realmId}")]
@@ -122,7 +126,7 @@ namespace MinecraftMapper.Controllers
             realm.Add(location);
             await _context.SaveChangesAsync();
 
-            location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(coordinate);
+            SetMapNumber(realm);
 
             return Created(Url.RouteUrl("Realm", new {realmId}), realm);
         }

@@ -17,6 +17,7 @@ export interface INewLocationRequest {
     hasFurnace: boolean;
     hasEnderChest: boolean;
     hasEnchantmentTable: boolean;
+    notes?: string | null;
 }
 
 export interface IUpdateLocationRequest 

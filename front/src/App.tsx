@@ -69,8 +69,7 @@ const App: React.FC = () => {
         setLocations([] as ILocation[]);
       }
     }
-
-    postData({
+    const newDataObj: INewLocationRequest = {
       name: location.name,
       x: location.coordinate.x,
       y: location.coordinate.y,
@@ -81,8 +80,11 @@ const App: React.FC = () => {
       hasEnchantmentTable: location.hasEnchantmentTable,
       hasFurnace: location.hasFurnace,
       hasEnderChest: location.hasEnderChest,
-      hasPortal: location.hasPortal
-    });
+      hasPortal: location.hasPortal,
+      notes: location.notes
+    }
+
+    postData(newDataObj);
   }
 
   const updateLocation = (location: IUpdateLocationRequest) => {
@@ -146,25 +148,25 @@ const App: React.FC = () => {
   }
 
   return (
-    <Stack styles={appStackStyles}>
-        <MenuBar 
-          saveNewLocation={addLocation} 
-          onZoomClick={centerAtCoordinate} />
-      <Stack horizontal styles={mainStackStyles}>
-        <Stack.Item styles={sidebarItemStyles}>
-          <LocationsList 
-              locations={locations} 
-              onDelete={deleteLocation} 
-              onLocationClicked={gotoLocation}
-              onUpdateLocation={updateLocation}
-              onFilter={filterMapLocations}
-              />
-        </Stack.Item>
-        <Stack.Item styles={mapStackItemStyles}>
-          <Map locations={locations} center={center}  />
-        </Stack.Item>
-      </Stack>  
-    </Stack>
+      <Stack styles={appStackStyles}>
+          <MenuBar 
+            saveNewLocation={addLocation} 
+            onZoomClick={centerAtCoordinate} />
+        <Stack horizontal styles={mainStackStyles}>
+          <Stack.Item styles={sidebarItemStyles}>
+            <LocationsList 
+                locations={locations} 
+                onDelete={deleteLocation} 
+                onLocationClicked={gotoLocation}
+                onUpdateLocation={updateLocation}
+                onFilter={filterMapLocations}
+                />
+          </Stack.Item>
+          <Stack.Item styles={mapStackItemStyles}>
+            <Map locations={locations} center={center}  />
+          </Stack.Item>
+        </Stack>  
+      </Stack>
   );
 }   
 

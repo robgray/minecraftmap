@@ -35,7 +35,7 @@ const ZoomToCoordinate: React.FC<IZoomToCoordinate> = (props: IZoomToCoordinate)
             closeButtonAriaLabel="Close">
             <Stack>
                 <CoordinateControl x={coordinate.x} y={coordinate.y} z={coordinate.z} onChange={(coord) => {
-                    setCoordinate({ x: coord.x.toString(), y: coord.y.toString(), z: coord.z.toString() })
+                    setCoordinate({ x: coord.x, y: coord.y, z: coord.z })
                 }} />
 
                 <Stack horizontal>
