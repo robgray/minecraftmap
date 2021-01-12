@@ -1,12 +1,13 @@
 import { IStackTokens, TextField, Stack } from 'office-ui-fabric-react';
 import { useState } from 'react';
+import { isNamedExportBindings } from 'typescript';
 import { ICoordinate } from "../../api/location";
 
 interface ICoordinatesProps {
-    x: string;
-    z: string;
-    y: string;
-    onChange: (coordinate: ICoordinate) => void;
+    x: string | undefined;
+    z: string | undefined;
+    y: string | undefined;
+    onChange: ((obj: any) => void);
 }
 
 const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps) => {
@@ -19,38 +20,26 @@ const CoordinateControl: React.FC<ICoordinatesProps> = (props: ICoordinatesProps
 
     const updateChangedX = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
         event.stopPropagation();
-        if (!newValue) return;
+        
         setX(newValue);
 
-        props.onChange({
-            x: parseInt(newValue),
-            z: parseInt(z),
-            y: parseInt(y),
-        });
+        props.onChange({ x: newValue, z, y });
     }
 
     const updateChangedY = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
         event.stopPropagation();
-        if (!newValue) return;
-        setY(newValue);
+    
+        setY(newValue);      
 
-        props.onChange({
-            x: parseInt(x),
-            z: parseInt(z),
-            y: parseInt(newValue),
-        });
+        props.onChange({ x, y, newValue });
     }
 
     const updateChangedZ = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string | undefined) => {
         event.stopPropagation();
-        if (!newValue) return;
+        
         setZ(newValue);
 
-        props.onChange({
-            x: parseInt(x),
-            z: parseInt(newValue),
-            y: parseInt(y),
-        });
+        props.onChange({ x, newValue, y });
     }
 
     return (

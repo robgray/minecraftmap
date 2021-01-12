@@ -65,7 +65,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
                 {point}
             </LayerGroup>
             {props.locations.map(location => (
-                <LocationTypeMarker location={location} shrinkFactor={SHRINK_FACTOR} />
+                <LocationTypeMarker location={location} shrinkFactor={SHRINK_FACTOR} key={location.id} />
             ))}
         </MapContainer>
     )

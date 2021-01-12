@@ -1,4 +1,4 @@
-import { Text, Stack } from 'office-ui-fabric-react';
+import { Text, Stack, IStackTokens } from 'office-ui-fabric-react';
 import { useBoolean } from '@uifabric/react-hooks';
 import { Card, ICardTokens, ICardStyles, ICardItemStyles, ICardItemTokens, ICardSectionStyles } from '@uifabric/react-cards';
 import { ILocation } from "../../api/location";
@@ -16,6 +16,11 @@ interface ILocationListItemProps {
     onDelete: ((id: Guid) => void);
     onLocationClicked: ((location: ILocation) => void);
     onUpdateLocation: ((lLocation: IUpdateLocationRequest) => void);
+}
+
+const buttonTokens: IStackTokens = {
+    childrenGap: 0,
+    padding: 0
 }
 
 const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProps) => {
@@ -53,6 +58,9 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
         }
     }
 
+    const buttonHeight = 30;
+    const buttonFontSize = 15;
+
     return (
         <Card horizontal tokens={cardTokens} onClick={() => props.onLocationClicked(props.location)} styles={cardStyles}>
             <Card.Item styles={mapNumberSectionStyle}>
@@ -67,9 +75,9 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
                 <span/>
             </Card.Item>
             <Card.Item styles={deleteStyles} tokens={deleteTokens}>
-                <Stack>
-                    <EditButton onEdit={() => openEditLocationPanel() } />
-                    {false && (<DeleteButton onDelete={() => props.onDelete(props.location.id)} />)}
+                <Stack tokens={buttonTokens}>
+                    <EditButton onEdit={() => openEditLocationPanel() } height={buttonHeight} fontSize={buttonFontSize} />
+                    <DeleteButton onDelete={() => props.onDelete(props.location.id)} identifyingName={props.location.name} height={buttonHeight} fontSize={buttonFontSize}  />
                     <Customizer>
                         { 
                             isEditLocationOpen && (

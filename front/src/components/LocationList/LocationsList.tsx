@@ -3,7 +3,6 @@ import { ListItem } from "./LocationListItem";
 import { ILocation } from "../../api/location";
 import { IUpdateLocationRequest } from "../../api/apiClient";
 import { LocationsFilter, ILocationFilter } from "./LocationFilter";
-import { useState } from "react";
 
 import Guid from "../../api/guid";
 

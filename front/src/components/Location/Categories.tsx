@@ -16,7 +16,6 @@ const Categories: React.FC<ICategoriesProps> = (props: ICategoriesProps) => {
     useEffect(() => {
         const fetchData = async () => {
             const serverLocationTypes = await ApiClient.methods.getLocationTypes();
-            console.log("locationtypes from server", serverLocationTypes);
             if (serverLocationTypes != null)
             setLocationTypeItems(serverLocationTypes.map<IDropdownOption>(lt => { 
                 return { key : lt.id, text : lt.name };    

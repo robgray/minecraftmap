@@ -116,7 +116,8 @@ namespace MinecraftMapper.Controllers
                 HasPortal = newLocation.HasPortal,
                 HasEnchantmentTable = newLocation.HasEnchantmentTable,
                 HasFurnace = newLocation.HasFurnace,
-                HasEnderChest = newLocation.HasEnderChest
+                HasEnderChest = newLocation.HasEnderChest,
+                Notes = newLocation.Notes
             };
             realm.Add(location);
             await _context.SaveChangesAsync();
@@ -173,6 +174,8 @@ namespace MinecraftMapper.Controllers
             //location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
 
             await _context.SaveChangesAsync();
+
+            location.MapNumber = _mapNumberGenerator.GetMapNumberFromCoordinate(location.Coordinate);
             return Ok(location);
         }
     }

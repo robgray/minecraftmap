@@ -31,6 +31,7 @@ interface INewLocation {
     hasFurnace: boolean;
     hasEnderChest: boolean;
     hasEnchantmentTable: boolean;
+    notes: string;
 }
 
 export { ILocation, ICoordinate, INewLocation };

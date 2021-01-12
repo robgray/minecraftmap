@@ -16,5 +16,6 @@ namespace MinecraftMapper.Requests
         public bool HasBed { get; set; }
         public bool HasAnvil { get; set; }
         public bool HasFurnace { get; set; }
+        public string Notes { get; set; }
     }
 }

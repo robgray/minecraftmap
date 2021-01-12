@@ -70,7 +70,7 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                         if (o) setCategoryId(o.key.toString())
                         }} />
                     <CoordinateControl x={coordinate.x} y={coordinate.y} z={coordinate.z} onChange={(coord) => {
-                        setCoordinate({ x: coord.x.toString(), y: coord.y.toString(), z: coord.z.toString() })
+                        setCoordinate({ x: coord.x, y: coord.y, z: coord.z })
                     }} />
                     <Separator>Options</Separator>
                     <Stack tokens={checkboxStackTokens}>
@@ -89,9 +89,9 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                                 {
                                     name: name,
                                     coordinate: { 
-                                        x: Number.parseInt(coordinate.x),
-                                        y: Number.parseInt(coordinate.y),
-                                        z: Number.parseInt(coordinate.z)
+                                        x: Number.parseInt(coordinate.x, 10),
+                                        y: Number.parseInt(coordinate.y, 10),
+                                        z: Number.parseInt(coordinate.z, 10)
                                     },
                                     typeId: categoryId,
                                     hasAnvil: hasAnvil,
@@ -99,7 +99,8 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                                     hasEnchantmentTable: hasEnchantmentTable,
                                     hasEnderChest: hasEnderChest,
                                     hasPortal: hasPortal,
-                                    hasFurnace: hasFurnace
+                                    hasFurnace: hasFurnace,
+                                    notes: notes ? notes : ""
                                 });
                                 props.dismissPanel();
                             }} />

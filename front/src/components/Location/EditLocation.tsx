@@ -1,6 +1,6 @@
 import { PrimaryButton, TextField, Stack, IStackItemStyles, Separator, IStackTokens } from 'office-ui-fabric-react';
-import React, { useEffect, useState } from "react";
-import { Checkbox, ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
+import React, { useState } from "react";
+import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
@@ -48,7 +48,7 @@ const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) =
     const [ hasEnderChest, setEnderChest ] = useState(props.location.hasEnderChest);
     const [ hasEnchantmentTable, setEnchantmentTable ] = useState(props.location.hasEnchantmentTable);
     const [ hasFurnace, setFurnace ] = useState(props.location.hasFurnace);
-    const [ notes, setNotes] = useState(props.location.notes);
+    const [ notes, setNotes] = useState(() => props.location.notes ? props.location.notes : "");
 
     return (
         <Panel
@@ -74,7 +74,7 @@ const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) =
                         <Checkbox label="Furnace" checked={hasFurnace} onChange={(ev:React.FormEvent<HTMLElement | HTMLInputElement> | undefined, checked: boolean | undefined) => setFurnace(!!checked)} />
                         <Checkbox label="Portal" checked={hasPortal} onChange={(ev:React.FormEvent<HTMLElement | HTMLInputElement> | undefined, checked: boolean | undefined) => setPortal(!!checked)} />
                     </Stack>
-                    
+                    <TextField label="Notes" multiline rows={5} value={notes} onChange={(e, newValue) => setNotes(newValue ? newValue : "")} />
                     <Stack horizontal>
                         <Stack.Item align="end" styles={stackItemStyles}>
                             <PrimaryButton text="Save" onClick={() => { 

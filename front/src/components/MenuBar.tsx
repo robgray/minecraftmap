@@ -7,7 +7,7 @@ import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
 import { INewLocation, ICoordinate } from "../api/location";
 import { Text, Stack } from 'office-ui-fabric-react';
 
-import { IImageProps, ImageFit, Image } from 'office-ui-fabric-react/lib/Image';
+import { Image } from 'office-ui-fabric-react/lib/Image';
 import gridImage from "../images/samplegrid.png";
 
 import { useId } from '@uifabric/react-hooks';
@@ -23,8 +23,6 @@ interface IMenuBarProps
     saveNewLocation: ((newLocation: INewLocation) => void);
     onZoomClick: ((coordinate: ICoordinate) => void);
 }
-
-const mapImageProps: IImageProps = { src: gridImage, alt: "Map numbers", imageFit: ImageFit.center }
 
 export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
 
@@ -135,15 +133,3 @@ const contentStyles = mergeStyleSets({
     },
   },
 });
-const toggleStyles = { root: { marginBottom: '20px' } };
-const iconButtonStyles = {
-  root: {
-    color: theme.palette.neutralPrimary,
-    marginLeft: 'auto',
-    marginTop: '4px',
-    marginRight: '2px',
-  },
-  rootHovered: {
-    color: theme.palette.neutralDark,
-  },
-};

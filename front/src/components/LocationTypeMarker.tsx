@@ -1,14 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import { ILocation } from "../api/location";
 import { Marker, Popup } from 'react-leaflet';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
-import { mergeStyles, mergeStyleSets, setIconOptions } from 'office-ui-fabric-react/lib/Styling';
+import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 import { ApiClient } from '../api/apiClient';
+import { EditButton } from "../components/EditButton";
 import L from "leaflet";
-import { setConstantValue } from "typescript";
-
 
 interface ILocationTypeMarkerProps {
     location: ILocation;
@@ -28,16 +26,13 @@ const getIcon = (location: ILocation) => {
     });
     return myIcon;
 }
-
+ 
 export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: ILocationTypeMarkerProps) => {
-
-    
 
     const [ icon, setIcon ] = useState(() => getIcon(props.location));
     useEffect(() => {
          setIcon(getIcon(props.location))
-    }, [props])
-
+    }, [props]);
 
     return (
         <Marker 
@@ -46,9 +41,11 @@ export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: IL
             icon={icon}
             >
             <Popup>
-                <Text block variant="medium" style={{fontWeight: "bold"}}>{props.location.name}</Text>
+                <Text variant="medium" style={{fontWeight: "bold"}}>{props.location.name}</Text>
+                <EditButton onEdit={() => alert("TODO") } height={15} fontSize={10} />
                 <Text block>Map: {props.location.mapNumber}</Text>
                 <Text>{props.location.notes}</Text>
+                
                 <Separator style={{marginTop: 5}}></Separator>
                 <Stack>
                     <Stack.Item>

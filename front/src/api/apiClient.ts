@@ -4,7 +4,6 @@ import { IRealm } from "./realm";
 import { ILocationType } from "./locationType";
 import Guid from "./guid";
 import { ILocation } from "./location";
-import { initializeComponentRef } from "@fluentui/react";
 
 export interface INewLocationRequest {
     name: string;

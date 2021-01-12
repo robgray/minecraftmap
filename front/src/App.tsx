@@ -90,7 +90,6 @@ const App: React.FC = () => {
     const postData = async (location: IUpdateLocationRequest) => {
       const realm = await ApiClient.methods.updateLocation(ApiClient.settings.RealmKey, location);
       if (realm && realm.locations && realm.locations.length > 0) {
-        console.log(realm.locations);
         setLocations(realm.locations);
       } else {
         setLocations([] as ILocation[]);
@@ -112,7 +111,7 @@ const App: React.FC = () => {
     deleteData(id);
   }
 
-  const centerAtLocation = (location: ILocation) => {
+  const gotoLocation = (location: ILocation) => {
     centerAtCoordinate(location.coordinate);
   }
 
@@ -156,7 +155,7 @@ const App: React.FC = () => {
           <LocationsList 
               locations={locations} 
               onDelete={deleteLocation} 
-              onLocationClicked={centerAtLocation}
+              onLocationClicked={gotoLocation}
               onUpdateLocation={updateLocation}
               onFilter={filterMapLocations}
               />
