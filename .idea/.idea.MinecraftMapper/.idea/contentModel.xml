@@ -14,6 +14,7 @@
         <e p="Entities" t="Include">
           <e p="Coordinate.cs" t="Include" />
           <e p="EntityBase.cs" t="Include" />
+          <e p="GameType.cs" t="Include" />
           <e p="Location.cs" t="Include" />
           <e p="LocationType.cs" t="Include" />
           <e p="Realm.cs" t="Include" />
@@ -36,6 +37,8 @@
           <e p="20210109004916_RemoveMaps.Designer.cs" t="Include" />
           <e p="20210109030621_AddLocationOptions.cs" t="Include" />
           <e p="20210109030621_AddLocationOptions.Designer.cs" t="Include" />
+          <e p="20210112234817_AddSeedAndGameEditionToRealm.cs" t="Include" />
+          <e p="20210112234817_AddSeedAndGameEditionToRealm.Designer.cs" t="Include" />
           <e p="InitialCreateDataLoader.cs" t="Include" />
           <e p="MapContextModelSnapshot.cs" t="Include" />
           <e p="MigrationBuilderInsertHelpers.cs" t="Include" />

@@ -17,6 +17,10 @@ namespace MinecraftMapper.Entities
         [MaxLength(200)]
         public string Name { get; set; }
         
+        public long Seed { get; set; }
+        
+        public GameEdition Edition { get; set; }
+        
         public Coordinate RespawnLocation { get; set; }
 
         public IEnumerable<Location> Locations => _locations;

@@ -17,7 +17,7 @@ namespace MinecraftMapper.MapGeneration
 		// This means when we calculate the top offset we need to more and more negative.
 		int topLeftX = TopLeftOffset.X + (SideLength * x);
 		int topLeftY = TopLeftOffset.Y - (SideLength * y);
-		_boundingBox = new MapBoundingBox(topLeftX, topLeftY, topLeftX + SideLength, topLeftY + SideLength);
+		_boundingBox = new MapBoundingBox(topLeftX, topLeftY, topLeftX + SideLength - 1, topLeftY + SideLength - 1);
 	}
 	
 	public bool Contains(MapCoordinate coordinate) => _boundingBox.ContainsCoordinate(coordinate);
@@ -34,49 +34,28 @@ namespace MinecraftMapper.MapGeneration
 	{
 		// Remember this coordinate system Y gets more positive as it goes "down" the axis.
 		//				  ^
-		//				  |
-		//			    (-y)
-		//				  |
-		//				  |
+		//                |
+		//               (-y)
+		//                |
+		//                |
 		//<-----(-x)-----0,0-------(+x)------->
-		//				  |
-		//				  |
-		//			    (+y)
-		//			   	  |
-		//				  |
+		//                |
+		//                |
+		//              (+y)
+		//                |
+		//                |
 						
 						
-		//int adjustedX = (coordinate.X - TopLeftOffset.X);
-		//int adjustedY = coordinate.Y < 0 ? (coordinate.Y + Math.Abs(TopLeftOffset.Y)) : (coordinate.Y + TopLeftOffset.Y);
-		//
-		//int x = (int)(adjustedX / SideLength);
-		//int y = -(int)(adjustedY / SideLength);
-		//
-		//x = x - (adjustedX < 0 ? 1 : 0);
-		//y = y + (adjustedY > -SideLength ? 1 : 0);
+		int adjustedX = (coordinate.X - TopLeftOffset.X);
+		int adjustedY = coordinate.Y - TopLeftOffset.Y;
 		
-		// New cheaty way.  
-		// Get all sqaures for each ring and test if coords are in that square.  keep going until square is found. 
-		// TODD: fix. **ineffecicient**
+		int x = (int)(adjustedX / SideLength);
+		int y = -(int)(adjustedY / SideLength);
 		
-		var ringNumber = 0;
-		var safetyCheck = 20;			// prevent searching forever.  20 rings is a big space!
-		while (ringNumber <= safetyCheck)
-		{
-			var ring = new Ring(ringNumber);
-			var squares = ring.GetAllSquares();
-			foreach(var square in squares)
-			{
-				if (square.Contains(coordinate))
-				{
-					return new Square(square.x, square.y);
-				}
-			}
-			ringNumber++;
-		}
+		x = x - (adjustedX < 0 ? 1 : 0);
+		y = y + (adjustedY < 0 ? 1 : 0);
 		
-		throw new ArgumentOutOfRangeException($"Could not find square inside {safetyCheck} rings.  " + 
-			"May need to expand rings or more likely there is an error in the algorithm.");
+		return new Square(x, y);
 	}
 
 	private int x;

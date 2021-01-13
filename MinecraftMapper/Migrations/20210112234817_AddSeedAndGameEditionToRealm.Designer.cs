@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MinecraftMapper;
 
 namespace MinecraftMapper.Migrations
 {
     [DbContext(typeof(MapperContext))]
-    partial class MapContextModelSnapshot : ModelSnapshot
+    [Migration("20210112234817_AddSeedAndGameEditionToRealm")]
+    partial class AddSeedAndGameEditionToRealm
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
