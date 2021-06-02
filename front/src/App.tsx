@@ -1,10 +1,10 @@
 import './App.css';
 import 'office-ui-fabric-react/dist/css/fabric.css';
-import Map from './components/MinecraftMap';
+import Map from './components/map/MinecraftMap';
 import React, { useEffect, useState } from "react";
 import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
-import { ApiClient, INewLocationRequest, IUpdateLocationRequest } from "./api/apiClient";
+import { ApiClient, INewLocationRequest, IUpdateLocationRequest, IMap } from "./api/apiClient";
 import LocationsList from './components/LocationList/LocationsList';
 import { ILocationFilter } from "./components/LocationList/LocationFilter";
 import { MenuBar } from "./components/MenuBar";
@@ -18,6 +18,7 @@ initializeIcons();
 const App: React.FC = () => {
 
   const [locations, setLocations] = useState([] as ILocation[]);
+  const [ maps, setMaps] = useState([] as IMap[]);
   const [center, setCenter] = useState<ICoordinate | undefined>(undefined);
 
   useEffect(() => {
@@ -25,6 +26,12 @@ const App: React.FC = () => {
       const realm = await ApiClient.methods.getRealm(ApiClient.settings.RealmKey);
       if (realm != null) {
         setLocations(realm.locations);
+      }
+
+      const maps = await ApiClient.methods.getMaps(7);
+      if (maps != null)
+      {
+        setMaps(maps);
       }
     }
 
@@ -163,7 +170,7 @@ const App: React.FC = () => {
                 />
           </Stack.Item>
           <Stack.Item styles={mapStackItemStyles}>
-            <Map locations={locations} center={center}  />
+            <Map locations={locations} center={center} maps={maps} />
           </Stack.Item>
         </Stack>  
       </Stack>

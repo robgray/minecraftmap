@@ -12,15 +12,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55c353d9-0ab3-4ab8-b4d6-3c65e50f0cae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Entities/GameType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Migrations/20210112234817_AddSeedAndGameEditionToRealm.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Migrations/20210112234817_AddSeedAndGameEditionToRealm.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/riderModule.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/MinecraftMapper.Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Entities/Realm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Entities/Realm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper.sln" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Migrations/MapContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Migrations/MapContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/front/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/apiClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/LocationTypeMarker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/LocationTypeMarker.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/MinecraftMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/MinecraftMap.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/context/LayerContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/LayerContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,41 +42,39 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F3DD31A3-D437-4D7D-9525-D887480DAE95/37/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapCoordinate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/EntityBase.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/LocationType.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Requests/NewMapRequest.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/appsettings.json" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/Coordinate.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/MigrationBuilderInsertHelpers.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/20201212022646_InitialCreate.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/20201212024259_InitialCreate.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapContext.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/Map.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapperContext.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Map.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Startup.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/IMapNumberGenerator.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Program.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/20210109004916_RemoveMaps.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/Location.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Requests/UpdateLocationRequest.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapCoordinate.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapNumberGenerator.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Controllers/LocationTypesController.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Requests/NewLocationRequest.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Controllers/RealmController.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/GameType.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/Entities/Realm.cs" />
-        <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper.Tests/UnitTest1.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" />
+      <option value="$PROJECT_DIR$/MinecraftMapper/appsettings.json" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1lXFUkNxUDHPihgTEr9sxQedwya" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -78,10 +88,10 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34973097" />
-    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.2997694" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.1410607" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -138,7 +148,19 @@
       <workItem from="1608708288749" duration="1250000" />
       <workItem from="1610020392531" duration="19094000" />
       <workItem from="1610314911862" duration="2234000" />
-      <workItem from="1610357212528" duration="5805000" />
+      <workItem from="1610357212528" duration="8009000" />
+      <workItem from="1610663464693" duration="13460000" />
+      <workItem from="1610842404829" duration="1899000" />
+      <workItem from="1611309166043" duration="1222000" />
+      <workItem from="1611479590452" duration="700000" />
+      <workItem from="1611561529070" duration="708000" />
+      <workItem from="1611645601781" duration="607000" />
+      <workItem from="1611914776927" duration="3729000" />
+      <workItem from="1613201736973" duration="884000" />
+      <workItem from="1616457686725" duration="588000" />
+      <workItem from="1616461371038" duration="639000" />
+      <workItem from="1617501468856" duration="1731000" />
+      <workItem from="1617577329632" duration="1334000" />
     </task>
     <servers />
   </component>
@@ -163,118 +185,36 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
-  <component name="WindowStateProjectService">
-    <state width="397" height="464" key="DebuggerActiveHint" timestamp="1610176190528">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="397" height="464" key="DebuggerActiveHint/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610176190528" />
-    <state width="1332" height="288" key="GridCell.Tab.0.bottom" timestamp="1610496891628">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.0.bottom/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621333" />
-    <state width="1332" height="288" key="GridCell.Tab.0.bottom/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891628" />
-    <state width="1332" height="288" key="GridCell.Tab.0.center" timestamp="1610496891628">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.0.center/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621333" />
-    <state width="1332" height="288" key="GridCell.Tab.0.center/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891628" />
-    <state width="1332" height="288" key="GridCell.Tab.0.left" timestamp="1610496891628">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.0.left/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621333" />
-    <state width="1332" height="288" key="GridCell.Tab.0.left/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891628" />
-    <state width="1332" height="288" key="GridCell.Tab.0.right" timestamp="1610496891628">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.0.right/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621333" />
-    <state width="1332" height="288" key="GridCell.Tab.0.right/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891628" />
-    <state width="1332" height="288" key="GridCell.Tab.1.bottom" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.1.bottom/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.1.bottom/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.1.center" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.1.center/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621040" />
-    <state width="1332" height="288" key="GridCell.Tab.1.center/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.1.left" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.1.left/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621040" />
-    <state width="1332" height="288" key="GridCell.Tab.1.left/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.1.right" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.1.right/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621040" />
-    <state width="1332" height="288" key="GridCell.Tab.1.right/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.2.bottom" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.2.bottom/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.2.bottom/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.2.center" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.2.center/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.2.center/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.2.left" timestamp="1610496891224">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.2.left/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.2.left/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891224" />
-    <state width="1332" height="288" key="GridCell.Tab.2.right" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.2.right/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.2.right/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.3.bottom" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.3.bottom/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.3.bottom/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.3.center" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.3.center/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.3.center/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.3.left" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.3.left/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.3.left/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.3.right" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.3.right/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.3.right/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.4.bottom" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.4.bottom/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.4.bottom/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.4.center" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.4.center/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.4.center/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.4.left" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.4.left/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.4.left/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state width="1332" height="288" key="GridCell.Tab.4.right" timestamp="1610496891225">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state width="2699" height="515" key="GridCell.Tab.4.right/-1920.380.1920.1040/0.0.3440.1400@-1920.380.1920.1040" timestamp="1610139621041" />
-    <state width="1332" height="288" key="GridCell.Tab.4.right/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610496891225" />
-    <state x="1534" y="410" key="RollbackChangesDialog" timestamp="1610153339888">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state x="1534" y="410" key="RollbackChangesDialog/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610153339888" />
-    <state x="747" y="319" width="672" height="678" key="search.everywhere.popup" timestamp="1610452819620">
-      <screen x="0" y="0" width="3440" height="1400" />
-    </state>
-    <state x="747" y="319" width="672" height="678" key="search.everywhere.popup/-1920.380.1920.1040/0.0.3440.1400@0.0.3440.1400" timestamp="1610452819620" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs</url>
+          <line>24</line>
+          <properties documentPath="C:\Source\robgray\MinecraftMapper\MinecraftMapper.Tests\SquareTests.cs" initialLine="26" containingFunctionPresentation="method 'MapNumberIsCorrectForCoordinate'">
+            <startOffsets>
+              <option value="859" />
+            </startOffsets>
+            <endOffsets>
+              <option value="935" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs</url>
+          <line>35</line>
+          <properties documentPath="C:\Source\robgray\MinecraftMapper\MinecraftMapper.Tests\RingTests.cs" initialLine="35" containingFunctionPresentation="method 'SquareNumberIsCorrectFromRing'">
+            <startOffsets>
+              <option value="1019" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1066" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

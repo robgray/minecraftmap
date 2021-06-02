@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ILocation } from "../api/location";
+import { ILocation } from "../../api/location";
 import { Marker, Popup } from 'react-leaflet';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-import { ApiClient } from '../api/apiClient';
-import { EditButton } from "../components/EditButton";
+import { ApiClient } from '../../api/apiClient';
+import { EditButton } from "../EditButton";
 import L from "leaflet";
 
 interface ILocationTypeMarkerProps {

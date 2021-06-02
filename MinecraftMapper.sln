@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper", "MinecraftMapper\MinecraftMapper.csproj", "{5AE406A8-7C09-42C6-905C-5B3A5518A260}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper.Tests", "MinecraftMapper.Tests\MinecraftMapper.Tests.csproj", "{B97124C8-9B1B-4DEA-B9CB-8818716F5151}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5AE406A8-7C09-42C6-905C-5B3A5518A260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AE406A8-7C09-42C6-905C-5B3A5518A260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AE406A8-7C09-42C6-905C-5B3A5518A260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

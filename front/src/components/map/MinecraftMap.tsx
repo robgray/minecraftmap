@@ -1,9 +1,10 @@
 import { useContext }  from 'react';
-import { MapContainer, LayerGroup, useMap } from 'react-leaflet';
+import { MapContainer, LayerGroup, useMap, LayersControl, Rectangle, FeatureGroup, Popup } from 'react-leaflet';
 import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
-import { LayerContext } from './context/LayerContext';
-import { ILocation, ICoordinate } from '../api/location';
+import { LayerContext } from './LayerContext';
+import { ILocation, ICoordinate } from '../../api/location';
 import { LocationTypeMarker } from './LocationTypeMarker';
+import { IMap, IBounds} from "../../api/apiClient";
 
 // Shrink_factor makes it easier to work with the large values for x and y that minecraft produces
 // in the leaftlet.js map these are far apart when zoomed out.
@@ -14,6 +15,7 @@ const SHRINK_FACTOR = 100;
 interface IMinecraftMapProps {
     locations: ILocation[];
     center?: ICoordinate;
+    maps?: IMap[];
 }
 
 interface IMapProps {
@@ -30,8 +32,11 @@ const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
     return null;
 }
 
-const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) => {
-
+const getTranslatedBounds = (bounds: IBounds): LatLngBounds => new LatLngBounds(
+        [-bounds.bottomRight.y/SHRINK_FACTOR, bounds.topLeft.x/SHRINK_FACTOR],
+        [-bounds.topLeft.y/SHRINK_FACTOR, bounds.bottomRight.x/SHRINK_FACTOR]);
+        
+const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps)  => {
     const getBoundsFromLocations = (locs: LatLngTuple[]):LatLngBounds =>
     {
         let smallestX = Number.MAX_SAFE_INTEGER;
@@ -46,7 +51,7 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
             if (point[1] < smallestY) smallestY = point[1];
             if (point[1] > largestY) largestY = point[1];
         });
-        return new LatLngBounds([smallestX/SHRINK_FACTOR, smallestY/SHRINK_FACTOR], [largestX/SHRINK_FACTOR, largestY/SHRINK_FACTOR]);
+        return new LatLngBounds([smallestY/SHRINK_FACTOR, smallestX/SHRINK_FACTOR], [largestY/SHRINK_FACTOR, largestX/SHRINK_FACTOR]);
     }
 
     const { point } = useContext(LayerContext);
@@ -61,6 +66,17 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps) =
             crs={CRS.Simple} 
             bounds={bounds}>
             <TheMap center={props.center} />
+            <LayersControl position="topright">
+                <LayersControl.Overlay name="Maps">
+                <FeatureGroup >
+                 {props.maps && (
+                        props.maps.map(m => (
+                            <Rectangle bounds={getTranslatedBounds(m.bounds)} pathOptions={{ color: "green"}}/>
+                        ))
+                    )}
+                    </FeatureGroup>
+                </LayersControl.Overlay>
+            </LayersControl>
             <LayerGroup>
                 {point}
             </LayerGroup>

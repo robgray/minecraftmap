@@ -101,6 +101,9 @@ namespace MinecraftMapper.MapGeneration
 		
 		if (squareNumber <= NegativeXValue)
 		{
+			if (squareNumber == NegativeXValue)
+				return (-Number, 0);
+			
 			if (squareNumber <= ThreeQuarterNumber)
 			{
 				return (-Number - (squareNumber - ThreeQuarterNumber), -Number);

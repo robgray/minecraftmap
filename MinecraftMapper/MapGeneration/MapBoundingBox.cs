@@ -9,6 +9,9 @@
         }
         public MapCoordinate TopLeft { get; set; }
         public MapCoordinate BottomRight { get; set; }
+
+        public MapCoordinate TopRight => new MapCoordinate(BottomRight.X, TopLeft.Y);
+        public MapCoordinate BottomLeft => new MapCoordinate(TopRight.X, BottomRight.Y);
 	
         public bool ContainsCoordinate(MapCoordinate coordinate)
         {

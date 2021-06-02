@@ -37,11 +37,30 @@ export interface IUpdateLocationRequest
     notes: string;
 }
 
+export interface IPoint {
+    x: number;
+    y: number;
+}
+
+export interface IBounds {
+    topLeft: IPoint;
+    topRight: IPoint;
+    bottomRight: IPoint;
+    bottomLeft: IPoint;
+}
+
+export interface IMap {
+    mapNumber: number;
+    ringNumber: number;
+    bounds: IBounds;
+}
+
 export const ApiClient  = 
 {
     data: {
         locationTypes: null as ILocationType[] | null,
         realm: null as IRealm | null,
+        maps: null as IMap[] | null,
     },
     settings: {
         initialize() 
@@ -53,6 +72,24 @@ export const ApiClient  =
         RealmKey: "092f7445-2f4a-4f54-2119-08d89e568feb",
     },
     methods: {
+        async getMaps(ringNumber: number): Promise<IMap[] | null>
+        {
+            try {
+                if (ApiClient.data.maps != null) 
+                {
+                    return ApiClient.data.maps;
+                }
+                const response = await axios.get<IMap[]>(`/Map/${ringNumber}`);
+                ApiClient.data.maps = response.data;
+                return response.data;
+            } 
+            catch (error) 
+            {
+                console.log(error);
+                return null;
+            }
+        }, 
+
         async getRealm(id: Guid): Promise<IRealm | null>
         {
             try {

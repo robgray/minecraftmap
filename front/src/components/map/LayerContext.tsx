@@ -3,7 +3,6 @@ import { LatLng } from 'leaflet';
 
 const LayerContext:any = React.createContext({});
 
-
 const LayerContextProvider = ({ children }: any) => {
 
     const [point, setPoint] = useState<LatLng>(new LatLng(0,0));
