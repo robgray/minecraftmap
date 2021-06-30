@@ -7,7 +7,7 @@ Have a stack of diamonds you want to offload into an Enchanted Chest?  Mark the 
 
 You get the idea... Explore and record, like cartography.
 
-## Thee tech stuff
+## The tech stuff
 Underneath the covers it's using:
 * ASP.NET Core web api backend.
 * React front end, with Microsofts Fluent UI.
