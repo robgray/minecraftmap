@@ -6,3 +6,9 @@ Firstly you'll need to turn "show coordinates" on.  The app allows you to enter 
 Have a stack of diamonds you want to offload into an Enchanted Chest?  Mark the location of the chest here and record it has diamonds in it.  Next time you're looking for that precious loot you've worked hard to acquire, go to your map and you'll know where it is.  
 
 You get the idea... Explore and record, like cartography.
+
+## Thee tech stuff
+Underneath the covers it's using:
+* ASP.NET Core web api backend.
+* React front end, with Microsofts Fluent UI.
+* Leaftlet.js for mapping 
