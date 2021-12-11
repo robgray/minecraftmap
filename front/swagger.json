@@ -1,0 +1,439 @@
+{
+  "x-generator": "NSwag v13.11.1.0 (NJsonSchema v10.4.3.0 (Newtonsoft.Json v12.0.0.0))",
+  "swagger": "2.0",
+  "info": {
+    "title": "My Title",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/LocationTypes": {
+      "get": {
+        "tags": [
+          "LocationTypes"
+        ],
+        "operationId": "LocationTypes_Get",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LocationType"
+            }
+          }
+        }
+      }
+    },
+    "/api/Map/{maximumRingNumber}": {
+      "get": {
+        "tags": [
+          "Map"
+        ],
+        "operationId": "Map_Get",
+        "parameters": [
+          {
+            "type": "integer",
+            "name": "maximumRingNumber",
+            "in": "path",
+            "required": true,
+            "format": "int32",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Realm": {
+      "get": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_Get",
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_Post",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "name": "newRealm",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewRealmRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Realm/{realmId}": {
+      "get": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_Get2",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "realmId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_Delete",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "realmId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Realm/{realmId}/location": {
+      "post": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_PostLocation",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "realmId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          },
+          {
+            "name": "newLocation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewLocationRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    },
+    "/api/Realm/{realmId}/location/{locationId}": {
+      "delete": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_DeleteLocation",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "realmId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Realm"
+        ],
+        "operationId": "Realm_UpdateLocation",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "name": "realmId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "locationId",
+            "in": "path",
+            "required": true,
+            "format": "guid",
+            "x-nullable": false
+          },
+          {
+            "name": "updateLocation",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLocationRequest"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": true,
+            "description": "",
+            "schema": {
+              "type": "file"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LocationType": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/EntityBase"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "iconClass": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "EntityBase": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "guid"
+        }
+      }
+    },
+    "NewRealmRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "NewLocationRequest": {
+      "type": "object",
+      "required": [
+        "x",
+        "z",
+        "y",
+        "locationTypeId",
+        "hasPortal",
+        "hasEnderChest",
+        "hasEnchantmentTable",
+        "hasBed",
+        "hasAnvil",
+        "hasFurnace"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "z": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "locationTypeId": {
+          "type": "string",
+          "format": "guid"
+        },
+        "hasPortal": {
+          "type": "boolean"
+        },
+        "hasEnderChest": {
+          "type": "boolean"
+        },
+        "hasEnchantmentTable": {
+          "type": "boolean"
+        },
+        "hasBed": {
+          "type": "boolean"
+        },
+        "hasAnvil": {
+          "type": "boolean"
+        },
+        "hasFurnace": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "UpdateLocationRequest": {
+      "type": "object",
+      "required": [
+        "x",
+        "y",
+        "z",
+        "locationTypeId",
+        "hasPortal",
+        "hasEnderChest",
+        "hasEnchantmentTable",
+        "hasBed",
+        "hasAnvil",
+        "hasFurnace"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "x": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "z": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "locationTypeId": {
+          "type": "string",
+          "format": "guid"
+        },
+        "hasPortal": {
+          "type": "boolean"
+        },
+        "hasEnderChest": {
+          "type": "boolean"
+        },
+        "hasEnchantmentTable": {
+          "type": "boolean"
+        },
+        "hasBed": {
+          "type": "boolean"
+        },
+        "hasAnvil": {
+          "type": "boolean"
+        },
+        "hasFurnace": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
