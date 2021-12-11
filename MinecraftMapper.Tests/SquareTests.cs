@@ -1,5 +1,5 @@
 using System;
-using MinecraftMapper.MapGeneration;
+using MinecraftMapper.Domain.MapGeneration;
 using Xunit;
 
 namespace MinecraftMapper.Tests

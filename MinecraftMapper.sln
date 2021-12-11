@@ -1,8 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper", "MinecraftMapper\MinecraftMapper.csproj", "{5AE406A8-7C09-42C6-905C-5B3A5518A260}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper.Api", "MinecraftMapper.Api\MinecraftMapper.Api.csproj", "{5AE406A8-7C09-42C6-905C-5B3A5518A260}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper.Tests", "MinecraftMapper.Tests\MinecraftMapper.Tests.csproj", "{B97124C8-9B1B-4DEA-B9CB-8818716F5151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper.Domain", "MinecraftMapper.Domain\MinecraftMapper.Domain.csproj", "{35146912-2C69-46D1-B8F3-1BD8BFF22D74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F1F87595-91B8-4B62-97FA-CE3FB89AD804}"
+ProjectSection(SolutionItems) = preProject
+	docker-compose.yml = docker-compose.yml
+EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftMapper.Migrator", "MinecraftMapper.Migrator\MinecraftMapper.Migrator.csproj", "{91F96354-7642-4DB5-9945-54E90187F3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +27,13 @@ Global
 		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B97124C8-9B1B-4DEA-B9CB-8818716F5151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35146912-2C69-46D1-B8F3-1BD8BFF22D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35146912-2C69-46D1-B8F3-1BD8BFF22D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35146912-2C69-46D1-B8F3-1BD8BFF22D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35146912-2C69-46D1-B8F3-1BD8BFF22D74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91F96354-7642-4DB5-9945-54E90187F3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91F96354-7642-4DB5-9945-54E90187F3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91F96354-7642-4DB5-9945-54E90187F3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91F96354-7642-4DB5-9945-54E90187F3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
