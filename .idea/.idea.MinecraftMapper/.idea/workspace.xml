@@ -12,27 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55c353d9-0ab3-4ab8-b4d6-3c65e50f0cae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/riderModule.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/MinecraftMapper.Tests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper.sln" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/appsettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/front/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/apiClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationTypeMarker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/LocationTypeMarker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/MinecraftMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/MinecraftMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/context/LayerContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/LayerContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +30,31 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="ad1c398c-cda8-49b2-bcca-6a3f495422c0" />
+        <option name="url" value="https://github.com/robgray/minecraftmap.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Controllers/LocationTypesController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Controllers/RealmController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F3DD31A3-D437-4D7D-9525-D887480DAE95/37/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapCoordinate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Entities/EntityBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Entities/Coordinate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Startup.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -75,6 +69,12 @@
       <option value="$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" />
       <option value="$PROJECT_DIR$/MinecraftMapper/appsettings.json" />
     </changedPaths>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectId" id="1lXFUkNxUDHPihgTEr9sxQedwya" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -161,12 +161,26 @@
       <workItem from="1616461371038" duration="639000" />
       <workItem from="1617501468856" duration="1731000" />
       <workItem from="1617577329632" duration="1334000" />
+      <workItem from="1639558197328" duration="854000" />
+      <workItem from="1639638166835" duration="601000" />
+      <workItem from="1639732165148" duration="768000" />
+      <workItem from="1639820476261" duration="655000" />
+      <workItem from="1639865640248" duration="1797000" />
+      <workItem from="1640249591306" duration="630000" />
+      <workItem from="1640298719410" duration="731000" />
+      <workItem from="1640303760915" duration="6372000" />
+      <workItem from="1640420158438" duration="303000" />
+      <workItem from="1640467998521" duration="5086000" />
+      <workItem from="1640567498536" duration="2894000" />
+      <workItem from="1640992037611" duration="6815000" />
+      <workItem from="1641206884188" duration="646000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,7 +193,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

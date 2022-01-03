@@ -69,7 +69,7 @@ export const ApiClient  =
             axios.defaults.headers.get["Accept"] = "application/json";
             axios.defaults.headers.post["Accept"] = "application/json";
         },
-        RealmKey: "092f7445-2f4a-4f54-2119-08d89e568feb",
+        RealmKey: "AE924830-1DF0-4C32-9603-FE773BDF8508",
     },
     methods: {
         async getMaps(ringNumber: number): Promise<IMap[] | null>
