@@ -5,7 +5,7 @@ import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
 import { ILocation, ICoordinate } from "../../api/location";
-import { IUpdateLocationRequest } from "../../api/apiClient";
+import { UpdateLocationRequest } from "../../api/apiClient";
 
 
 const stackItemStyles: IStackItemStyles = {
@@ -23,7 +23,7 @@ const checkboxStackTokens: IStackTokens = {
 
 interface IEditLocationProps {
     location: ILocation;
-    saveLocation: ((lLocation: IUpdateLocationRequest) => void)
+    saveLocation: ((lLocation: UpdateLocationRequest) => void)
     dismissPanel: (() => void);
     openPanel: (() => void);
     isOpen: boolean;

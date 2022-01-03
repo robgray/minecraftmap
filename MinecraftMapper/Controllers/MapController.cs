@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MinecraftMapper.MapGeneration;
 
@@ -7,10 +8,12 @@ namespace MinecraftMapper.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/json")]
     public class MapController : ControllerBase
     {
-        [HttpGet("{maximumRingNumber:int}")]
-        public IActionResult Get(int maximumRingNumber)
+        [HttpGet("{maximumRingNumber:int}", Name="GetMaps")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public IActionResult Get([FromRoute]int maximumRingNumber)
         {
             var squares = new List<Square>();
             for (var ringNumber = 0; ringNumber < maximumRingNumber; ringNumber++)

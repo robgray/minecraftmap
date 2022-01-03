@@ -12,7 +12,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55c353d9-0ab3-4ab8-b4d6-3c65e50f0cae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/.config/dotnet-tools.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Requests/IHasThings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/nswag.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/swagger.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/api/client.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper.sln" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/LocationTypesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Controllers/LocationTypesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/RealmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Controllers/RealmController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MinecraftMapper.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MinecraftMapper.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Requests/NewLocationRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Requests/NewLocationRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Requests/UpdateLocationRequest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Requests/UpdateLocationRequest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/front/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/apiClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/components/Location/EditLocation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Location/EditLocation.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +191,6 @@
       <workItem from="1640467998521" duration="5086000" />
       <workItem from="1640567498536" duration="2894000" />
       <workItem from="1640992037611" duration="6815000" />
-      <workItem from="1641206884188" duration="646000" />
     </task>
     <servers />
   </component>

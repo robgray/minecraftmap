@@ -1,85 +1,39 @@
 import axios, {AxiosResponse } from "axios";
 
-import { IRealm } from "./realm";
-import { ILocationType } from "./locationType";
-import Guid from "./guid";
-import { ILocation } from "./location";
+import { client } from "./client";
 
-export interface INewLocationRequest {
-    name: string;
-    x: number;
-    z: number;
-    y: number;
-    locationTypeId: Guid;
-    hasAnvil: boolean;
-    hasBed: boolean;
-    hasPortal: boolean;
-    hasFurnace: boolean;
-    hasEnderChest: boolean;
-    hasEnchantmentTable: boolean;
-    notes?: string | null;
-}
-
-export interface IUpdateLocationRequest 
-{
-    id: Guid;
-    name: string;
-    x: number;
-    z: number;
-    y: number;
-    locationTypeId: Guid;
-    hasAnvil: boolean;
-    hasBed: boolean;
-    hasPortal: boolean;
-    hasFurnace: boolean;
-    hasEnderChest: boolean;
-    hasEnchantmentTable: boolean;
-    notes: string;
-}
-
-export interface IPoint {
-    x: number;
-    y: number;
-}
-
-export interface IBounds {
-    topLeft: IPoint;
-    topRight: IPoint;
-    bottomRight: IPoint;
-    bottomLeft: IPoint;
-}
-
-export interface IMap {
-    mapNumber: number;
-    ringNumber: number;
-    bounds: IBounds;
+const settings: {   
+    baseUrl: "https://localhost:5001/api",
+    getAccept: "application/json",
+    postAccept: "apoplication/json",
+    realmKey: "092f7445-2f4a-4f54-2119-08d89e568feb"
 }
 
 export const ApiClient  = 
 {
     data: {
-        locationTypes: null as ILocationType[] | null,
-        realm: null as IRealm | null,
-        maps: null as IMap[] | null,
+        locationTypes: null as LocationType[] | null,
+        realm: null as Realm | null,
+        maps: null as Map[] | null,
     },
     settings: {
         initialize() 
         {
-            axios.defaults.baseURL = "https://localhost:5001/api";
+            axios.defaults.baseURL = 
             axios.defaults.headers.get["Accept"] = "application/json";
             axios.defaults.headers.post["Accept"] = "application/json";
         },
         RealmKey: "AE924830-1DF0-4C32-9603-FE773BDF8508",
     },
     methods: {
-        async getMaps(ringNumber: number): Promise<IMap[] | null>
+        async getMaps(ringNumber: number): Promise<Map[] | null>
         {
             try {
                 if (ApiClient.data.maps != null) 
                 {
                     return ApiClient.data.maps;
                 }
-                const response = await axios.get<IMap[]>(`/Map/${ringNumber}`);
+                const response = await axios.get<Map[]>(`/Map/${ringNumber}`);
                 ApiClient.data.maps = response.data;
                 return response.data;
             } 
@@ -90,7 +44,7 @@ export const ApiClient  =
             }
         }, 
 
-        async getRealm(id: Guid): Promise<IRealm | null>
+        async getRealm(id: Guid): Promise<Realm | null>
         {
             try {
                 if (ApiClient.data.realm != null) 

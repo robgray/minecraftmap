@@ -4,7 +4,7 @@ import Map from './components/map/MinecraftMap';
 import React, { useEffect, useState } from "react";
 import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
 import { ILocation, INewLocation, ICoordinate } from "./api/location";
-import { ApiClient, INewLocationRequest, IUpdateLocationRequest, IMap } from "./api/apiClient";
+import { ApiClient, NewLocationRequest, UpdateLocationRequest, Map } from "./api/apiClient";
 import LocationsList from './components/LocationList/LocationsList';
 import { ILocationFilter } from "./components/LocationList/LocationFilter";
 import { MenuBar } from "./components/MenuBar";
@@ -18,7 +18,7 @@ initializeIcons();
 const App: React.FC = () => {
 
   const [locations, setLocations] = useState([] as ILocation[]);
-  const [ maps, setMaps] = useState([] as IMap[]);
+  const [ maps, setMaps] = useState([] as Map[]);
   const [center, setCenter] = useState<ICoordinate | undefined>(undefined);
 
   useEffect(() => {
@@ -68,7 +68,7 @@ const App: React.FC = () => {
 
   const addLocation = (location: INewLocation) => {
 
-    const postData = async (newLocation: INewLocationRequest) => {
+    const postData = async (newLocation: NewLocationRequest) => {
       const realm = await ApiClient.methods.saveLocation(ApiClient.settings.RealmKey, newLocation);
       if (realm && realm.locations && realm.locations.length > 0) {
         setLocations(realm.locations);
@@ -76,7 +76,7 @@ const App: React.FC = () => {
         setLocations([] as ILocation[]);
       }
     }
-    const newDataObj: INewLocationRequest = {
+    const newDataObj: NewLocationRequest = {
       name: location.name,
       x: location.coordinate.x,
       y: location.coordinate.y,
@@ -94,9 +94,9 @@ const App: React.FC = () => {
     postData(newDataObj);
   }
 
-  const updateLocation = (location: IUpdateLocationRequest) => {
+  const updateLocation = (location: UpdateLocationRequest) => {
 
-    const postData = async (location: IUpdateLocationRequest) => {
+    const postData = async (location: UpdateLocationRequest) => {
       const realm = await ApiClient.methods.updateLocation(ApiClient.settings.RealmKey, location);
       if (realm && realm.locations && realm.locations.length > 0) {
         setLocations(realm.locations);
