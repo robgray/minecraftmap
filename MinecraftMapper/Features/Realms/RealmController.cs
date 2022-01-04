@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MinecraftMapper.Controllers.Models;
 using MinecraftMapper.Entities;
+using MinecraftMapper.Features.Shared;
 using MinecraftMapper.MapGeneration;
+using MinecraftMapper.Mediator.Queries.Realms;
 using MinecraftMapper.Requests;
 
 namespace MinecraftMapper.Controllers
@@ -13,25 +18,17 @@ namespace MinecraftMapper.Controllers
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class RealmController : ControllerBase
+    public class RealmController : BaseController
     {
-        private MapperContext _context;
-        private IMapNumberGenerator _mapNumberGenerator;
-        public RealmController(MapperContext context, IMapNumberGenerator mapNumberGenerator)
-        {
-            _context = context;
-            _mapNumberGenerator = mapNumberGenerator;
-        }
+        public RealmController(IMediator mediator, IMapper mapper) : base(mediator, mapper) { }
+        
+        private IQueryable<Realm> Realms => _context.Realms.Include(m => m.Locations).ThenInclude(l => l.Type);
 
-        protected IQueryable<Realm> Realms => _context.Realms.Include(m => m.Locations).ThenInclude(l => l.Type);
-
-        [HttpGet(Name="GetRealms")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<IActionResult> Get()
-        {
-            var map = await _context.Realms.Select(m => new {m.Id, m.Name}).ToListAsync();
-            return Ok(map);
-        }
+        [HttpGet(Name = "GetRealms")]
+        [ProducesResponseType(typeof(RealmModel[]), StatusCodes.Status200OK)]
+        public Task<IActionResult> Get() =>
+            ExecuteQuery<GetAllRealmsQuery, RealmModel[]>();
+        
 
         [HttpPost(Name="AddRealm")]
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -59,7 +56,7 @@ namespace MinecraftMapper.Controllers
         [HttpGet("{realmId}", Name = "GetRealm")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> Get(
+        public async Task<ActionResult<RealmModel>> Get(
             [FromRoute] Guid realmId
         )
         {

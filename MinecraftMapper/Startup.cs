@@ -5,9 +5,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MinecraftMapper.MapGeneration;
+using MinecraftMapper.Plumbing.Cors;
+using MinecraftMapper.Plumbing.Mediator;
 
 namespace MinecraftMapper
 {
@@ -23,22 +26,15 @@ namespace MinecraftMapper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .WithOrigins("*")
-                        .WithHeaders("Content-Type")
-                        .WithMethods("GET", "POST", "PUT", "DELETE");
-
-                });
-            });
+            services.AddLogging();
+            services.AddCustomCors(Configuration);
+            
             services.AddControllers()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddScoped<IMapNumberGenerator, MapNumberGenerator>();
+            services.AddSingleton<ISystemClock, SystemClock>();
             
             services.AddSwaggerGen(c =>
             {
@@ -49,6 +45,10 @@ namespace MinecraftMapper
                 });
             });
             ConfigureDbContext(services);
+
+            services.AddHealthChecks();
+            
+            services.AddCustomMediator();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,12 +63,16 @@ namespace MinecraftMapper
 
             app.UseHttpsRedirection();
 
+            app.ConfigureCustomCors();
             app.UseRouting();
-            app.UseCors();
-
+            
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/healthz");
+                endpoints.MapControllers();
+            });
         }
         
         protected void ConfigureDbContext(IServiceCollection services)

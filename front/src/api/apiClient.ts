@@ -1,6 +1,6 @@
 import axios, {AxiosResponse } from "axios";
 
-import { client } from "./client";
+import { Client, NewRealmRequest, } from "./client";
 
 const settings: {   
     baseUrl: "https://localhost:5001/api",
