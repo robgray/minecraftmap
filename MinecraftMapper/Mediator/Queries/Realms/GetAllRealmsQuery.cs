@@ -1,17 +1,13 @@
-﻿using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MinecraftMapper.Controllers.Models;
+using MinecraftMapper.Entities;
 
 namespace MinecraftMapper.Mediator.Queries.Realms
 {
-    public class GetAllRealmsQuery : IQuery<RealmModel[]>
-    {
-        
-    }
+    public class GetAllRealmsQuery : IQuery<Realm[]> { }
 
-    public class GetAllRealmsQueryHandler : IQueryHandler<GetAllRealmsQuery, RealmModel[]>
+    public class GetAllRealmsQueryHandler : IQueryHandler<GetAllRealmsQuery, Realm[]>
     {
         private readonly MapperContext _context;
         
@@ -20,10 +16,9 @@ namespace MinecraftMapper.Mediator.Queries.Realms
             _context = context;
         }
         
-        public async Task<RealmModel[]> Handle(GetAllRealmsQuery request, CancellationToken cancellationToken)
+        public async Task<Realm[]> Handle(GetAllRealmsQuery request, CancellationToken cancellationToken)
         {
             return await _context.Realms
-                .Select(m => new RealmModel { Id = m.Id, Name = m.Name })
                 .ToArrayAsync(cancellationToken);
         }
     }

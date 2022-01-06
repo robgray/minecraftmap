@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MinecraftMapper.Entities;
 
-namespace MinecraftMapper.Controllers.Models
+namespace MinecraftMapper.Features.LocationTypes.Models
 {
     public class LocationTypeMappingProfile : Profile
     {

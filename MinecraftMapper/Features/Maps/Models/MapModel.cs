@@ -1,6 +1,6 @@
 ﻿using MinecraftMapper.MapGeneration;
 
-namespace MinecraftMapper.Controllers.Models
+namespace MinecraftMapper.Features.Maps.Models
 {
     public class MapModel
     {

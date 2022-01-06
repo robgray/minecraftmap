@@ -3,7 +3,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MinecraftMapper.Controllers.Models;
+using MinecraftMapper.Features.LocationTypes.Models;
 using MinecraftMapper.Features.Shared;
 using MinecraftMapper.Mediator.Queries;
 using MinecraftMapper.Mediator.Queries.LocationTypes;

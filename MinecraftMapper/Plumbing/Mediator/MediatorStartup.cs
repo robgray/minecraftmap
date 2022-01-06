@@ -1,6 +1,6 @@
-﻿using System.Windows.Input;
-using MediatR;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using MinecraftMapper.Mediator.Commands;
 
 namespace MinecraftMapper.Plumbing.Mediator
 {

@@ -12,37 +12,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55c353d9-0ab3-4ab8-b4d6-3c65e50f0cae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Domain/Exceptions/EntityNotFoundException.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Extensions/MapperExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Extensions/ObjectExtensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeMappingProfile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapsMappingProfile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/LocationModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmsMappingProfile.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Shared/BaseController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/ICommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddRealmCommand.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/IQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/LocationTypes/GetLocationTypesQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Maps/GetMapsQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Realms/GetAllRealmsQuery.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Cors/CorsStartup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Logging/LoggingStartup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Logging/OperationIdEnricher.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorExceptionFilter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorStartup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/ValidationBehaviour.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Domain/Exceptions/EntityAlreadyExistsException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/CoordinateModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddLocationCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/DeleteLocationCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/DeleteRealmCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/UpdateLocationCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Realms/BaseRealmsQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Realms/GetRealmByIdQuery.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/AutoMapper/AutoMapperStartup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/front/src/config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/LocationTypesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/LocationTypesController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/MapController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Controllers/RealmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MinecraftMapper.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MinecraftMapper.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/LocationTypesController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/LocationTypesController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/MapController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/MapController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapsMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapsMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/LocationModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/LocationModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmsMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmsMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Shared/BaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Shared/BaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddRealmCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddRealmCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/LocationTypes/GetLocationTypesQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/LocationTypes/GetLocationTypesQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Maps/GetMapsQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Maps/GetMapsQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Realms/GetAllRealmsQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Queries/Realms/GetAllRealmsQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorExceptionFilter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorExceptionFilter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorStartup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Plumbing/Mediator/MediatorStartup.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MinecraftMapper/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MinecraftMapper/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/swagger.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/src/api/apiClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/apiClient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/client.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +70,13 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/Maps/MapController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Square.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/LocationTypesController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/BoundingBoxTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f49f80c14ab4473da4854ab2190f924615f88/66/a540c158/ICommand.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F5185B-E9CF-48B9-8487-181D7861EB9C/233/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/LocationTypesController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/SquareTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F3DD31A3-D437-4D7D-9525-D887480DAE95/37/Object.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper.Tests/RingTests.cs" root0="FORCE_HIGHLIGHTING" />
@@ -84,6 +85,7 @@
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/Migrations/InitialCreateDataLoader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/Entities/Coordinate.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/MapGeneration/Ring.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/MinecraftMapper/Features/Maps/MapController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/MinecraftMapper/Startup.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -205,6 +207,7 @@
       <workItem from="1640992037611" duration="6815000" />
       <workItem from="1641246487594" duration="4871000" />
       <workItem from="1641267852014" duration="2213000" />
+      <workItem from="1641422466015" duration="4751000" />
     </task>
     <servers />
   </component>

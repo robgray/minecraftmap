@@ -25,7 +25,7 @@ export class Client {
     /**
      * @return Success
      */
-    getLocationTypes(  cancelToken?: CancelToken | undefined): Promise<void> {
+    getLocationTypes(  cancelToken?: CancelToken | undefined): Promise<LocationTypeModel[]> {
         let url_ = this.baseUrl + "/api/LocationTypes";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -33,6 +33,7 @@ export class Client {
             method: "GET",
             url: url_,
             headers: {
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -48,7 +49,7 @@ export class Client {
         });
     }
 
-    protected processGetLocationTypes(response: AxiosResponse): Promise<void> {
+    protected processGetLocationTypes(response: AxiosResponse): Promise<LocationTypeModel[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -60,19 +61,22 @@ export class Client {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<LocationTypeModel[]>(result200);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<LocationTypeModel[]>(<any>null);
     }
 
     /**
      * @return Success
      */
-    getMaps(maximumRingNumber: number , cancelToken?: CancelToken | undefined): Promise<void> {
+    getMaps(maximumRingNumber: number , cancelToken?: CancelToken | undefined): Promise<MapModel[]> {
         let url_ = this.baseUrl + "/api/Map/{maximumRingNumber}";
         if (maximumRingNumber === undefined || maximumRingNumber === null)
             throw new Error("The parameter 'maximumRingNumber' must be defined.");
@@ -83,6 +87,7 @@ export class Client {
             method: "GET",
             url: url_,
             headers: {
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -98,7 +103,7 @@ export class Client {
         });
     }
 
-    protected processGetMaps(response: AxiosResponse): Promise<void> {
+    protected processGetMaps(response: AxiosResponse): Promise<MapModel[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -110,19 +115,22 @@ export class Client {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<MapModel[]>(result200);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<MapModel[]>(<any>null);
     }
 
     /**
      * @return Success
      */
-    getRealms(  cancelToken?: CancelToken | undefined): Promise<void> {
+    getRealms(  cancelToken?: CancelToken | undefined): Promise<RealmModel[]> {
         let url_ = this.baseUrl + "/api/Realm";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -130,6 +138,7 @@ export class Client {
             method: "GET",
             url: url_,
             headers: {
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -145,7 +154,7 @@ export class Client {
         });
     }
 
-    protected processGetRealms(response: AxiosResponse): Promise<void> {
+    protected processGetRealms(response: AxiosResponse): Promise<RealmModel[]> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -157,20 +166,23 @@ export class Client {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<RealmModel[]>(result200);
 
         } else if (status !== 200 && status !== 204) {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel[]>(<any>null);
     }
 
     /**
      * @param body (optional) 
      * @return Success
      */
-    addRealm(body: NewRealmRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    addRealm(body: NewRealmRequest | undefined , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -182,6 +194,7 @@ export class Client {
             url: url_,
             headers: {
                 "Content-Type": "application/json-patch+json",
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -197,7 +210,7 @@ export class Client {
         });
     }
 
-    protected processAddRealm(response: AxiosResponse): Promise<void> {
+    protected processAddRealm(response: AxiosResponse): Promise<RealmModel> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -209,7 +222,10 @@ export class Client {
         }
         if (status === 201) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result201: any = null;
+            let resultData201  = _responseText;
+            result201 = JSON.parse(resultData201);
+            return Promise.resolve<RealmModel>(result201);
 
         } else if (status === 400) {
             const _responseText = response.data;
@@ -222,13 +238,13 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel>(<any>null);
     }
 
     /**
      * @return Success
      */
-    getRealm(realmId: string , cancelToken?: CancelToken | undefined): Promise<void> {
+    getRealm(realmId: string , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
@@ -239,6 +255,7 @@ export class Client {
             method: "GET",
             url: url_,
             headers: {
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -254,7 +271,7 @@ export class Client {
         });
     }
 
-    protected processGetRealm(response: AxiosResponse): Promise<void> {
+    protected processGetRealm(response: AxiosResponse): Promise<RealmModel> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -266,7 +283,10 @@ export class Client {
         }
         if (status === 200) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return Promise.resolve<RealmModel>(result200);
 
         } else if (status === 404) {
             const _responseText = response.data;
@@ -279,7 +299,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel>(<any>null);
     }
 
     /**
@@ -343,7 +363,7 @@ export class Client {
      * @param body (optional) 
      * @return Success
      */
-    addLocation(realmId: string, body: NewLocationRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    addLocation(realmId: string, body: NewLocationRequest | undefined , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}/location";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
@@ -358,6 +378,7 @@ export class Client {
             url: url_,
             headers: {
                 "Content-Type": "application/json-patch+json",
+                "Accept": "application/json"
             },
             cancelToken
         };
@@ -373,7 +394,7 @@ export class Client {
         });
     }
 
-    protected processAddLocation(response: AxiosResponse): Promise<void> {
+    protected processAddLocation(response: AxiosResponse): Promise<RealmModel> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -385,7 +406,10 @@ export class Client {
         }
         if (status === 201) {
             const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
+            let result201: any = null;
+            let resultData201  = _responseText;
+            result201 = JSON.parse(resultData201);
+            return Promise.resolve<RealmModel>(result201);
 
         } else if (status === 404) {
             const _responseText = response.data;
@@ -398,7 +422,7 @@ export class Client {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel>(<any>null);
     }
 
     /**
@@ -508,7 +532,7 @@ export class Client {
                 }
             }
         }
-        if (status === 200) {
+        if (status === 204) {
             const _responseText = response.data;
             return Promise.resolve<void>(<any>null);
 
@@ -525,6 +549,65 @@ export class Client {
         }
         return Promise.resolve<void>(<any>null);
     }
+}
+
+export interface LocationTypeModel {
+    id?: string;
+    iconClass?: string | undefined;
+    name?: string | undefined;
+}
+
+export interface MapCoordinate {
+    x?: number;
+    y?: number;
+}
+
+export interface MapBoundingBox {
+    topLeft?: MapCoordinate;
+    bottomRight?: MapCoordinate;
+    topRight?: MapCoordinate;
+    bottomLeft?: MapCoordinate;
+}
+
+export interface MapModel {
+    mapNumber?: number;
+    ringNumber?: number;
+    bounds?: MapBoundingBox;
+}
+
+export interface CoordinateModel {
+    x?: number;
+    z?: number;
+    y?: number;
+}
+
+export interface LocationType {
+    id?: string;
+    iconClass?: string | undefined;
+    name?: string | undefined;
+}
+
+export interface LocationModel {
+    mapNumber?: number;
+    name?: string | undefined;
+    coordinate?: CoordinateModel;
+    notes?: string | undefined;
+    type?: LocationType;
+    typeId?: string;
+    realmId?: string;
+    hasPortal?: boolean;
+    hasEnderChest?: boolean;
+    hasEnchantmentTable?: boolean;
+    hasBed?: boolean;
+    hasAnvil?: boolean;
+    hasFurnace?: boolean;
+}
+
+export interface RealmModel {
+    id?: string;
+    name?: string | undefined;
+    locations?: LocationModel[] | undefined;
+    type?: LocationTypeModel;
 }
 
 export interface NewRealmRequest {

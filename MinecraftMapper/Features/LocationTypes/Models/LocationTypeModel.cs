@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MinecraftMapper.Controllers.Models
+namespace MinecraftMapper.Features.LocationTypes.Models
 {
     public class LocationTypeModel
     {

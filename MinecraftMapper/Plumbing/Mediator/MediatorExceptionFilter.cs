@@ -33,8 +33,17 @@ public class MediatorExceptionFilter : ExceptionFilterAttribute
                 break;
             case EntityNotFoundException:
                 HandleEntityNotFoundException(context, exception);
+                break;  
+            case EntityAlreadyExistsException:
+                HandleEntityAlreadyExistsException(context, exception);
                 break;
         }
+    }
+
+    private void HandleEntityAlreadyExistsException(ExceptionContext context, Exception exception)
+    {
+        _logger.Warning(exception, "An entity already exists exception was thrown: {ErrorMessage}", exception.Message);
+        context.Result = new BadRequestResult();
     }
 
     private void HandleEntityNotFoundException(ExceptionContext context, Exception exception)

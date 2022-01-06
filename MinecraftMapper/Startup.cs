@@ -9,6 +9,7 @@ using Microsoft.Extensions.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MinecraftMapper.MapGeneration;
+using MinecraftMapper.Plumbing.Automapper;
 using MinecraftMapper.Plumbing.Cors;
 using MinecraftMapper.Plumbing.Mediator;
 
@@ -47,8 +48,8 @@ namespace MinecraftMapper
             ConfigureDbContext(services);
 
             services.AddHealthChecks();
-            
             services.AddCustomMediator();
+            services.AddCustomAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

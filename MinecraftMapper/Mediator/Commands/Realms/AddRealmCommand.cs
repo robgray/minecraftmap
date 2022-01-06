@@ -1,5 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MinecraftMapper.Domain.Exceptions;
 using MinecraftMapper.Entities;
 
 namespace MinecraftMapper.Mediator.Commands.Realms
@@ -20,20 +22,20 @@ namespace MinecraftMapper.Mediator.Commands.Realms
         
         public async Task<Realm> Handle(AddRealmCommand request, CancellationToken cancellationToken)
         {
-            if (await _context.Realms.AnyAsync(r => r.Name == request.Name))
+            if (await _context.Realms.AnyAsync(r => r.Name == request.Name, cancellationToken))
             {
-                throw new ($"Realm called '{request.Name}' already exists.  Name must be unique.");
+                throw new EntityAlreadyExistsException($"Realm called '{request.Name}' already exists.  Name must be unique.");
             }
             
             var realm = new Realm()
             {
-                Name = newRealm.Name
-            };
+                Name = request.Name
+            }; 
 
-            await _context.Realms.AddAsync(realm);
-            await _context.SaveChangesAsync();
-            
-            return Created(Url.RouteUrl("Realm", new { realmId = realm.Id}), realm);
+            await _context.Realms.AddAsync(realm, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return realm;
         }
     }
 }

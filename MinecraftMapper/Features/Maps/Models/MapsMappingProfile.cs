@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using MinecraftMapper.MapGeneration;
+using MinecraftMapper.Mediator.Queries.Maps;
 
-namespace MinecraftMapper.Controllers.Models
+namespace MinecraftMapper.Features.Maps.Models
 {
     public class MapsMappingProfile : Profile
     {
@@ -14,6 +15,9 @@ namespace MinecraftMapper.Controllers.Models
                     s.BoundingBox.BottomRight.X,
                     s.BoundingBox.BottomRight.Y))
                 );
+
+            CreateMap<int, GetMapsQuery>()
+                .ForMember(m => m.MaximumRingNumber, x => x.MapFrom(i => i));
         }
     }
 }

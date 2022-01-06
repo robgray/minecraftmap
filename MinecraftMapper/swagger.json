@@ -13,7 +13,17 @@
         "operationId": "GetLocationTypes",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationTypeModel"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -37,7 +47,17 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MapModel"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -50,7 +70,17 @@
         "operationId": "GetRealms",
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RealmModel"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -85,7 +115,14 @@
         },
         "responses": {
           "201": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealmModel"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad Request",
@@ -119,7 +156,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealmModel"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
@@ -209,7 +253,14 @@
         },
         "responses": {
           "201": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealmModel"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
@@ -316,7 +367,7 @@
           }
         },
         "responses": {
-          "200": {
+          "204": {
             "description": "Success"
           },
           "404": {
@@ -335,6 +386,183 @@
   },
   "components": {
     "schemas": {
+      "LocationTypeModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "iconClass": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MapCoordinate": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MapBoundingBox": {
+        "type": "object",
+        "properties": {
+          "topLeft": {
+            "$ref": "#/components/schemas/MapCoordinate"
+          },
+          "bottomRight": {
+            "$ref": "#/components/schemas/MapCoordinate"
+          },
+          "topRight": {
+            "$ref": "#/components/schemas/MapCoordinate"
+          },
+          "bottomLeft": {
+            "$ref": "#/components/schemas/MapCoordinate"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MapModel": {
+        "type": "object",
+        "properties": {
+          "mapNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ringNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/MapBoundingBox"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CoordinateModel": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "z": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "iconClass": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocationModel": {
+        "type": "object",
+        "properties": {
+          "mapNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "coordinate": {
+            "$ref": "#/components/schemas/CoordinateModel"
+          },
+          "notes": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/LocationType"
+          },
+          "typeId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "realmId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "hasPortal": {
+            "type": "boolean"
+          },
+          "hasEnderChest": {
+            "type": "boolean"
+          },
+          "hasEnchantmentTable": {
+            "type": "boolean"
+          },
+          "hasBed": {
+            "type": "boolean"
+          },
+          "hasAnvil": {
+            "type": "boolean"
+          },
+          "hasFurnace": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RealmModel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationModel"
+            },
+            "nullable": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/LocationTypeModel"
+          }
+        },
+        "additionalProperties": false
+      },
       "NewRealmRequest": {
         "type": "object",
         "properties": {

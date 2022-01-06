@@ -34,8 +34,8 @@ namespace MinecraftMapper.Features.Shared
         {
             return Ok(await ExecuteMediatorRequest<TCommand, TMappedResult>(models));
         }
-
-        private async Task<TMappedResult> ExecuteMediatorRequest<TRequest, TMappedResult>(params object[] models) where TRequest : new()
+        
+        protected async Task<TMappedResult> ExecuteMediatorRequest<TRequest, TMappedResult>(params object[] models) where TRequest : new()
         {
             var command = models != null && models.Any() ? MapperExtensions.Map<TRequest>(Mapper, models) : new TRequest();
             var result = await Mediator.Send(command);

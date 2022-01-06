@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MinecraftMapper.Controllers.Models;
+using MinecraftMapper.Features.Maps.Models;
 using MinecraftMapper.MapGeneration;
 
 namespace MinecraftMapper.Mediator.Queries.Maps
