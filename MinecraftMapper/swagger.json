@@ -302,8 +302,15 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "Success"
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealmModel"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
@@ -367,8 +374,15 @@
           }
         },
         "responses": {
-          "204": {
-            "description": "Success"
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RealmModel"
+                }
+              }
+            }
           },
           "404": {
             "description": "Not Found",
@@ -405,6 +419,10 @@
         "additionalProperties": false
       },
       "MapCoordinate": {
+        "required": [
+          "x",
+          "y"
+        ],
         "type": "object",
         "properties": {
           "x": {
@@ -419,6 +437,12 @@
         "additionalProperties": false
       },
       "MapBoundingBox": {
+        "required": [
+          "bottomLeft",
+          "bottomRight",
+          "topLeft",
+          "topRight"
+        ],
         "type": "object",
         "properties": {
           "topLeft": {
@@ -437,6 +461,11 @@
         "additionalProperties": false
       },
       "MapModel": {
+        "required": [
+          "bounds",
+          "mapNumber",
+          "ringNumber"
+        ],
         "type": "object",
         "properties": {
           "mapNumber": {
@@ -454,6 +483,11 @@
         "additionalProperties": false
       },
       "CoordinateModel": {
+        "required": [
+          "x",
+          "y",
+          "z"
+        ],
         "type": "object",
         "properties": {
           "x": {
@@ -471,44 +505,44 @@
         },
         "additionalProperties": false
       },
-      "LocationType": {
+      "LocationModel": {
+        "required": [
+          "coordinate",
+          "hasAnvil",
+          "hasBed",
+          "hasEnchantmentTable",
+          "hasEnderChest",
+          "hasFurnace",
+          "hasPortal",
+          "id",
+          "mapNumber",
+          "name",
+          "notes",
+          "realmId",
+          "type",
+          "typeId"
+        ],
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid"
           },
-          "iconClass": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "LocationModel": {
-        "type": "object",
-        "properties": {
           "mapNumber": {
             "type": "integer",
             "format": "int32"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "coordinate": {
             "$ref": "#/components/schemas/CoordinateModel"
           },
           "notes": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/LocationType"
+            "$ref": "#/components/schemas/LocationTypeModel"
           },
           "typeId": {
             "type": "string",
@@ -540,6 +574,12 @@
         "additionalProperties": false
       },
       "RealmModel": {
+        "required": [
+          "id",
+          "locations",
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -547,15 +587,13 @@
             "format": "uuid"
           },
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "locations": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LocationModel"
-            },
-            "nullable": true
+            }
           },
           "type": {
             "$ref": "#/components/schemas/LocationTypeModel"

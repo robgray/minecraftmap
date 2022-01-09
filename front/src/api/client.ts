@@ -7,68 +7,48 @@
 //----------------------
 // ReSharper disable InconsistentNaming
 
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
-
 export class Client {
-    private instance: AxiosInstance;
+    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
-    constructor(baseUrl?: string, instance?: AxiosInstance) {
-
-        this.instance = instance ? instance : axios.create();
-
+    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        this.http = http ? http : <any>window;
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
-
     }
 
     /**
      * @return Success
      */
-    getLocationTypes(  cancelToken?: CancelToken | undefined): Promise<LocationTypeModel[]> {
+    getLocationTypes(): Promise<LocationTypeModel[]> {
         let url_ = this.baseUrl + "/api/LocationTypes";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "GET",
-            url: url_,
             headers: {
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processGetLocationTypes(_response);
         });
     }
 
-    protected processGetLocationTypes(response: AxiosResponse): Promise<LocationTypeModel[]> {
+    protected processGetLocationTypes(response: Response): Promise<LocationTypeModel[]> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result200: any = null;
-            let resultData200  = _responseText;
-            result200 = JSON.parse(resultData200);
-            return Promise.resolve<LocationTypeModel[]>(result200);
-
+            result200 = _responseText === "" ? null : <LocationTypeModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<LocationTypeModel[]>(<any>null);
     }
@@ -76,53 +56,38 @@ export class Client {
     /**
      * @return Success
      */
-    getMaps(maximumRingNumber: number , cancelToken?: CancelToken | undefined): Promise<MapModel[]> {
+    getMaps(maximumRingNumber: number): Promise<MapModel[]> {
         let url_ = this.baseUrl + "/api/Map/{maximumRingNumber}";
         if (maximumRingNumber === undefined || maximumRingNumber === null)
             throw new Error("The parameter 'maximumRingNumber' must be defined.");
         url_ = url_.replace("{maximumRingNumber}", encodeURIComponent("" + maximumRingNumber));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "GET",
-            url: url_,
             headers: {
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processGetMaps(_response);
         });
     }
 
-    protected processGetMaps(response: AxiosResponse): Promise<MapModel[]> {
+    protected processGetMaps(response: Response): Promise<MapModel[]> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result200: any = null;
-            let resultData200  = _responseText;
-            result200 = JSON.parse(resultData200);
-            return Promise.resolve<MapModel[]>(result200);
-
+            result200 = _responseText === "" ? null : <MapModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<MapModel[]>(<any>null);
     }
@@ -130,50 +95,35 @@ export class Client {
     /**
      * @return Success
      */
-    getRealms(  cancelToken?: CancelToken | undefined): Promise<RealmModel[]> {
+    getRealms(): Promise<RealmModel[]> {
         let url_ = this.baseUrl + "/api/Realm";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "GET",
-            url: url_,
             headers: {
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processGetRealms(_response);
         });
     }
 
-    protected processGetRealms(response: AxiosResponse): Promise<RealmModel[]> {
+    protected processGetRealms(response: Response): Promise<RealmModel[]> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result200: any = null;
-            let resultData200  = _responseText;
-            result200 = JSON.parse(resultData200);
-            return Promise.resolve<RealmModel[]>(result200);
-
+            result200 = _responseText === "" ? null : <RealmModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<RealmModel[]>(<any>null);
     }
@@ -182,61 +132,45 @@ export class Client {
      * @param body (optional) 
      * @return Success
      */
-    addRealm(body: NewRealmRequest | undefined , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
+    addRealm(body: NewRealmRequest | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(body);
 
-        let options_ = <AxiosRequestConfig>{
-            data: content_,
+        let options_ = <RequestInit>{
+            body: content_,
             method: "POST",
-            url: url_,
             headers: {
                 "Content-Type": "application/json-patch+json",
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processAddRealm(_response);
         });
     }
 
-    protected processAddRealm(response: AxiosResponse): Promise<RealmModel> {
+    protected processAddRealm(response: Response): Promise<RealmModel> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 201) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result201: any = null;
-            let resultData201  = _responseText;
-            result201 = JSON.parse(resultData201);
-            return Promise.resolve<RealmModel>(result201);
-
+            result201 = _responseText === "" ? null : <RealmModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return result201;
+            });
         } else if (status === 400) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result400: any = null;
-            let resultData400  = _responseText;
-            result400 = JSON.parse(resultData400);
+            result400 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Bad Request", status, _responseText, _headers, result400);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<RealmModel>(<any>null);
     }
@@ -244,60 +178,44 @@ export class Client {
     /**
      * @return Success
      */
-    getRealm(realmId: string , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
+    getRealm(realmId: string): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
         url_ = url_.replace("{realmId}", encodeURIComponent("" + realmId));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "GET",
-            url: url_,
             headers: {
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processGetRealm(_response);
         });
     }
 
-    protected processGetRealm(response: AxiosResponse): Promise<RealmModel> {
+    protected processGetRealm(response: Response): Promise<RealmModel> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result200: any = null;
-            let resultData200  = _responseText;
-            result200 = JSON.parse(resultData200);
-            return Promise.resolve<RealmModel>(result200);
-
+            result200 = _responseText === "" ? null : <RealmModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status === 404) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = JSON.parse(resultData404);
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Not Found", status, _responseText, _headers, result404);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<RealmModel>(<any>null);
     }
@@ -305,56 +223,41 @@ export class Client {
     /**
      * @return Success
      */
-    deleteRealm(realmId: string , cancelToken?: CancelToken | undefined): Promise<void> {
+    deleteRealm(realmId: string): Promise<void> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
         url_ = url_.replace("{realmId}", encodeURIComponent("" + realmId));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "DELETE",
-            url: url_,
             headers: {
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processDeleteRealm(_response);
         });
     }
 
-    protected processDeleteRealm(response: AxiosResponse): Promise<void> {
+    protected processDeleteRealm(response: Response): Promise<void> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 204) {
-            const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
-
+            return response.text().then((_responseText) => {
+            return;
+            });
         } else if (status === 404) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = JSON.parse(resultData404);
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Not Found", status, _responseText, _headers, result404);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<void>(<any>null);
     }
@@ -363,7 +266,7 @@ export class Client {
      * @param body (optional) 
      * @return Success
      */
-    addLocation(realmId: string, body: NewLocationRequest | undefined , cancelToken?: CancelToken | undefined): Promise<RealmModel> {
+    addLocation(realmId: string, body: NewLocationRequest | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}/location";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
@@ -372,55 +275,39 @@ export class Client {
 
         const content_ = JSON.stringify(body);
 
-        let options_ = <AxiosRequestConfig>{
-            data: content_,
+        let options_ = <RequestInit>{
+            body: content_,
             method: "POST",
-            url: url_,
             headers: {
                 "Content-Type": "application/json-patch+json",
                 "Accept": "application/json"
-            },
-            cancelToken
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processAddLocation(_response);
         });
     }
 
-    protected processAddLocation(response: AxiosResponse): Promise<RealmModel> {
+    protected processAddLocation(response: Response): Promise<RealmModel> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 201) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result201: any = null;
-            let resultData201  = _responseText;
-            result201 = JSON.parse(resultData201);
-            return Promise.resolve<RealmModel>(result201);
-
+            result201 = _responseText === "" ? null : <RealmModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return result201;
+            });
         } else if (status === 404) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = JSON.parse(resultData404);
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Not Found", status, _responseText, _headers, result404);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
         return Promise.resolve<RealmModel>(<any>null);
     }
@@ -428,7 +315,7 @@ export class Client {
     /**
      * @return Success
      */
-    deleteLocation(realmId: string, locationId: string , cancelToken?: CancelToken | undefined): Promise<void> {
+    deleteLocation(realmId: string, locationId: string): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}/location/{locationId}";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
@@ -438,58 +325,46 @@ export class Client {
         url_ = url_.replace("{locationId}", encodeURIComponent("" + locationId));
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ = <AxiosRequestConfig>{
+        let options_ = <RequestInit>{
             method: "DELETE",
-            url: url_,
             headers: {
-            },
-            cancelToken
+                "Accept": "application/json"
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processDeleteLocation(_response);
         });
     }
 
-    protected processDeleteLocation(response: AxiosResponse): Promise<void> {
+    protected processDeleteLocation(response: Response): Promise<RealmModel> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
-        if (status === 204) {
-            const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
-
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <RealmModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status === 404) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = JSON.parse(resultData404);
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Not Found", status, _responseText, _headers, result404);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel>(<any>null);
     }
 
     /**
      * @param body (optional) 
      * @return Success
      */
-    updateLocation(realmId: string, locationId: string, body: UpdateLocationRequest | undefined , cancelToken?: CancelToken | undefined): Promise<void> {
+    updateLocation(realmId: string, locationId: string, body: UpdateLocationRequest | undefined): Promise<RealmModel> {
         let url_ = this.baseUrl + "/api/Realm/{realmId}/location/{locationId}";
         if (realmId === undefined || realmId === null)
             throw new Error("The parameter 'realmId' must be defined.");
@@ -501,129 +376,112 @@ export class Client {
 
         const content_ = JSON.stringify(body);
 
-        let options_ = <AxiosRequestConfig>{
-            data: content_,
+        let options_ = <RequestInit>{
+            body: content_,
             method: "PUT",
-            url: url_,
             headers: {
                 "Content-Type": "application/json-patch+json",
-            },
-            cancelToken
+                "Accept": "application/json"
+            }
         };
 
-        return this.instance.request(options_).catch((_error: any) => {
-            if (isAxiosError(_error) && _error.response) {
-                return _error.response;
-            } else {
-                throw _error;
-            }
-        }).then((_response: AxiosResponse) => {
+        return this.http.fetch(url_, options_).then((_response: Response) => {
             return this.processUpdateLocation(_response);
         });
     }
 
-    protected processUpdateLocation(response: AxiosResponse): Promise<void> {
+    protected processUpdateLocation(response: Response): Promise<RealmModel> {
         const status = response.status;
-        let _headers: any = {};
-        if (response.headers && typeof response.headers === "object") {
-            for (let k in response.headers) {
-                if (response.headers.hasOwnProperty(k)) {
-                    _headers[k] = response.headers[k];
-                }
-            }
-        }
-        if (status === 204) {
-            const _responseText = response.data;
-            return Promise.resolve<void>(<any>null);
-
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            let result200: any = null;
+            result200 = _responseText === "" ? null : <RealmModel>JSON.parse(_responseText, this.jsonParseReviver);
+            return result200;
+            });
         } else if (status === 404) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             let result404: any = null;
-            let resultData404  = _responseText;
-            result404 = JSON.parse(resultData404);
+            result404 = _responseText === "" ? null : <ProblemDetails>JSON.parse(_responseText, this.jsonParseReviver);
             return throwException("Not Found", status, _responseText, _headers, result404);
-
+            });
         } else if (status !== 200 && status !== 204) {
-            const _responseText = response.data;
+            return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
         }
-        return Promise.resolve<void>(<any>null);
+        return Promise.resolve<RealmModel>(<any>null);
     }
 }
 
 export interface LocationTypeModel {
     id?: string;
-    iconClass?: string | undefined;
-    name?: string | undefined;
+    iconClass?: string | null;
+    name?: string | null;
 }
 
 export interface MapCoordinate {
-    x?: number;
-    y?: number;
+    x: number;
+    y: number;
 }
 
 export interface MapBoundingBox {
-    topLeft?: MapCoordinate;
-    bottomRight?: MapCoordinate;
-    topRight?: MapCoordinate;
-    bottomLeft?: MapCoordinate;
+    topLeft: MapCoordinate;
+    bottomRight: MapCoordinate;
+    topRight: MapCoordinate;
+    bottomLeft: MapCoordinate;
 }
 
 export interface MapModel {
-    mapNumber?: number;
-    ringNumber?: number;
-    bounds?: MapBoundingBox;
+    mapNumber: number;
+    ringNumber: number;
+    bounds: MapBoundingBox;
 }
 
 export interface CoordinateModel {
-    x?: number;
-    z?: number;
-    y?: number;
-}
-
-export interface LocationType {
-    id?: string;
-    iconClass?: string | undefined;
-    name?: string | undefined;
+    x: number;
+    z: number;
+    y: number;
 }
 
 export interface LocationModel {
-    mapNumber?: number;
-    name?: string | undefined;
-    coordinate?: CoordinateModel;
-    notes?: string | undefined;
-    type?: LocationType;
-    typeId?: string;
-    realmId?: string;
-    hasPortal?: boolean;
-    hasEnderChest?: boolean;
-    hasEnchantmentTable?: boolean;
-    hasBed?: boolean;
-    hasAnvil?: boolean;
-    hasFurnace?: boolean;
+    id: string;
+    mapNumber: number;
+    name: string;
+    coordinate: CoordinateModel;
+    notes: string;
+    type: LocationTypeModel;
+    typeId: string;
+    realmId: string;
+    hasPortal: boolean;
+    hasEnderChest: boolean;
+    hasEnchantmentTable: boolean;
+    hasBed: boolean;
+    hasAnvil: boolean;
+    hasFurnace: boolean;
 }
 
 export interface RealmModel {
-    id?: string;
-    name?: string | undefined;
-    locations?: LocationModel[] | undefined;
-    type?: LocationTypeModel;
+    id: string;
+    name: string;
+    locations: LocationModel[];
+    type: LocationTypeModel;
 }
 
 export interface NewRealmRequest {
-    name?: string | undefined;
+    name?: string | null;
 }
 
 export interface ProblemDetails {
-    type?: string | undefined;
-    title?: string | undefined;
-    status?: number | undefined;
-    detail?: string | undefined;
-    instance?: string | undefined;
+    type?: string | null;
+    title?: string | null;
+    status?: number | null;
+    detail?: string | null;
+    instance?: string | null;
 }
 
 export interface NewLocationRequest {
-    name?: string | undefined;
+    name?: string | null;
     x?: number;
     z?: number;
     y?: number;
@@ -634,12 +492,12 @@ export interface NewLocationRequest {
     hasBed?: boolean;
     hasAnvil?: boolean;
     hasFurnace?: boolean;
-    notes?: string | undefined;
+    notes?: string | null;
 }
 
 export interface UpdateLocationRequest {
-    name?: string | undefined;
-    notes?: string | undefined;
+    name?: string | null;
+    notes?: string | null;
     locationTypeId?: string;
     hasPortal?: boolean;
     hasEnderChest?: boolean;
@@ -678,8 +536,4 @@ function throwException(message: string, status: number, response: string, heade
         throw result;
     else
         throw new ApiException(message, status, response, headers, null);
-}
-
-function isAxiosError(obj: any | undefined): obj is AxiosError {
-    return obj && obj.isAxiosError === true;
 }

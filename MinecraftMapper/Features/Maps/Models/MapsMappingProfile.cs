@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using JetBrains.Annotations;
 using MinecraftMapper.MapGeneration;
 using MinecraftMapper.Mediator.Queries.Maps;
 
 namespace MinecraftMapper.Features.Maps.Models
 {
+    [UsedImplicitly]
     public class MapsMappingProfile : Profile
     {
         public MapsMappingProfile()

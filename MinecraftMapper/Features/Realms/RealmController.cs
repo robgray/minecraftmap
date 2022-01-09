@@ -4,7 +4,6 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MinecraftMapper.Entities;
 using MinecraftMapper.Features.Realms.Models;
 using MinecraftMapper.Features.Shared;
 using MinecraftMapper.Mediator.Commands.Realms;
@@ -57,20 +56,20 @@ namespace MinecraftMapper.Features.Realms
         }
 
         [HttpDelete("{realmId}/location/{locationId}", Name = "DeleteLocation")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(RealmModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Task<IActionResult> DeleteLocation([FromRoute] Guid realmId, [FromRoute] Guid locationId) =>
-            ExecuteCommand<DeleteLocationCommand>(new LocationIdentifierParams { RealmId = realmId, LocationId = locationId});
+            ExecuteCommand<DeleteLocationCommand, RealmModel>(new LocationIdentifierParams { RealmId = realmId, LocationId = locationId});
 
 
         [HttpPut("{realmId}/location/{locationId}", Name = "UpdateLocation")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(RealmModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public Task<IActionResult> UpdateLocation(
             [FromRoute] Guid realmId,
             [FromRoute] Guid locationId,
             [FromBody] UpdateLocationRequest updateLocation) =>
-            ExecuteCommand<UpdateLocationCommand>(new LocationIdentifierParams { RealmId = realmId, LocationId = locationId}, updateLocation);
+            ExecuteCommand<UpdateLocationCommand, RealmModel>(new LocationIdentifierParams { RealmId = realmId, LocationId = locationId}, updateLocation);
     }
     
     public class LocationIdentifierParams

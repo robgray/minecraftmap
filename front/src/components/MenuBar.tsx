@@ -4,12 +4,11 @@ import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/Com
 import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
 import { AddLocation } from "../components/Location/AddLocation";
 import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
-import { INewLocation, ICoordinate } from "../api/location";
+import { CoordinateModel } from "../api/client";
+import { INewLocation } from '../api/location';
 import { Text, Stack } from 'office-ui-fabric-react';
-
-import { Image } from 'office-ui-fabric-react/lib/Image';
+import { Image } from 'office-ui-fabric-react/lib/Image'; 
 import gridImage from "../images/samplegrid.png";
-
 import { useId } from '@uifabric/react-hooks';
 import {
   getTheme,
@@ -20,8 +19,7 @@ import {
 
 interface IMenuBarProps 
 {
-    saveNewLocation: ((newLocation: INewLocation) => void);
-    onZoomClick: ((coordinate: ICoordinate) => void);
+    onZoomClick: ((coordinate: CoordinateModel) => void);
 }
 
 export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
@@ -83,7 +81,6 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
                         isOpen={isAddLocationOpen} 
                         openPanel={openAddLocationPanel}
                         dismissPanel={dismissAddLocationPanel}
-                        saveNewLocation={props.saveNewLocation}
                         />
                 )
             }

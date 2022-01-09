@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
@@ -41,9 +42,12 @@ namespace MinecraftMapper.Mediator.Commands.Realms
             _mapNumberGenerator = mapNumberGenerator;
         }
         
+        protected IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type).AsNoTracking();
+        
         public async Task<Realm> Handle(AddLocationCommand request, CancellationToken cancellationToken)
         {
-            var realm = await _context.Realms.FirstOrDefaultAsync(r => r.Id == request.RealmId, cancellationToken);
+            var realm = await Realms.FirstOrDefaultAsync(r => r.Id == request.RealmId, cancellationToken);
+            
             if (realm == null) throw new EntityNotFoundException($"Could not find Realm with Id {request.RealmId}");
                 
             var coordinate = new Coordinate

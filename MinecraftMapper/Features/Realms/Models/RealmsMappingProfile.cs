@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using JetBrains.Annotations;
 using MinecraftMapper.Entities;
 using MinecraftMapper.Mediator.Commands.Realms;
 using MinecraftMapper.Mediator.Queries.Realms;
@@ -7,6 +8,7 @@ using MinecraftMapper.Requests;
 
 namespace MinecraftMapper.Features.Realms.Models
 {
+    [UsedImplicitly]
     public class RealmsMappingProfile : Profile
     {
         public RealmsMappingProfile()

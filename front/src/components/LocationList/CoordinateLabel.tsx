@@ -1,8 +1,8 @@
 import { Text } from 'office-ui-fabric-react';
-import { ICoordinate } from "../../api/location";
+import { CoordinateModel } from "../../api/client";
 
 interface ICoordinateLabelProps {
-    coordinate: ICoordinate
+    coordinate: CoordinateModel
 }
 
 const coordStyle = {

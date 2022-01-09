@@ -1,4 +1,4 @@
-import { ICoordinate } from "../api/location";
+import { CoordinateModel } from "../api/client";
 import { IStackItemStyles } from 'office-ui-fabric-react';
 import React, { useEffect, useState } from "react";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
@@ -10,7 +10,7 @@ interface IZoomToCoordinate
     isOpen: boolean;
     openPanel: (() => void);
     dismissPanel: (() => void);
-    onZoomClick: ((coordinate: ICoordinate) => void);
+    onZoomClick: ((coordinate: CoordinateModel) => void);
 }
 
 const stackItemStyles: IStackItemStyles = {
@@ -41,7 +41,7 @@ const ZoomToCoordinate: React.FC<IZoomToCoordinate> = (props: IZoomToCoordinate)
                 <Stack horizontal>
                     <Stack.Item align="end" styles={stackItemStyles}>
                     <PrimaryButton text="Zoom" onClick={() => { 
-                        const zoomCoord: ICoordinate = {
+                        const zoomCoord: CoordinateModel = {
                             x: Number.parseInt(coordinate.x),
                             y: Number.parseInt(coordinate.y),
                             z: Number.parseInt(coordinate.z)

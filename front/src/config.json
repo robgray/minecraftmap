@@ -1,6 +1,6 @@
 {   
-  "baseUrl": "https://localhost:5001/api",
+  "baseUrl": "https://localhost:5001",
   "getAccept": "application/json",
-  "postAccept": "apoplication/json",
-  "realmKey": "092f7445-2f4a-4f54-2119-08d89e568feb"
+  "postAccept": "application/json",
+  "realmKey": "AE924830-1DF0-4C32-9603-FE773BDF8508"
 }
