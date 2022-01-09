@@ -12,44 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="55c353d9-0ab3-4ab8-b4d6-3c65e50f0cae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/front/src/contexts/LocationTypesContext.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/contexts/LocationsContext.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/contexts/MapsContext.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/contexts/RealmContext.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/front/src/hooks/useApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MinecraftMapper/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/LocationTypes/Models/LocationTypeMappingProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapsMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Maps/Models/MapsMappingProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/CoordinateModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/CoordinateModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/LocationModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/LocationModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmsMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/Models/RealmsMappingProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Features/Realms/RealmController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapBoundingBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapCoordinate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/MapGeneration/MapCoordinate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddLocationCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/AddLocationCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/DeleteLocationCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/Mediator/Commands/Realms/DeleteLocationCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/nswag.json" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/nswag.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MinecraftMapper/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/MinecraftMapper/swagger.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/front/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/apiClient.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/client.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/client.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/api/location.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/api/location.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Location/AddLocation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Location/AddLocation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Location/Categories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Location/Categories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/Location/EditLocation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/Location/EditLocation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationList/CoordinateLabel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LocationList/CoordinateLabel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationList/LocationFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LocationList/LocationFilter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationList/LocationListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LocationList/LocationListItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationList/LocationsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LocationList/LocationsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/LocationList/OptionsDisplay.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/LocationList/OptionsDisplay.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/MenuBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/MenuBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/ZoomToCoordinate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/ZoomToCoordinate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/map/LocationTypeMarker.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/LocationTypeMarker.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/components/map/MinecraftMap.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/components/map/MinecraftMap.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/front/src/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/front/src/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/locationType.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/front/src/api/realm.d.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
