@@ -2,7 +2,7 @@
 
 namespace MinecraftMapper.Requests
 {
-    public class NewLocationRequest
+    public class NewLocationRequest : IHasThings
     {
         public string Name { get; set; }
         public int X { get; set; }

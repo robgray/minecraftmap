@@ -1,10 +1,11 @@
-import { useContext }  from 'react';
-import { MapContainer, LayerGroup, useMap, LayersControl, Rectangle, FeatureGroup, Popup } from 'react-leaflet';
+import { useContext, memo }  from 'react';
+import { MapContainer, LayerGroup, useMap, LayersControl, Rectangle, FeatureGroup } from 'react-leaflet';
 import { CRS, LatLngBounds, LatLngTuple, LatLng } from 'leaflet';
 import { LayerContext } from './LayerContext';
-import { ILocation, ICoordinate } from '../../api/location';
 import { LocationTypeMarker } from './LocationTypeMarker';
-import { IMap, IBounds} from "../../api/apiClient";
+import { CoordinateModel, MapBoundingBox} from "../../api/client";
+import { useMaps } from "../../contexts/MapsContext";
+import { useLocations } from "../../contexts/LocationsContext";
 
 // Shrink_factor makes it easier to work with the large values for x and y that minecraft produces
 // in the leaftlet.js map these are far apart when zoomed out.
@@ -13,13 +14,11 @@ import { IMap, IBounds} from "../../api/apiClient";
 const SHRINK_FACTOR = 100;
 
 interface IMinecraftMapProps {
-    locations: ILocation[];
-    center?: ICoordinate;
-    maps?: IMap[];
+    center?: CoordinateModel;
 }
 
 interface IMapProps {
-    center?: ICoordinate;
+    center?: CoordinateModel;
 }
 
 const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
@@ -32,7 +31,7 @@ const TheMap: React.FC<IMapProps> = (props: IMapProps) => {
     return null;
 }
 
-const getTranslatedBounds = (bounds: IBounds): LatLngBounds => new LatLngBounds(
+const getTranslatedBounds = (bounds: MapBoundingBox): LatLngBounds => new LatLngBounds(
         [-bounds.bottomRight.y/SHRINK_FACTOR, bounds.topLeft.x/SHRINK_FACTOR],
         [-bounds.topLeft.y/SHRINK_FACTOR, bounds.bottomRight.x/SHRINK_FACTOR]);
         
@@ -54,8 +53,11 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps)  
         return new LatLngBounds([smallestY/SHRINK_FACTOR, smallestX/SHRINK_FACTOR], [largestY/SHRINK_FACTOR, largestX/SHRINK_FACTOR]);
     }
 
+    const maps = useMaps();
+    const { locations } = useLocations();
+
     const { point } = useContext(LayerContext);
-    const bounds = getBoundsFromLocations(props.locations.map(location => [-location.coordinate.y/SHRINK_FACTOR, location.coordinate.x/SHRINK_FACTOR ]));
+    const bounds = getBoundsFromLocations(locations.map(location => [-location.coordinate.y/SHRINK_FACTOR, location.coordinate.x/SHRINK_FACTOR ]));
     const center = bounds.getCenter();
 
     return (
@@ -68,20 +70,18 @@ const MinecraftMap: React.FC<IMinecraftMapProps> = (props: IMinecraftMapProps)  
             <TheMap center={props.center} />
             <LayersControl position="topright">
                 <LayersControl.Overlay name="Maps">
-                <FeatureGroup >
-                 {props.maps && (
-                        props.maps.map(m => (
-                            <Rectangle bounds={getTranslatedBounds(m.bounds)} pathOptions={{ color: "green"}}/>
-                        ))
-                    )}
+                    <FeatureGroup>
+                    {maps.map(m => (
+                        <Rectangle bounds={getTranslatedBounds(m.bounds)} pathOptions={{ color: "green"}} />
+                    ))}
                     </FeatureGroup>
                 </LayersControl.Overlay>
             </LayersControl>
             <LayerGroup>
                 {point}
             </LayerGroup>
-            {props.locations.map(location => (
-                <LocationTypeMarker location={location} shrinkFactor={SHRINK_FACTOR} key={location.id} />
+            {locations.map(location => (
+                <LocationTypeMarker location={location} shrinkFactor={SHRINK_FACTOR} />
             ))}
         </MapContainer>
     )

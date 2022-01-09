@@ -51,7 +51,8 @@ export const LocationsFilter: React.FC<ILocationsFilterProps> = (props: ILocatio
         setFurnace(false);
         setCategoryId("");
 
-        props.onFilter({
+        props.onFilter(
+            {
             hasAnvil: false,
             hasBed: false,
             hasPortal: false,

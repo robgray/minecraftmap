@@ -4,8 +4,8 @@ import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
-import { ILocation, ICoordinate } from "../../api/location";
-import { IUpdateLocationRequest } from "../../api/apiClient";
+import { LocationModel, CoordinateModel } from "../../api/client";
+import { useLocations } from "../../contexts/LocationsContext";
 
 
 const stackItemStyles: IStackItemStyles = {
@@ -22,22 +22,23 @@ const checkboxStackTokens: IStackTokens = {
 };
 
 interface IEditLocationProps {
-    location: ILocation;
-    saveLocation: ((lLocation: IUpdateLocationRequest) => void)
+    location: LocationModel;
     dismissPanel: (() => void);
     openPanel: (() => void);
     isOpen: boolean;
 }
 
-const CoordinateToString = (coordinate: ICoordinate) => {
+const CoordinateToString = (coordinate: CoordinateModel) => {
     return {
-        x: coordinate.x.toString(), 
-        z: coordinate.z.toString(), 
-        y: coordinate.y.toString()
+        x: (coordinate.x||'').toString(), 
+        z: (coordinate.z||'').toString(), 
+        y: (coordinate.y||'').toString()
     };
 };
 
 const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) => {
+
+    const { updateLocation } = useLocations();
 
     const [ name, setName ] = useState(props.location.name);
     const [ categoryId, setCategoryId ] = useState(props.location.typeId);
@@ -78,13 +79,9 @@ const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) =
                     <Stack horizontal>
                         <Stack.Item align="end" styles={stackItemStyles}>
                             <PrimaryButton text="Save" onClick={() => { 
-                                props.saveLocation(
+                                updateLocation(props.location.id, 
                                 {
-                                    id: props.location.id,
                                     name: name,
-                                    x: Number.parseInt(coordinate.x),
-                                    y: Number.parseInt(coordinate.y),
-                                    z: Number.parseInt(coordinate.z),
                                     locationTypeId: categoryId,
                                     hasAnvil: hasAnvil,
                                     hasBed: hasBed,

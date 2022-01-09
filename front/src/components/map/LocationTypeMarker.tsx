@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { ILocation } from "../../api/location";
 import { Marker, Popup } from 'react-leaflet';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-import { ApiClient } from '../../api/apiClient';
 import { EditButton } from "../EditButton";
 import L from "leaflet";
+import { useLocationTypes } from "../../contexts/LocationTypesContext";
+import { LocationModel, LocationTypeModel } from "../../api/client";
 
 interface ILocationTypeMarkerProps {
-    location: ILocation;
+    location: LocationModel;
     shrinkFactor: number;
 };
 
-const getIcon = (location: ILocation) => {
-    const locationType = (ApiClient.data.locationTypes??[]).find(lt => lt.id === location.typeId);
+const getIcon = (locationTypes: LocationTypeModel[], location: LocationModel) => {
+
+    const locationType = (locationTypes??[]).find(lt => lt.id === location.typeId);
     const iconColour = locationType ? locationType.iconClass : "blue";
     const myIcon = new L.Icon({
         iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${iconColour}.png`,
@@ -29,10 +30,12 @@ const getIcon = (location: ILocation) => {
  
 export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: ILocationTypeMarkerProps) => {
 
-    const [ icon, setIcon ] = useState(() => getIcon(props.location));
+    const { locationTypes } = useLocationTypes();
+
+    const [ icon, setIcon ] = useState(() => getIcon(locationTypes, props.location));
     useEffect(() => {
-         setIcon(getIcon(props.location))
-    }, [props]);
+         setIcon(getIcon(locationTypes, props.location))
+    }, [props, locationTypes]);
 
     return (
         <Marker 

@@ -2,10 +2,20 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-      <UserSecretsId>b1158f2e-3c45-4202-966e-e1df1b2cb601</UserSecretsId>
-  </PropertyGroup>
-
+        <UserSecretsId>b1158f2e-3c45-4202-966e-e1df1b2cb601</UserSecretsId>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <MyNSwag>dotnet "c:\users\rob\.nuget\packages\nswag.msbuild\13.15.5\tools\Net50\dotnet-nswag.dll"</MyNSwag>
+    </PropertyGroup>
+    
     <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="10.1.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+        <PackageReference Include="MediatR" Version="9.0.0" />
+        <PackageReference Include="MediatR.Extensions.FluentValidation.AspNetCore" Version="1.2.0" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" NoWarn="NU1605" />
         <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.0" NoWarn="NU1605" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.1" />
@@ -18,7 +28,36 @@
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
         <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
         <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+        <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.3">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="NSwag.MSBuild" Version="13.15.5">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Serilog" Version="2.10.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+        <PackageReference Include="Serilog.Enrichers.AspNetCore.HttpContext" Version="1.0.1" />
+        <PackageReference Include="Serilog.Enrichers.Context" Version="4.2.0" />
+        <PackageReference Include="Serilog.Enrichers.CorrelationId" Version="3.0.1" />
+        <PackageReference Include="Serilog.Sinks.Seq" Version="5.1.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.6.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.6.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.6.3" />
     </ItemGroup>
+    
+    <ItemGroup>
+        <DotNetCliToolReference Include="Swashbuckle.AspNetCore.Cli" Version="4.0.1" />
+    </ItemGroup>
+    
+    <Target Name="BeforeNSwag" BeforeTargets="NSwag">
+        <Exec Command="dotnet tool restore" />
+        <Exec Command="dotnet swagger tofile --output ./swagger.json $(OutputPath)$(AssemblyName).dll v1 " />
+    </Target>
+    <Target Name="NSwag" AfterTargets="Build">
+        <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(MyNSwag) run nswag.json" />
+    </Target>
 
 </Project>

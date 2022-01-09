@@ -1,20 +1,19 @@
 import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from 'office-ui-fabric-react';
 import { ListItem } from "./LocationListItem";
-import { ILocation } from "../../api/location";
-import { IUpdateLocationRequest } from "../../api/apiClient";
-import { LocationsFilter, ILocationFilter } from "./LocationFilter";
+import { UpdateLocationRequest, LocationModel } from "../../api/client";
+import { LocationsFilter } from "./LocationFilter";
+import { useLocations } from '../../contexts/LocationsContext';
 
 import Guid from "../../api/guid";
 
 interface ILocationListProps {
-    locations: ILocation[];
-    onDelete: ((id: Guid) => void);
-    onLocationClicked: ((location: ILocation) => void);
-    onUpdateLocation: ((lLocation: IUpdateLocationRequest) => void);
-    onFilter: ((filter: ILocationFilter) => void);
+    onLocationClicked: ((location: LocationModel) => void);
 };
 
 const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) => {   
+
+    const { locations, setFilter, deleteLocation, updateLocation } = useLocations();
+
     const sectionStackTokens: IStackTokens = { childrenGap: 5 };
     const headerStyles: IStackItemStyles = {
         root: {
@@ -38,17 +37,16 @@ const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) 
                 <Text variant="large">Locations</Text>
             </Stack.Item>
             <Stack.Item>
-                <LocationsFilter onFilter={props.onFilter}  />
-            </Stack.Item>
-            {props.locations.map(location => {
-                return (
-                            <ListItem key={location.id}
-                                location={location} 
-                                onDelete={() => props.onDelete(location.id)} 
-                                onLocationClicked={props.onLocationClicked}
-                                onUpdateLocation={props.onUpdateLocation} />
-                        )
-            })}
+                <LocationsFilter onFilter={setFilter}  />
+            </Stack.Item>        
+                { 
+                    locations.map(location => (
+                        <ListItem key={location.id}
+                            location={location} 
+                            onLocationClicked={props.onLocationClicked}
+                            />
+                        ))
+                }
         </Stack>
     );
 }

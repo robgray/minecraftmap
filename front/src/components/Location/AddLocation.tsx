@@ -4,8 +4,8 @@ import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
-import { INewLocation } from "../../api/location";
-
+import { useLocations } from '../../contexts/LocationsContext';
+import { useLocationTypes } from '../../contexts/LocationTypesContext';
 
 const stackItemStyles: IStackItemStyles = {
     root: {
@@ -21,13 +21,14 @@ const checkboxStackTokens: IStackTokens = {
 };
 
 interface IAddLocationProps {
-    saveNewLocation: ((newLocation: INewLocation) => void)
     dismissPanel: (() => void);
     openPanel: (() => void);
     isOpen: boolean;
 }
 
 const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
+
+    const { addLocation } = useLocations();
 
     const [ name, setName ] = useState("");
     const [ categoryId, setCategoryId ] = useState("");
@@ -85,7 +86,7 @@ const AddLocation: React.FC<IAddLocationProps> = (props: IAddLocationProps) => {
                     <Stack horizontal>
                         <Stack.Item align="end" styles={stackItemStyles}>
                             <PrimaryButton text="Save" onClick={() => { 
-                                props.saveNewLocation(
+                                addLocation(
                                 {
                                     name: name,
                                     coordinate: { 

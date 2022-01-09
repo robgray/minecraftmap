@@ -1,12 +1,12 @@
 import React from "react";
-import { ILocation } from "../../api/location";
+import { LocationModel } from "../../api/client";
 import { Stack } from 'office-ui-fabric-react';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
 
 interface IOptionsDisplayProps
 {
-    location: ILocation;
+    location: LocationModel
 }
 
 const iconClass = mergeStyles({

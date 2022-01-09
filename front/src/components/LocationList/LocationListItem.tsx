@@ -1,21 +1,18 @@
 import { Text, Stack, IStackTokens } from 'office-ui-fabric-react';
 import { useBoolean } from '@uifabric/react-hooks';
 import { Card, ICardTokens, ICardStyles, ICardItemStyles, ICardItemTokens, ICardSectionStyles } from '@uifabric/react-cards';
-import { ILocation } from "../../api/location";
 import { DeleteButton } from "../DeleteButton";
 import { EditButton } from "../EditButton";
 import { CoordinateLabel } from "./CoordinateLabel";
 import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
 import { EditLocation } from "../Location/EditLocation";
-import Guid from "../../api/guid";
-import { IUpdateLocationRequest } from "../../api/apiClient";
+import { LocationModel } from "../../api/client";
 import { OptionsDisplay } from "./OptionsDisplay";
+import { useLocations } from "../../contexts/LocationsContext";
 
 interface ILocationListItemProps {
-    location: ILocation;
-    onDelete: ((id: Guid) => void);
-    onLocationClicked: ((location: ILocation) => void);
-    onUpdateLocation: ((lLocation: IUpdateLocationRequest) => void);
+    location: LocationModel;
+    onLocationClicked: ((location: LocationModel) => void);
 }
 
 const buttonTokens: IStackTokens = {
@@ -24,6 +21,8 @@ const buttonTokens: IStackTokens = {
 }
 
 const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProps) => {
+
+    const { deleteLocation } = useLocations();
 
     const [isEditLocationOpen, { setTrue: openEditLocationPanel, setFalse: dismissEditLocationPanel }] = useBoolean(false);
 
@@ -77,7 +76,7 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
             <Card.Item styles={deleteStyles} tokens={deleteTokens}>
                 <Stack tokens={buttonTokens}>
                     <EditButton onEdit={() => openEditLocationPanel() } height={buttonHeight} fontSize={buttonFontSize} />
-                    <DeleteButton onDelete={() => props.onDelete(props.location.id)} identifyingName={props.location.name} height={buttonHeight} fontSize={buttonFontSize}  />
+                    <DeleteButton onDelete={() => deleteLocation(props.location.id)} identifyingName={props.location.name} height={buttonHeight} fontSize={buttonFontSize}  />
                     <Customizer>
                         { 
                             isEditLocationOpen && (
@@ -86,7 +85,7 @@ const ListItem: React.FC<ILocationListItemProps> = (props: ILocationListItemProp
                                     isOpen={isEditLocationOpen} 
                                     openPanel={openEditLocationPanel}
                                     dismissPanel={dismissEditLocationPanel}
-                                    saveLocation={props.onUpdateLocation} />
+                                />
                             )
                         }
                     </Customizer>

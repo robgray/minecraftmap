@@ -1,30 +1,10 @@
 import Guid from "./guid";
-
-interface ILocation {
-    id: Guid;
-    name: string;
-    typeId: Guid;
-    notes?: string | null;
-    coordinate: ICoordinate;
-    mapNumber: number;
-    hasAnvil: boolean;
-    hasBed: boolean;
-    hasPortal: boolean;
-    hasFurnace: boolean;
-    hasEnderChest: boolean;
-    hasEnchantmentTable: boolean;
-}
-
-interface ICoordinate {
-    x: number,    
-    z: number,
-    y: number,
-}
+import { CoordinateModel } from "./client";
 
 interface INewLocation {
     name: string;
     typeId: Guid;
-    coordinate: ICoordinate;
+    coordinate: CoordinateModel;
     hasAnvil: boolean;
     hasBed: boolean;
     hasPortal: boolean;
@@ -34,4 +14,4 @@ interface INewLocation {
     notes: string;
 }
 
-export { ILocation, ICoordinate, INewLocation };
+export {INewLocation };

@@ -1,4 +1,6 @@
-﻿namespace MinecraftMapper.MapGeneration
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MinecraftMapper.MapGeneration
 {
     public class MapBoundingBox 
     {
@@ -7,10 +9,15 @@
             TopLeft = new MapCoordinate(topLeftX, topLeftY);
             BottomRight = new MapCoordinate(bottomRightX, bottomRightY);
         }
+        [Required]
         public MapCoordinate TopLeft { get; set; }
+        [Required]
         public MapCoordinate BottomRight { get; set; }
 
+        [Required]
         public MapCoordinate TopRight => new MapCoordinate(BottomRight.X, TopLeft.Y);
+        
+        [Required]
         public MapCoordinate BottomLeft => new MapCoordinate(TopRight.X, BottomRight.Y);
 	
         public bool ContainsCoordinate(MapCoordinate coordinate)
