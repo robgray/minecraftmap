@@ -14,6 +14,7 @@ namespace MinecraftMapper.Features.Realms.Models
         public RealmsMappingProfile()
         {
             CreateMap<Realm, RealmModel>();
+            CreateMap<Realm, RealmOnlyModel>();
             CreateMap<Location, LocationModel>();
             CreateMap<Coordinate, CoordinateModel>();
 

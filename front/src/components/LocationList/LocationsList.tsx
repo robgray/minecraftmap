@@ -10,7 +10,7 @@ interface ILocationListProps {
 
 const LocationsList: React.FC<ILocationListProps> = (props: ILocationListProps) => {   
 
-    const { locations, setFilter, deleteLocation, updateLocation } = useLocations();
+    const { locations, setFilter } = useLocations();
 
     const sectionStackTokens: IStackTokens = { childrenGap: 5 };
     const headerStyles: IStackItemStyles = {

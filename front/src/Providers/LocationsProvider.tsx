@@ -6,6 +6,7 @@ import { useApi } from '../hooks/useApi';
 import config from "../config.json";
 import { INewLocation } from '../api/location';
 import { NewLocationRequest, UpdateLocationRequest } from '../api/client';
+import { useRealms } from "../contexts/RealmsContext";
 import Guid from '../api/guid';
 
 export interface ILocationsProviderProps {
@@ -19,18 +20,23 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
   const [allLocations, setAllLocations] = useState<LocationModel[]>([]);
   const [currentFilter, setCurrentFilter] = useState<ILocationFilter|undefined>(filter);
 
+  const { currentRealm } = useRealms();
+
   useEffect(() => {
     const fetchData = async () => {
-      const realm = await api.getRealm(config.realmKey); 
-      setAllLocations(realm.locations||[]);      
+      
+      if (currentRealm) {
+        const realm = await api.getRealm(currentRealm.id);
+        setAllLocations(realm.locations||[]);    
+      }
     }
 
     fetchData();
-  }, [])
+  }, [currentRealm])
 
   const addLocation = (location: INewLocation) => {  
     const postData = async (newLocation: NewLocationRequest) => {
-      const realm = await api.addLocation(config.realmKey, newLocation);
+      const realm = await api.addLocation(currentRealm.id, newLocation);
       setAllLocations(realm.locations||[]);
     }
 
@@ -55,7 +61,7 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
   const updateLocation = (locationId: Guid, location: UpdateLocationRequest) => {
 
     const postData = async (locationId: Guid, location: UpdateLocationRequest) => {
-      const realm = await api.updateLocation(config.realmKey, locationId, location);
+      const realm = await api.updateLocation(currentRealm.id, locationId, location);
       setAllLocations(realm.locations||[]);
     }
 
@@ -65,7 +71,7 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
   const deleteLocation = (id: Guid) => {
 
     const deleteData = async (locationId: Guid) => {
-      const realm = await api.deleteLocation(config.realmKey, locationId);
+      const realm = await api.deleteLocation(currentRealm.id, locationId);
       setAllLocations(realm.locations||[]);
     }
 

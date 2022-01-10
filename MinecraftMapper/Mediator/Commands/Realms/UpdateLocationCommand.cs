@@ -44,7 +44,7 @@ namespace MinecraftMapper.Mediator.Commands.Realms
             _mapNumberGenerator = mapNumberGenerator;
         }
         
-        protected IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type);
+        private IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type);
         
         public async Task<Realm> Handle(UpdateLocationCommand request, CancellationToken cancellationToken)
         {
