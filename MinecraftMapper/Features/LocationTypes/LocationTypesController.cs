@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MinecraftMapper.Features.LocationTypes.Models;
 using MinecraftMapper.Features.Shared;
-using MinecraftMapper.Mediator.Queries;
 using MinecraftMapper.Mediator.Queries.LocationTypes;
 
 namespace MinecraftMapper.Features.LocationTypes

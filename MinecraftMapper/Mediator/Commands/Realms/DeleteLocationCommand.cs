@@ -23,9 +23,11 @@ namespace MinecraftMapper.Mediator.Commands.Realms
             _context = context;
         }
         
+        protected IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type);
+        
         public async Task<Realm> Handle(DeleteLocationCommand request, CancellationToken cancellationToken)
         {
-            var realm = await _context.Realms.FirstOrDefaultAsync(r => r.Id == request.RealmId, cancellationToken);
+            var realm = await Realms.FirstOrDefaultAsync(r => r.Id == request.RealmId, cancellationToken);
             if (realm == null) throw new EntityNotFoundException($"Realm with Id={request.RealmId} not found");
 
             var location = realm.Locations.FirstOrDefault(l => l.Id == request.LocationId);

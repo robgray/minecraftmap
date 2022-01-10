@@ -12,7 +12,8 @@ const stackItemStyles: IStackItemStyles = {
     root: {
       padding: 0,
       paddingTop: 20,
-      paddingBottom: 40
+      paddingBottom: 40,
+      paddingLeft: 10
     },
   };
 
@@ -38,7 +39,7 @@ const CoordinateToString = (coordinate: CoordinateModel) => {
 
 const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) => {
 
-    const { updateLocation } = useLocations();
+    const { updateLocation, deleteLocation } = useLocations();
 
     const [ name, setName ] = useState(props.location.name);
     const [ categoryId, setCategoryId ] = useState(props.location.typeId);
@@ -82,6 +83,9 @@ const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) =
                                 updateLocation(props.location.id, 
                                 {
                                     name: name,
+                                    x: Number.parseInt(coordinate.x, 10),
+                                    y: Number.parseInt(coordinate.y, 10),
+                                    z: Number.parseInt(coordinate.z, 10),
                                     locationTypeId: categoryId,
                                     hasAnvil: hasAnvil,
                                     hasBed: hasBed,
@@ -91,6 +95,13 @@ const EditLocation: React.FC<IEditLocationProps> = (props: IEditLocationProps) =
                                     hasFurnace: hasFurnace,
                                     notes: notes ? notes : ""
                                 });
+                                props.dismissPanel();
+                            }} />
+                            
+                        </Stack.Item>
+                        <Stack.Item align="end" styles={stackItemStyles}>
+                            <PrimaryButton text="Delete" onClick={() => { 
+                                deleteLocation(props.location.id);
                                 props.dismissPanel();
                             }} />
                         </Stack.Item>

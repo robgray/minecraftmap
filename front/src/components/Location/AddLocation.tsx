@@ -5,7 +5,6 @@ import { CoordinateControl } from "./CoordinateControl";
 import { Panel } from 'office-ui-fabric-react/lib/Panel';
 import { Categories } from "./Categories";
 import { useLocations } from '../../contexts/LocationsContext';
-import { useLocationTypes } from '../../contexts/LocationTypesContext';
 
 const stackItemStyles: IStackItemStyles = {
     root: {

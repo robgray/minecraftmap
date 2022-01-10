@@ -5,7 +5,6 @@ import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
 import { AddLocation } from "../components/Location/AddLocation";
 import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
 import { CoordinateModel } from "../api/client";
-import { INewLocation } from '../api/location';
 import { Text, Stack } from 'office-ui-fabric-react';
 import { Image } from 'office-ui-fabric-react/lib/Image'; 
 import gridImage from "../images/samplegrid.png";
@@ -108,7 +107,7 @@ const contentStyles = mergeStyleSets({
     alignItems: 'stretch',
   },
   header: [
-    theme.fonts.xLargePlus,
+    theme.fonts.superLarge,
     {
       flex: '1 1 auto',
       borderTop: `4px solid ${theme.palette.themePrimary}`,

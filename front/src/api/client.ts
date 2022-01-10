@@ -497,6 +497,9 @@ export interface NewLocationRequest {
 
 export interface UpdateLocationRequest {
     name?: string | null;
+    x?: number;
+    y?: number;
+    z?: number;
     notes?: string | null;
     locationTypeId?: string;
     hasPortal?: boolean;

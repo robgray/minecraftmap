@@ -1,10 +1,8 @@
 import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from 'office-ui-fabric-react';
 import { ListItem } from "./LocationListItem";
-import { UpdateLocationRequest, LocationModel } from "../../api/client";
+import { LocationModel } from "../../api/client";
 import { LocationsFilter } from "./LocationFilter";
 import { useLocations } from '../../contexts/LocationsContext';
-
-import Guid from "../../api/guid";
 
 interface ILocationListProps {
     onLocationClicked: ((location: LocationModel) => void);

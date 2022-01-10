@@ -42,7 +42,7 @@ namespace MinecraftMapper.Mediator.Commands.Realms
             _mapNumberGenerator = mapNumberGenerator;
         }
         
-        protected IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type).AsNoTracking();
+        protected IQueryable<Realm> Realms => _context.Realms.Include(r => r.Locations).ThenInclude(l => l.Type);
         
         public async Task<Realm> Handle(AddLocationCommand request, CancellationToken cancellationToken)
         {
@@ -72,8 +72,8 @@ namespace MinecraftMapper.Mediator.Commands.Realms
                 Notes = request.Notes
             };
             realm.Add(location);
-            await _context.SaveChangesAsync();
-
+            await _context.SaveChangesAsync(cancellationToken);
+            
             SetMapNumber(realm);
 
             return realm;

@@ -1,29 +1,19 @@
 import './App.css';
 import 'office-ui-fabric-react/dist/css/fabric.css';
 import Map from './components/map/MinecraftMap';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
-import { INewLocation } from "./api/location";
 import { 
-  NewLocationRequest, 
-  UpdateLocationRequest, 
-  MapModel, 
-  LocationModel, 
-  LocationTypeModel, 
+  LocationModel,  
   CoordinateModel
  } from "./api/client";
 import LocationsList from './components/LocationList/LocationsList';
 import { MenuBar } from "./components/MenuBar";
-import { useApi } from "./hooks/useApi";
-import config from "./config.json";
-import Guid from "./api/guid";
 import { LocationTypesProvider, MapsProvider, LocationsProvider } from "./Providers";
 
 initializeIcons();
 
 const App: React.FC = () => {
-
-  const api = useApi();
   
   const [center, setCenter] = useState<CoordinateModel | undefined>(undefined);
  

@@ -693,6 +693,18 @@
             "type": "string",
             "nullable": true
           },
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "z": {
+            "type": "integer",
+            "format": "int32"
+          },
           "notes": {
             "type": "string",
             "nullable": true

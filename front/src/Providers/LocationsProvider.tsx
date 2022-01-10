@@ -105,14 +105,6 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
       return tempLocations;
   }, [allLocations, currentFilter]);
 
-  /*
-  useEffect(() => {
-
-    setCurrentLocations(filterMapLocations(currentFilter));
-
-  }, [currentFilter, allLocations, filterMapLocations]);
-  */
-
   return (
     <LocationsContext.Provider value={{ 
       locations: filteredLocations(), 

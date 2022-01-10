@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Marker, Popup } from 'react-leaflet';
+import { useBoolean } from '@uifabric/react-hooks';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
 import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
+import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
 import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
 import { EditButton } from "../EditButton";
 import L from "leaflet";
 import { useLocationTypes } from "../../contexts/LocationTypesContext";
 import { LocationModel, LocationTypeModel } from "../../api/client";
+import { EditLocation } from "../../components/Location/EditLocation";
 
 interface ILocationTypeMarkerProps {
     location: LocationModel;
@@ -32,6 +35,7 @@ export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: IL
 
     const { locationTypes } = useLocationTypes();
 
+    const [isEditLocationOpen, { setTrue: openEditLocationPanel, setFalse: dismissEditLocationPanel }] = useBoolean(false);
     const [ icon, setIcon ] = useState(() => getIcon(locationTypes, props.location));
     useEffect(() => {
          setIcon(getIcon(locationTypes, props.location))
@@ -45,7 +49,7 @@ export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: IL
             >
             <Popup>
                 <Text variant="medium" style={{fontWeight: "bold"}}>{props.location.name}</Text>
-                <EditButton onEdit={() => alert("TODO") } height={15} fontSize={10} />
+                <EditButton onEdit={() => openEditLocationPanel()} height={15} fontSize={10} />
                 <Text block>Map: {props.location.mapNumber}</Text>
                 <Text>{props.location.notes}</Text>
                 
@@ -70,6 +74,18 @@ export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: IL
                         <AvailabilityIcon available={props.location.hasFurnace} /><Text>Furnace</Text>
                     </Stack.Item>
                 </Stack>
+                <Customizer>
+                {
+                    isEditLocationOpen && (
+                    <EditLocation
+                        location={props.location}
+                        isOpen={isEditLocationOpen}
+                        openPanel={openEditLocationPanel}
+                        dismissPanel={dismissEditLocationPanel}
+                        />
+                    )
+                }
+                </Customizer>
             </Popup>
         </Marker>
     )
