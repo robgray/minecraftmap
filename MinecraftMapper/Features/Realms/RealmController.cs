@@ -20,9 +20,9 @@ namespace MinecraftMapper.Features.Realms
         public RealmController(IMediator mediator, IMapper mapper) : base(mediator, mapper) { }
         
         [HttpGet(Name = "GetRealms")]
-        [ProducesResponseType(typeof(RealmModel[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(RealmOnlyModel[]), StatusCodes.Status200OK)]
         public Task<IActionResult> Get() =>
-            ExecuteQuery<GetAllRealmsQuery, RealmModel[]>();
+            ExecuteQuery<GetAllRealmsQuery, RealmOnlyModel[]>();
 
 
         [HttpPost(Name = "AddRealm")]

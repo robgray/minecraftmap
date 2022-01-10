@@ -95,7 +95,7 @@ export class Client {
     /**
      * @return Success
      */
-    getRealms(): Promise<RealmModel[]> {
+    getRealms(): Promise<RealmOnlyModel[]> {
         let url_ = this.baseUrl + "/api/Realm";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -111,13 +111,13 @@ export class Client {
         });
     }
 
-    protected processGetRealms(response: Response): Promise<RealmModel[]> {
+    protected processGetRealms(response: Response): Promise<RealmOnlyModel[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
             let result200: any = null;
-            result200 = _responseText === "" ? null : <RealmModel[]>JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = _responseText === "" ? null : <RealmOnlyModel[]>JSON.parse(_responseText, this.jsonParseReviver);
             return result200;
             });
         } else if (status !== 200 && status !== 204) {
@@ -125,7 +125,7 @@ export class Client {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<RealmModel[]>(<any>null);
+        return Promise.resolve<RealmOnlyModel[]>(<any>null);
     }
 
     /**
@@ -444,6 +444,17 @@ export interface CoordinateModel {
     y: number;
 }
 
+export interface RealmOnlyModel {
+    id: string;
+    name: string;
+    seed: number;
+    respawnLocation: CoordinateModel;
+}
+
+export interface NewRealmRequest {
+    name?: string | null;
+}
+
 export interface LocationModel {
     id: string;
     mapNumber: number;
@@ -466,10 +477,6 @@ export interface RealmModel {
     name: string;
     locations: LocationModel[];
     type: LocationTypeModel;
-}
-
-export interface NewRealmRequest {
-    name?: string | null;
 }
 
 export interface ProblemDetails {

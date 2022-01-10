@@ -4,6 +4,7 @@ import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/Com
 import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
 import { AddLocation } from "../components/Location/AddLocation";
 import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
+import { RealmSelectorPanel } from './Realm/RealmSelectorPanel';
 import { CoordinateModel } from "../api/client";
 import { Text, Stack } from 'office-ui-fabric-react';
 import { Image } from 'office-ui-fabric-react/lib/Image'; 
@@ -15,6 +16,7 @@ import {
   FontWeights,
   Modal,
 } from 'office-ui-fabric-react';
+import { useRealms } from "../contexts/RealmsContext";
 
 interface IMenuBarProps 
 {
@@ -23,8 +25,11 @@ interface IMenuBarProps
 
 export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
 
+    const { currentRealm } = useRealms();
+
     const [isAddLocationOpen, { setTrue: openAddLocationPanel, setFalse: dismissAddLocationPanel }] = useBoolean(false);
     const [isZoomToCoordianteOpen, { setTrue: openZoomToCoordinatePanel, setFalse: dismissZoomToCoordinatePanel }] = useBoolean(false);
+    const [isRealmSelectorOpen, { setTrue: openRealmSelectorPanel, setFalse: dismissRealmSelectorPanel }] = useBoolean(false);
     const [isMapModalOpen, { setTrue: showMapModal, setFalse: hideMapModal }] = useBoolean(false);
 
     const _items: ICommandBarItemProps[] = [
@@ -43,6 +48,14 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
       ];
 
       const _farItems: ICommandBarItemProps[] = [
+        {
+          key: 'realmSelector',
+          text: currentRealm?currentRealm.name:"#Error#",
+          ariaLabel: 'Realm Selector',
+          iconOnly: false,
+          iconProps: { iconName: 'World' },
+          onClick: () => openRealmSelectorPanel()
+        },
         {
           key: 'mapImage',
           ariaLabel: 'Map Image',
@@ -92,6 +105,16 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
                         isOpen={isZoomToCoordianteOpen}
                         dismissPanel={dismissZoomToCoordinatePanel}
                         openPanel={openZoomToCoordinatePanel} />
+                )
+            }
+        </Customizer>
+        <Customizer>
+            {
+                isRealmSelectorOpen && (
+                    <RealmSelectorPanel 
+                        isOpen={isRealmSelectorOpen}
+                        dismissPanel={dismissRealmSelectorPanel}
+                        openPanel={openRealmSelectorPanel} />
                 )
             }
         </Customizer>

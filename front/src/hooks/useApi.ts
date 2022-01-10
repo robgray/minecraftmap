@@ -5,3 +5,5 @@ export const useApi = () => {
 
   return new Client(config.baseUrl);
 }
+
+export default useApi;

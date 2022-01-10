@@ -3,7 +3,8 @@ import { LocationTypesContext } from "../contexts/LocationTypesContext";
 import { LocationTypeModel } from "../api/client";
 import { useApi } from '../hooks/useApi';
 
-export interface ILocationTypesProviderProps {
+export interface ILocationTypesProviderProps
+{
   children: any;
 }
 

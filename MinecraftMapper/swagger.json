@@ -76,7 +76,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/RealmModel"
+                    "$ref": "#/components/schemas/RealmOnlyModel"
                   }
                 }
               }
@@ -505,6 +505,42 @@
         },
         "additionalProperties": false
       },
+      "RealmOnlyModel": {
+        "required": [
+          "id",
+          "name",
+          "respawnLocation",
+          "seed"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "seed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "respawnLocation": {
+            "$ref": "#/components/schemas/CoordinateModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewRealmRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "LocationModel": {
         "required": [
           "coordinate",
@@ -597,16 +633,6 @@
           },
           "type": {
             "$ref": "#/components/schemas/LocationTypeModel"
-          }
-        },
-        "additionalProperties": false
-      },
-      "NewRealmRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
