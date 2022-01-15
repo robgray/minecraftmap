@@ -4,7 +4,6 @@ import { RealmOnlyModel } from "../api/client";
 import { useApi } from "../hooks/useApi";
 import Guid from '../api/guid';
 import useLocalStorage from "../hooks/useLocalStorage";
-import config from "../config.json";
 
 export interface IRealmsProviderProps
 {
@@ -13,7 +12,7 @@ export interface IRealmsProviderProps
 
 export const RealmsProvider = ({children}: IRealmsProviderProps) => {
 
-  const [realmId, setRealmId] = useLocalStorage("realmId", config.realmKey);
+  const [realmId, setRealmId] = useLocalStorage("realmId", "");
   const [allRealms, setAllRealms] = useState<RealmOnlyModel[]>([]);
   const [ id, setId ] = useState<Guid>(realmId);
   const api = useApi();

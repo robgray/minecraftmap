@@ -19,8 +19,6 @@ const Categories: React.FC<ICategoriesProps> = (props: ICategoriesProps) => {
                 return { key : lt.id||"", text : (lt.name || "<unknown>") };    
             }));
         }
-
-        console.log("the location types", locationTypes)
         fetchData();
     }, [locationTypes]);
     

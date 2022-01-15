@@ -50,7 +50,7 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
       const _farItems: ICommandBarItemProps[] = [
         {
           key: 'realmSelector',
-          text: currentRealm?currentRealm.name:"#Error#",
+          text: currentRealm?.name||"Select your realm",
           ariaLabel: 'Realm Selector',
           iconOnly: false,
           iconProps: { iconName: 'World' },

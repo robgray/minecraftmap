@@ -34,7 +34,7 @@ namespace MinecraftMapper.Plumbing.Logging
                     Console.WriteLine($"Configuration Provider: {configurationProvider.GetType().Name}");
                 }
             }
-            
+
             var levelSwitch = new LoggingLevelSwitch { MinimumLevel = LogEventLevel.Information };
 
             loggerConfiguration
@@ -52,7 +52,7 @@ namespace MinecraftMapper.Plumbing.Logging
                         apiKey: seqServerApiKey,
                         controlLevelSwitch: levelSwitch)
                 );
-               
+            
 
             var logger = loggerConfiguration.CreateLogger();
             
@@ -66,7 +66,7 @@ namespace MinecraftMapper.Plumbing.Logging
             logger.Information("isConsoleConfigured = {IsConsoleConfigured}", isConsoleConfigured);
             logger.Information("applicationName = {ApplicationName}", assemblyName);
             logger.Information("applicationVersion = {ApplicationVersion}", assemblyVersion);
-            
+        
             return logger;
         }
     }

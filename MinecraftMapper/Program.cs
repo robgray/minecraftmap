@@ -22,11 +22,13 @@ namespace MinecraftMapper
                 .AddEnvironmentVariables()
                 .AddCommandLine(args)
                 .Build();
-
+            
             Log.Logger = new LoggerConfiguration()
                 .BuildLoggerFromConfiguration(configuration, typeof(Startup));
+                
             try
             {
+
                 Log.Information("Starting API....");
                 
                 Host.CreateDefaultBuilder(args)

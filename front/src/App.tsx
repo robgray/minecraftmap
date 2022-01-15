@@ -10,8 +10,6 @@ import {
 import LocationsList from './components/LocationList/LocationsList';
 import { MenuBar } from "./components/MenuBar";
 import { LocationTypesProvider, MapsProvider, LocationsProvider, RealmsProvider } from "./Providers";
-import useLocalStorage from "./hooks/useLocalStorage";
-import config from "./config.json";
 
 initializeIcons();
 

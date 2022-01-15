@@ -52,11 +52,11 @@
         <DotNetCliToolReference Include="Swashbuckle.AspNetCore.Cli" Version="4.0.1" />
     </ItemGroup>
     
-    <Target Name="BeforeNSwag" BeforeTargets="NSwag">
+    <Target Name="BeforeNSwag" BeforeTargets="NSwag" Condition="'$(Configuration)'=='Debug'">
         <Exec Command="dotnet tool restore" />
         <Exec Command="dotnet swagger tofile --output ./swagger.json $(OutputPath)$(AssemblyName).dll v1 " />
     </Target>
-    <Target Name="NSwag" AfterTargets="Build">
+    <Target Name="NSwag" AfterTargets="Build" Condition="'$(Configuration)'=='Debug'">
         <Exec WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(MyNSwag) run nswag.json" />
     </Target>
 

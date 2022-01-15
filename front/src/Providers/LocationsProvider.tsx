@@ -3,7 +3,6 @@ import { LocationsContext } from "../contexts/LocationsContext";
 import { LocationModel } from "../api/client";
 import { ILocationFilter } from "../components/LocationList/LocationFilter";
 import { useApi } from '../hooks/useApi';
-import config from "../config.json";
 import { INewLocation } from '../api/location';
 import { NewLocationRequest, UpdateLocationRequest } from '../api/client';
 import { useRealms } from "../contexts/RealmsContext";
@@ -79,10 +78,8 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
   }
 
   const filteredLocations = useCallback(() : LocationModel[] => {
-    console.log('start filtered', allLocations);
   
     if (!currentFilter) {
-      console.log('no filter', allLocations)
       return [...allLocations];
     }
 
@@ -106,8 +103,7 @@ export const LocationsProvider = ({filter, children}: ILocationsProviderProps) =
             
           return true;
       });
-
-      console.log('filter', tempLocations);
+      
       return tempLocations;
   }, [allLocations, currentFilter]);
 

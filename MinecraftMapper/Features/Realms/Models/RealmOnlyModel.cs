@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MinecraftMapper.Entities;
 
 namespace MinecraftMapper.Features.Realms.Models
 {

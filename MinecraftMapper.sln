@@ -7,6 +7,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{274A2D1E-F36F-49EE-8C45-5BB687CD273E}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		Dockerfile = Dockerfile
+		.config\dotnet-tools.json = .config\dotnet-tools.json
+		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
 Global

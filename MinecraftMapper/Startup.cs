@@ -58,12 +58,15 @@ namespace MinecraftMapper
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger(); 
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "Minecraft Mapper API v1"));
+                //app.UseSwagger(); 
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "Minecraft Mapper API v1"));
+                
+                app.UseHttpsRedirection();
             }
-
-            app.UseHttpsRedirection();
-
+            
+            app.UseSwagger(); 
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "Minecraft Mapper API v1"));
+            
             app.ConfigureCustomCors();
             app.UseRouting();
             
