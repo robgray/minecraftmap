@@ -1,4 +1,4 @@
-# Minecraft Map
+# Minecraft Mapper
 A limitation of Minecraft Bedrock edition (Windows version) is that there are no map generators (like exists for Java Edition). 
 It would be great to be able to enter your seed and have a map be spat out of your game.  This works to overcome that. How?
 
