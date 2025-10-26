@@ -3,6 +3,8 @@ using Xunit;
 
 namespace MinecraftMapper.Tests
 {
+    using Shouldly;
+
     public class BoundingBoxTests
     {
         [Theory]
@@ -13,7 +15,7 @@ namespace MinecraftMapper.Tests
             var box = new MapBoundingBox(xTopLeft, yTopLeft, xBottomRight, yBottomRight);
             var coord = new MapCoordinate(xCoord, yCoord);
 
-            Assert.True(box.ContainsCoordinate(coord));
+            box.ContainsCoordinate(coord).ShouldBeTrue();
         }
 
         [Theory]
@@ -24,7 +26,7 @@ namespace MinecraftMapper.Tests
             var box = new MapBoundingBox(xTopLeft, yTopLeft, xBottomRight, yBottomRight);
             var coord = new MapCoordinate(xCoord, yCoord);
 
-            Assert.False(box.ContainsCoordinate(coord));
+            box.ContainsCoordinate(coord).ShouldBeFalse();
         }
     }
 }

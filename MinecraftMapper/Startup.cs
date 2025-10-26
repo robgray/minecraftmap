@@ -15,24 +15,27 @@ using MinecraftMapper.Plumbing.Mediator;
 
 namespace MinecraftMapper
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+    using Microsoft.AspNetCore.Mvc.ApplicationModels;
+    using Plumbing;
 
-        public IConfiguration Configuration { get; }
+    public class Startup(IConfiguration configuration)
+    {
+        private IConfiguration Configuration { get; } = configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging();
-            services.AddCustomCors(Configuration);
+            services.AddCustomCors();
             
-            services.AddControllers()
+            services.AddControllers(options =>
+                {
+                    options.Conventions.Add(new RouteTokenTransformerConvention(new KebabCaseParameterTransformer()));
+                })
                 .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+                });
 
             services.AddScoped<IMapNumberGenerator, MapNumberGenerator>();
             services.AddSingleton<ISystemClock, SystemClock>();
@@ -58,9 +61,6 @@ namespace MinecraftMapper
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseSwagger(); 
-                //app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "Minecraft Mapper API v1"));
-                
                 app.UseHttpsRedirection();
             }
             
@@ -78,20 +78,21 @@ namespace MinecraftMapper
                 endpoints.MapControllers();
             });
         }
-        
+
         protected void ConfigureDbContext(IServiceCollection services)
         {
             services.AddDbContext<MapperContext>(options =>
             {
                 options
                     .UseLoggerFactory(LoggerFactory.Create(x => x.AddDebug()))
-                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), sqlServerOptionsAction: sqlOptions =>
-                    {
-                        sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "dbo");
-                        sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
-                            maxRetryDelay: TimeSpan.FromSeconds(30),
-                            errorNumbersToAdd: null);
-                    });
+                    .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                        sqlServerOptionsAction: sqlOptions =>
+                        {
+                            sqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "dbo");
+                            sqlOptions.EnableRetryOnFailure(maxRetryCount: 5,
+                                maxRetryDelay: TimeSpan.FromSeconds(30),
+                                errorNumbersToAdd: null);
+                        });
             });
         }
     }

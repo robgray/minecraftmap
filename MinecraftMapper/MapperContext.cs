@@ -3,10 +3,8 @@ using MinecraftMapper.Entities;
 
 namespace MinecraftMapper
 {
-    public class MapperContext : DbContext
+    public class MapperContext(DbContextOptions options) : DbContext(options)
     {
-        public MapperContext(DbContextOptions options)  : base(options) { }
-        
         public DbSet<Realm> Realms { get; set; }
         public DbSet<LocationType> LocationTypes { get; set; }
 

@@ -34,3 +34,9 @@ The above two build steps:
 2. Create a typescript api client in the react project
 
 This way the client is always kept in sync with the API.
+
+Build the api with 
+```
+docker build -t minecraft-mapper:latest
+```
+

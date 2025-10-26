@@ -1,11 +1,11 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.4",
   "info": {
     "title": "Minecraft Mapper API",
     "version": "v1"
   },
   "paths": {
-    "/api/LocationTypes": {
+    "/api/location-types": {
       "get": {
         "tags": [
           "LocationTypes"
@@ -13,7 +13,7 @@
         "operationId": "GetLocationTypes",
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -28,7 +28,7 @@
         }
       }
     },
-    "/api/Map/{maximumRingNumber}": {
+    "/api/map/{maximumRingNumber}": {
       "get": {
         "tags": [
           "Map"
@@ -47,7 +47,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -62,7 +62,7 @@
         }
       }
     },
-    "/api/Realm": {
+    "/api/realm": {
       "get": {
         "tags": [
           "Realm"
@@ -70,7 +70,7 @@
         "operationId": "GetRealms",
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -115,7 +115,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -137,7 +137,7 @@
         }
       }
     },
-    "/api/Realm/{realmId}": {
+    "/api/realm/{realmId}": {
       "get": {
         "tags": [
           "Realm"
@@ -156,7 +156,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -195,7 +195,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Success"
+            "description": "No Content"
           },
           "404": {
             "description": "Not Found",
@@ -210,7 +210,7 @@
         }
       }
     },
-    "/api/Realm/{realmId}/location": {
+    "/api/realm/{realmId}/location": {
       "post": {
         "tags": [
           "Realm"
@@ -253,7 +253,7 @@
         },
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "content": {
               "application/json": {
                 "schema": {
@@ -275,7 +275,7 @@
         }
       }
     },
-    "/api/Realm/{realmId}/location/{locationId}": {
+    "/api/realm/{realmId}/location/{locationId}": {
       "delete": {
         "tags": [
           "Realm"
@@ -303,7 +303,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -375,7 +375,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -400,88 +400,6 @@
   },
   "components": {
     "schemas": {
-      "LocationTypeModel": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "iconClass": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "MapCoordinate": {
-        "required": [
-          "x",
-          "y"
-        ],
-        "type": "object",
-        "properties": {
-          "x": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "y": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "MapBoundingBox": {
-        "required": [
-          "bottomLeft",
-          "bottomRight",
-          "topLeft",
-          "topRight"
-        ],
-        "type": "object",
-        "properties": {
-          "topLeft": {
-            "$ref": "#/components/schemas/MapCoordinate"
-          },
-          "bottomRight": {
-            "$ref": "#/components/schemas/MapCoordinate"
-          },
-          "topRight": {
-            "$ref": "#/components/schemas/MapCoordinate"
-          },
-          "bottomLeft": {
-            "$ref": "#/components/schemas/MapCoordinate"
-          }
-        },
-        "additionalProperties": false
-      },
-      "MapModel": {
-        "required": [
-          "bounds",
-          "mapNumber",
-          "ringNumber"
-        ],
-        "type": "object",
-        "properties": {
-          "mapNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ringNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "bounds": {
-            "$ref": "#/components/schemas/MapBoundingBox"
-          }
-        },
-        "additionalProperties": false
-      },
       "CoordinateModel": {
         "required": [
           "x",
@@ -501,42 +419,6 @@
           "y": {
             "type": "integer",
             "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "RealmOnlyModel": {
-        "required": [
-          "id",
-          "name",
-          "respawnLocation",
-          "seed"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "seed": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "respawnLocation": {
-            "$ref": "#/components/schemas/CoordinateModel"
-          }
-        },
-        "additionalProperties": false
-      },
-      "NewRealmRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -569,12 +451,14 @@
             "format": "int32"
           },
           "name": {
+            "minLength": 1,
             "type": "string"
           },
           "coordinate": {
             "$ref": "#/components/schemas/CoordinateModel"
           },
           "notes": {
+            "minLength": 1,
             "type": "string"
           },
           "type": {
@@ -609,60 +493,87 @@
         },
         "additionalProperties": false
       },
-      "RealmModel": {
-        "required": [
-          "id",
-          "locations",
-          "name",
-          "type"
-        ],
+      "LocationTypeModel": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
             "format": "uuid"
           },
+          "iconClass": {
+            "type": "string",
+            "nullable": true
+          },
           "name": {
-            "type": "string"
-          },
-          "locations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationModel"
-            }
-          },
-          "type": {
-            "$ref": "#/components/schemas/LocationTypeModel"
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "ProblemDetails": {
+      "MapBoundingBox": {
+        "required": [
+          "bottomLeft",
+          "bottomRight",
+          "topLeft",
+          "topRight"
+        ],
         "type": "object",
         "properties": {
-          "type": {
-            "type": "string",
-            "nullable": true
+          "topLeft": {
+            "$ref": "#/components/schemas/MapCoordinate"
           },
-          "title": {
-            "type": "string",
-            "nullable": true
+          "bottomRight": {
+            "$ref": "#/components/schemas/MapCoordinate"
           },
-          "status": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
+          "topRight": {
+            "$ref": "#/components/schemas/MapCoordinate"
           },
-          "detail": {
-            "type": "string",
-            "nullable": true
-          },
-          "instance": {
-            "type": "string",
-            "nullable": true
+          "bottomLeft": {
+            "$ref": "#/components/schemas/MapCoordinate"
           }
         },
-        "additionalProperties": { }
+        "additionalProperties": false
+      },
+      "MapCoordinate": {
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MapModel": {
+        "required": [
+          "bounds",
+          "mapNumber",
+          "ringNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "mapNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ringNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/MapBoundingBox"
+          }
+        },
+        "additionalProperties": false
       },
       "NewLocationRequest": {
         "type": "object",
@@ -708,6 +619,99 @@
           "notes": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NewRealmRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "RealmModel": {
+        "required": [
+          "id",
+          "locations",
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationModel"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/LocationTypeModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RealmOnlyModel": {
+        "required": [
+          "id",
+          "name",
+          "respawnLocation",
+          "seed"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "seed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "respawnLocation": {
+            "$ref": "#/components/schemas/CoordinateModel"
           }
         },
         "additionalProperties": false

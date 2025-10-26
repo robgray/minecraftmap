@@ -119,8 +119,8 @@ namespace MinecraftMapper.MapGeneration
 					{
 						return Ring.EndNumber;
 					}
-
-					return x >= 0 ? Ring.PositiveYValue + x : Ring.PositiveYValue - x;
+					
+					return Ring.PositiveYValue + x;
 				}
 				
 				// Bottom Line
@@ -129,13 +129,13 @@ namespace MinecraftMapper.MapGeneration
 					return Ring.NegativeYValue - x;
 				}
 				
-				// Down the right hand side
+				// Down the right-hand side
 				if (x == Ring.Number)
 				{
 					return Ring.PositiveXValue - y;
 				}
 				
-				// Down the left hand side
+				// Down the left-hand side
 				return Ring.NegativeXValue + y;
 			}
 		}

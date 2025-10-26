@@ -4,6 +4,8 @@ using Xunit;
 
 namespace MinecraftMapper.Tests
 {
+    using Shouldly;
+
     public class SquareTests
     {
         [Theory]
@@ -20,11 +22,13 @@ namespace MinecraftMapper.Tests
         [InlineData(1, Square.OffsetX, Square.OffsetY)]
         [InlineData(4, Square.OffsetX + Square.SideLength, Square.OffsetY  + 1)]
         [InlineData(9, 47, -500)]
+        [InlineData(27, 1332, -5489)]
+        [InlineData(29, 5649, -5508)]
         public void MapNumberIsCorrectForMinecraftCoordinate(int mapNumber, int xCoord, int yCoord)
         {
             var square = Square.CreateFromCoordinate(new MapCoordinate(xCoord, yCoord));
             
-            Assert.Equal(mapNumber, square.Number);
+            square.Number.ShouldBe(mapNumber);
         }
 
         [Theory]
@@ -33,7 +37,7 @@ namespace MinecraftMapper.Tests
         public void MapNumberContainsMinecraftCoordinate(int mapNumber, int xCoord, int yCoord)
         {
             var square = Square.CreateFromNumber(mapNumber);
-            Assert.True(square.Contains(new MapCoordinate(xCoord, yCoord)));
+            square.Contains(new MapCoordinate(xCoord, yCoord)).ShouldBeTrue();
         }
 
         [Theory]
@@ -41,7 +45,7 @@ namespace MinecraftMapper.Tests
         public void SquareNumberIsCorrectForSquareCoords(int squareNumber, int xCoord, int yCoord)
         {
             var square = new Square(xCoord, yCoord);
-            Assert.Equal(squareNumber, square.Number);
+            square.Number.ShouldBe(squareNumber);
         }
     }
 }

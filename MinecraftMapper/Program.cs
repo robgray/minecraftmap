@@ -17,10 +17,10 @@ namespace MinecraftMapper
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.local.json", optional: true)
                 .AddJsonFile("appsettings.development.json", optional: true)
                 .AddEnvironmentVariables()
                 .AddCommandLine(args)
+                .AddUserSecrets<Program>()
                 .Build();
             
             Log.Logger = new LoggerConfiguration()
@@ -28,7 +28,6 @@ namespace MinecraftMapper
                 
             try
             {
-
                 Log.Information("Starting API....");
                 
                 Host.CreateDefaultBuilder(args)

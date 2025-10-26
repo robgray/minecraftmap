@@ -6,18 +6,17 @@ namespace MinecraftMapper.Plumbing.Cors
 {
     public static class CorsStartup
     {
-        public static void AddCustomCors(this IServiceCollection services, IConfiguration configuration)
+        public static void AddCustomCors(this IServiceCollection services)
         {
-            var allowedOrigins = configuration["AllowedHosts"];
-            services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins(allowedOrigins)
-                .AllowAnyHeader()
-                .AllowAnyMethod()
-            ));
+            services.AddCors(options => options.AddPolicy("ConfiguredCors", builder => 
+                builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()));
         }
 
         public static void ConfigureCustomCors(this IApplicationBuilder app)
         {
-            app.UseCors();
+            app.UseCors("ConfiguredCors");
         }
     }
 }

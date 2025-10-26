@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MinecraftMapper.Domain.Exceptions;
-using MinecraftMapper.Mediator.Queries.Realms;
 
 namespace MinecraftMapper.Mediator.Commands.Realms
 {
@@ -22,7 +20,7 @@ namespace MinecraftMapper.Mediator.Commands.Realms
             _context = context;
         }
         
-        public async Task<Unit> Handle(DeleteRealmCommand request, CancellationToken cancellationToken)
+        public async Task Handle(DeleteRealmCommand request, CancellationToken cancellationToken)
         {
             var realm = await _context.Realms.FirstOrDefaultAsync(r => r.Id == request.RealmId, cancellationToken);
             if (realm == null)
@@ -36,8 +34,6 @@ namespace MinecraftMapper.Mediator.Commands.Realms
 
             _context.Realms.Remove(realm);
             await _context.SaveChangesAsync(cancellationToken);
-            
-            return Unit.Value;
         }
     }
 }

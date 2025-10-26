@@ -3,6 +3,8 @@ using Xunit;
 
 namespace MinecraftMapper.Tests
 {
+    using Shouldly;
+
     public class RingTests
     {
         [Theory]
@@ -31,12 +33,18 @@ namespace MinecraftMapper.Tests
         [InlineData(23, -2, 0)]
         [InlineData(24, -2, 1)]
         [InlineData(25, -2, 2)]
+        [InlineData(26, -2, 3)]
+        [InlineData(27, -1, 3)]
+        [InlineData(28, 0, 3)]
+        [InlineData(29, 1, 3)]
+        [InlineData(30, 2, 3)]
         public void SquareNumberIsCorrectFromRing(int number, int x, int y)
         {
             var ring = Ring.GetRingForSquareNumber(number);
             var coords = ring.GetCoordinatesForSquareNumber(number);
 
-            Assert.True(coords.X == x && coords.Y == y);
+            coords.X.ShouldBe(x); 
+            coords.Y.ShouldBe(y);
         }
     }
 }
