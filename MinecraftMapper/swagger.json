@@ -5,6 +5,28 @@
     "version": "v1"
   },
   "paths": {
+    "/api/LocationTypes": {
+      "get": {
+        "tags": [
+          "LocationTypes"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocationTypeModel"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/location-types": {
       "get": {
         "tags": [

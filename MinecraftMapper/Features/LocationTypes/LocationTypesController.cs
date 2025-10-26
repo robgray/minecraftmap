@@ -16,6 +16,7 @@ namespace MinecraftMapper.Features.LocationTypes
     {
         public LocationTypesController(IMediator mediator, IMapper mapper) : base(mediator, mapper){ }
 
+        [HttpGet("/api/LocationTypes")]
         [HttpGet("", Name = "GetLocationTypes")]
         [ProducesResponseType(typeof(LocationTypeModel[]), StatusCodes.Status200OK)]
         public Task<IActionResult> Get() => 
