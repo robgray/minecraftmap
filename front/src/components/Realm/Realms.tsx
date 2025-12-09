@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
+import { Dropdown, IDropdownOption } from '@fluentui/react/lib/Dropdown';
 import { useRealms } from "../../contexts/RealmsContext";
 
 interface IRealmsProps

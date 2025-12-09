@@ -1,8 +1,8 @@
 import React from "react";
 import { LocationModel } from "../../api/client";
-import { Stack } from 'office-ui-fabric-react';
-import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
-import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
+import { Stack } from '@fluentui/react';
+import { FontIcon } from '@fluentui/react/lib/Icon';
+import { mergeStyles, mergeStyleSets } from '@fluentui/react/lib/Styling';
 
 interface IOptionsDisplayProps
 {

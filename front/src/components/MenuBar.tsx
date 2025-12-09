@@ -1,21 +1,21 @@
 import React from 'react';
-import { useBoolean } from '@uifabric/react-hooks';
-import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
-import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
+import { useBoolean } from '@fluentui/react-hooks';
+import { CommandBar, ICommandBarItemProps } from '@fluentui/react/lib/CommandBar';
+import { Customizer } from '@fluentui/react/lib/Utilities';
 import { AddLocation } from "../components/Location/AddLocation";
 import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
 import { RealmSelectorPanel } from './Realm/RealmSelectorPanel';
 import { CoordinateModel } from "../api/client";
-import { Text, Stack } from 'office-ui-fabric-react';
-import { Image } from 'office-ui-fabric-react/lib/Image'; 
+import { Text, Stack } from '@fluentui/react';
+import { Image } from '@fluentui/react/lib/Image';
 import gridImage from "../images/samplegrid.png";
-import { useId } from '@uifabric/react-hooks';
+import { useId } from '@fluentui/react-hooks';
 import {
   getTheme,
   mergeStyleSets,
   FontWeights,
   Modal,
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import { useRealms } from "../contexts/RealmsContext";
 
 interface IMenuBarProps 

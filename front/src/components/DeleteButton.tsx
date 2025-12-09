@@ -1,8 +1,8 @@
-import { IIconProps, ActionButton } from 'office-ui-fabric-react';
+import { IIconProps, ActionButton } from '@fluentui/react';
 import * as React from 'react';
-import { Dialog, DialogType, DialogFooter } from 'office-ui-fabric-react/lib/Dialog';
-import { PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
-import { useId, useBoolean } from '@uifabric/react-hooks';
+import { Dialog, DialogType, DialogFooter } from '@fluentui/react/lib/Dialog';
+import { PrimaryButton, DefaultButton } from '@fluentui/react/lib/Button';
+import { useId, useBoolean } from '@fluentui/react-hooks';
 
 interface IDeleteButtonProps
 {

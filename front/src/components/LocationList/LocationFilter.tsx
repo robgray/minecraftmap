@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
-import { Stack, IStackTokens, IStackItemStyles, Text, PrimaryButton, DefaultButton } from 'office-ui-fabric-react';
+import { Checkbox } from '@fluentui/react/lib/Checkbox';
+import { Stack, IStackTokens, IStackItemStyles, Text, PrimaryButton, DefaultButton } from '@fluentui/react';
 import { Categories } from "../Location/Categories";
 import Guid from "../../api/guid";
 

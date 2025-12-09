@@ -1,12 +1,12 @@
-import { Stack, Text } from 'office-ui-fabric-react';
+import { Stack, Text } from '@fluentui/react';
 import React from "react";
 import { Realms } from './Realms';
-import { Panel } from 'office-ui-fabric-react/lib/Panel';
+import { Panel } from '@fluentui/react/lib/Panel';
 import { useRealms } from '../../contexts/RealmsContext';
 import {
     getTheme,
     mergeStyleSets
-  } from 'office-ui-fabric-react';
+  } from '@fluentui/react';
 
 interface IRealmSelectorPanel {
     dismissPanel: (() => void);

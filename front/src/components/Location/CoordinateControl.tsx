@@ -1,4 +1,4 @@
-import { IStackTokens, TextField, Stack } from 'office-ui-fabric-react';
+import { IStackTokens, TextField, Stack } from '@fluentui/react';
 import { useState } from 'react';
 
 interface ICoordinatesProps {

@@ -1,4 +1,4 @@
-import { IIconProps, ActionButton } from 'office-ui-fabric-react';
+import { IIconProps, ActionButton } from '@fluentui/react';
 
 interface IEditButtonProps
 {

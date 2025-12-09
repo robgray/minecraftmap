@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Marker, Popup } from 'react-leaflet';
-import { useBoolean } from '@uifabric/react-hooks';
-import { Text, Separator, Stack } from 'office-ui-fabric-react';
-import { mergeStyles, mergeStyleSets } from 'office-ui-fabric-react/lib/Styling';
-import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
-import { FontIcon } from 'office-ui-fabric-react/lib/Icon';
+import { useBoolean } from '@fluentui/react-hooks';
+import { Text, Separator, Stack } from '@fluentui/react';
+import { mergeStyles, mergeStyleSets } from '@fluentui/react/lib/Styling';
+import { Customizer } from '@fluentui/react/lib/Utilities';
+import { FontIcon } from '@fluentui/react/lib/Icon';
 import { EditButton } from "../EditButton";
 import L from "leaflet";
 import { useLocationTypes } from "../../contexts/LocationTypesContext";
