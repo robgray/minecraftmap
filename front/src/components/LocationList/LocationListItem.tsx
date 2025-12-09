@@ -1,10 +1,10 @@
-import { Text, Stack, IStackTokens } from 'office-ui-fabric-react';
-import { useBoolean } from '@uifabric/react-hooks';
-import { Card, ICardTokens, ICardStyles, ICardItemStyles, ICardItemTokens, ICardSectionStyles } from '@uifabric/react-cards';
+import { Text, Stack, IStackTokens } from '@fluentui/react';
+import { useBoolean } from '@fluentui/react-hooks';
+import { Card, ICardTokens, ICardStyles, ICardItemStyles, ICardItemTokens, ICardSectionStyles } from '@fluentui/react-cards';
 import { DeleteButton } from "../DeleteButton";
 import { EditButton } from "../EditButton";
 import { CoordinateLabel } from "./CoordinateLabel";
-import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
+import { Customizer } from '@fluentui/react/lib/Utilities';
 import { EditLocation } from "../Location/EditLocation";
 import { LocationModel } from "../../api/client";
 import { OptionsDisplay } from "./OptionsDisplay";

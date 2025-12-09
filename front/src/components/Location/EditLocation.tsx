@@ -1,8 +1,8 @@
-import { PrimaryButton, TextField, Stack, IStackItemStyles, Separator, IStackTokens } from 'office-ui-fabric-react';
+import { PrimaryButton, TextField, Stack, IStackItemStyles, Separator, IStackTokens } from '@fluentui/react';
 import React, { useState } from "react";
-import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
+import { Checkbox } from '@fluentui/react/lib/Checkbox';
 import { CoordinateControl } from "./CoordinateControl";
-import { Panel } from 'office-ui-fabric-react/lib/Panel';
+import { Panel } from '@fluentui/react/lib/Panel';
 import { Categories } from "./Categories";
 import { LocationModel, CoordinateModel } from "../../api/client";
 import { useLocations } from "../../contexts/LocationsContext";

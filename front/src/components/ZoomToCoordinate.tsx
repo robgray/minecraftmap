@@ -1,8 +1,8 @@
 import { CoordinateModel } from "../api/client";
-import { IStackItemStyles } from 'office-ui-fabric-react';
+import { IStackItemStyles } from '@fluentui/react';
 import React, { useEffect, useState } from "react";
-import { Panel } from 'office-ui-fabric-react/lib/Panel';
-import { PrimaryButton, Stack } from 'office-ui-fabric-react';
+import { Panel } from '@fluentui/react/lib/Panel';
+import { PrimaryButton, Stack } from '@fluentui/react';
 import { CoordinateControl } from "./Location/CoordinateControl";
 
 interface IZoomToCoordinate 

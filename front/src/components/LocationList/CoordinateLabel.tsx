@@ -1,4 +1,4 @@
-import { Text } from 'office-ui-fabric-react';
+import { Text } from '@fluentui/react';
 import { CoordinateModel } from "../../api/client";
 
 interface ICoordinateLabelProps {

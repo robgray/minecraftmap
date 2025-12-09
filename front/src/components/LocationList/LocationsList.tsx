@@ -1,4 +1,4 @@
-import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from 'office-ui-fabric-react';
+import { Stack, IStackTokens, IStackItemStyles, Text, IStackStyles } from '@fluentui/react';
 import { ListItem } from "./LocationListItem";
 import { LocationModel } from "../../api/client";
 import { LocationsFilter } from "./LocationFilter";

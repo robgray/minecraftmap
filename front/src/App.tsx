@@ -1,5 +1,5 @@
 import './App.css';
-import 'office-ui-fabric-react/dist/css/fabric.css';
+import '@fluentui/react/dist/css/fabric.css';
 import Map from './components/map/MinecraftMap';
 import React, { useState } from "react";
 import { initializeIcons, IStackStyles, Stack } from '@fluentui/react';
