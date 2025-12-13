@@ -21,3 +21,14 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
+
+/.idea
+
+# JetBrains / WebStorm
+# Ignore all IDE project files created by JetBrains IDEs (WebStorm/IntelliJ, etc.)
+*.iml
+*.iws
+*.ipr
+.idea/
+.idea/**

@@ -37,6 +37,7 @@ export const RealmsProvider = ({children}: IRealmsProviderProps) => {
     setId(realmId);
   }
 
+
   return (
     <RealmsContext.Provider value={{ allRealms, currentRealm: getCurrentRealm(), setCurrentRealm: setCurrentRealmId}}>
       {children}

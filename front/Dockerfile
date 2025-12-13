@@ -7,11 +7,11 @@ WORKDIR /app
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
+# install app dependencies using npm (lockfile)
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
+# Use npm ci for reproducible installs and to respect package-lock.json
+RUN npm ci --silent
 
 # add app
 COPY . ./
