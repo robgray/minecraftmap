@@ -16,6 +16,7 @@ initializeIcons();
 const App: React.FC = () => {
   
   const [center, setCenter] = useState<CoordinateModel | undefined>(undefined);
+  const [selectedLocation, setSelectedLocation] = useState<LocationModel | undefined>(undefined);
  
   const appStackStyles: IStackStyles = {
     root: {
@@ -47,6 +48,7 @@ const App: React.FC = () => {
 
 
   const gotoLocation = (location: LocationModel) => {
+    setSelectedLocation(location);
     centerAtCoordinate(location.coordinate||{x:0, y: 0, z:0});
   }
 
@@ -58,19 +60,19 @@ const App: React.FC = () => {
     <RealmsProvider>
       <LocationTypesProvider>
         <LocationsProvider>
-          <MapsProvider>
-            <Stack styles={appStackStyles}>
-                <MenuBar onZoomClick={centerAtCoordinate} />
-              <Stack horizontal styles={mainStackStyles}>
-                <Stack.Item styles={sidebarItemStyles}>
-                  <LocationsList onLocationClicked={gotoLocation} />
-                </Stack.Item>
-                <Stack.Item styles={mapStackItemStyles}>
-                  <Map center={center} />
-                </Stack.Item>
-              </Stack>  
-            </Stack>
-          </MapsProvider>
+            <MapsProvider>
+              <Stack styles={appStackStyles}>
+                  <MenuBar onZoomClick={centerAtCoordinate} />
+                <Stack horizontal styles={mainStackStyles}>
+                  <Stack.Item styles={sidebarItemStyles}>
+                    <LocationsList onLocationClicked={gotoLocation} />
+                  </Stack.Item>
+                  <Stack.Item styles={mapStackItemStyles}>
+                    <Map center={center} selectedLocation={selectedLocation} />
+                  </Stack.Item>
+                </Stack>
+              </Stack>
+            </MapsProvider>
         </LocationsProvider>
       </LocationTypesProvider>
     </RealmsProvider>

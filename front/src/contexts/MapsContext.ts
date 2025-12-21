@@ -6,5 +6,12 @@ export type MapsContextType = {
   setMaps: (maps: MapModel[]) => void;
 }
 
-export const MapsContext = createContext<MapModel[]>([]);
-export const useMaps = () => useContext(MapsContext);
+export const MapsContext = createContext<MapModel[] | undefined>(undefined);
+
+export const useMaps = () => {
+    const context = useContext(MapsContext);
+    if (context === undefined) {
+        throw new Error('useMaps must be used within a MapsProvider');
+    }
+    return context;
+};

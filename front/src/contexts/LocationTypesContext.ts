@@ -6,9 +6,12 @@ export type LocationTypesContextType = {
   setLocationTypes: (locationTypes: LocationTypeModel[]) => void;
 }
 
-export const LocationTypesContext = createContext<LocationTypesContextType>({ 
-  locationTypes: [],
-  setLocationTypes: locationTypes => console.warn('no locationtype provider. make sure setup in app.tsx')
-});
+export const LocationTypesContext = createContext<LocationTypesContextType | undefined>(undefined);
 
-export const useLocationTypes = () => useContext(LocationTypesContext);
+export const useLocationTypes = () => {
+    const context = useContext(LocationTypesContext);
+    if (context === undefined) {
+        throw new Error('useLocationTypes must be used within a LocationTypesProvider');
+    }
+    return context;
+};

@@ -5,7 +5,7 @@ function useEventListener<T extends HTMLElement = HTMLDivElement>(
   handler: (event: Event) => void,
   element?: RefObject<T>,
 ) {
-  // Create a ref that stores handler
+  // Create a ref that stores a handler
   const savedHandler = useRef<(event: Event) => void>()
 
   useEffect(() => {

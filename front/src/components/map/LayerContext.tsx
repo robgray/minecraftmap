@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode, useMemo } from 'react';
 import { LatLng } from 'leaflet';
 
-const LayerContext:any = React.createContext({});
+interface ILayerContext {
+    point: LatLng;
+    setPoint: (point: LatLng) => void;
+}
 
-const LayerContextProvider = ({ children }: any) => {
+const LayerContext = React.createContext<ILayerContext | undefined>(undefined);
+
+interface ILayerContextProviderProps {
+    children: ReactNode;
+}
+
+const LayerContextProvider = ({ children }: ILayerContextProviderProps) => {
 
     const [point, setPoint] = useState<LatLng>(new LatLng(0,0));
 
-    const defaultValue = {
+    const value = useMemo(() => ({
         point,
         setPoint
-    }
+    }), [point]);
 
     return (
-        <LayerContext.Provider value={defaultValue}>
+        <LayerContext.Provider value={value}>
             {children}
         </LayerContext.Provider>
     )
 }
 
-export { LayerContext, LayerContextProvider };
+const useLayer = () => {
+    const context = React.useContext(LayerContext);
+    if (context === undefined) {
+        throw new Error('useLayer must be used within a LayerContextProvider');
+    }
+    return context;
+};
+
+export { LayerContext, LayerContextProvider, useLayer };

@@ -13,7 +13,7 @@ You get the idea... Explore and record, like cartography.
 ## The tech stuff
 Underneath the covers it's using:
 * ASP.NET Core web api backend.
-* React front end, with Microsofts Fluent UI.
+* React front end, with Microsoft's Fluent UI.
 * Leaftlet.js for mapping 
 
 ## Client API

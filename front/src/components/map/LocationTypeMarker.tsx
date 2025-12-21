@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useRef, useEffect } from "react";
 import { Marker, Popup } from 'react-leaflet';
 import { useBoolean } from '@uifabric/react-hooks';
 import { Text, Separator, Stack } from 'office-ui-fabric-react';
@@ -10,15 +10,17 @@ import L from "leaflet";
 import { useLocationTypes } from "../../contexts/LocationTypesContext";
 import { LocationModel, LocationTypeModel } from "../../api/client";
 import { EditLocation } from "../../components/Location/EditLocation";
+import { toLeafletTuple } from "../../utils/coords";
 
 interface ILocationTypeMarkerProps {
     location: LocationModel;
     shrinkFactor: number;
+    selected?: boolean;
 };
 
 const getIcon = (locationTypes: LocationTypeModel[], location: LocationModel) => {
 
-    const locationType = (locationTypes??[]).find(lt => lt.id === location.typeId);
+    const locationType = (locationTypes ?? []).find(lt => lt.id === location.typeId);
     const iconColour = locationType ? locationType.iconClass : "blue";
     const myIcon = new L.Icon({
         iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-${iconColour}.png`,
@@ -30,61 +32,70 @@ const getIcon = (locationTypes: LocationTypeModel[], location: LocationModel) =>
     });
     return myIcon;
 }
- 
-export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = (props: ILocationTypeMarkerProps) => {
+
+export const LocationTypeMarker: React.FC<ILocationTypeMarkerProps> = ({ location, selected }) => {
 
     const { locationTypes } = useLocationTypes();
 
     const [isEditLocationOpen, { setTrue: openEditLocationPanel, setFalse: dismissEditLocationPanel }] = useBoolean(false);
-    const [ icon, setIcon ] = useState(() => getIcon(locationTypes, props.location));
+
+    const icon = useMemo(() => getIcon(locationTypes, location), [locationTypes, location]);
+
+    const position = useMemo(() => toLeafletTuple(location.coordinate), [location.coordinate]);
+
+    const markerRef = useRef<L.Marker>(null);
+
     useEffect(() => {
-         setIcon(getIcon(locationTypes, props.location))
-    }, [props, locationTypes]);
+        if (selected && markerRef.current) {
+            markerRef.current.openPopup();
+        }
+    }, [selected]);
 
     return (
-        <Marker 
-            position={[-(props.location.coordinate.y/props.shrinkFactor), props.location.coordinate.x/props.shrinkFactor]}
-            key={props.location.id}
+        <Marker
+            position={position}
+            key={location.id}
             icon={icon}
-            >
+            ref={markerRef}
+        >
             <Popup>
-                <Text variant="medium" style={{fontWeight: "bold"}}>{props.location.name}</Text>
+                <Text variant="medium" style={{ fontWeight: "bold" }}>{location.name}</Text>
                 <EditButton onEdit={() => openEditLocationPanel()} height={15} fontSize={10} />
-                <Text block>Map: {props.location.mapNumber}</Text>
-                <Text>{props.location.notes}</Text>
-                
-                <Separator style={{marginTop: 5}}></Separator>
+                <Text block>Map: {location.mapNumber}</Text>
+                <Text>{location.notes}</Text>
+
+                <Separator style={{ marginTop: 5 }}></Separator>
                 <Stack>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasAnvil} /><Text>Anvil</Text>
+                        <AvailabilityIcon available={location.hasAnvil} /><Text>Anvil</Text>
                     </Stack.Item>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasPortal} /><Text>Portal</Text>
+                        <AvailabilityIcon available={location.hasPortal} /><Text>Portal</Text>
                     </Stack.Item>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasBed} /><Text>Bed</Text>
+                        <AvailabilityIcon available={location.hasBed} /><Text>Bed</Text>
                     </Stack.Item>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasEnchantmentTable} /><Text>Enchantment Table</Text>
+                        <AvailabilityIcon available={location.hasEnchantmentTable} /><Text>Enchantment Table</Text>
                     </Stack.Item>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasEnderChest} /><Text>Ender Chest</Text>
+                        <AvailabilityIcon available={location.hasEnderChest} /><Text>Ender Chest</Text>
                     </Stack.Item>
                     <Stack.Item>
-                        <AvailabilityIcon available={props.location.hasFurnace} /><Text>Furnace</Text>
+                        <AvailabilityIcon available={location.hasFurnace} /><Text>Furnace</Text>
                     </Stack.Item>
                 </Stack>
                 <Customizer>
-                {
-                    isEditLocationOpen && (
-                    <EditLocation
-                        location={props.location}
-                        isOpen={isEditLocationOpen}
-                        openPanel={openEditLocationPanel}
-                        dismissPanel={dismissEditLocationPanel}
-                        />
-                    )
-                }
+                    {
+                        isEditLocationOpen && (
+                            <EditLocation
+                                location={location}
+                                isOpen={isEditLocationOpen}
+                                openPanel={openEditLocationPanel}
+                                dismissPanel={dismissEditLocationPanel}
+                            />
+                        )
+                    }
                 </Customizer>
             </Popup>
         </Marker>

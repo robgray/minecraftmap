@@ -2,8 +2,8 @@ import React from 'react';
 import { useBoolean } from '@uifabric/react-hooks';
 import { CommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
 import { Customizer } from 'office-ui-fabric-react/lib/Utilities';
-import { AddLocation } from "../components/Location/AddLocation";
-import { ZoomToCoordinate } from '../components/ZoomToCoordinate';
+import { AddLocation } from "./Location/AddLocation";
+import { ZoomToCoordinate } from './ZoomToCoordinate';
 import { RealmSelectorPanel } from './Realm/RealmSelectorPanel';
 import { CoordinateModel } from "../api/client";
 import { Text, Stack } from 'office-ui-fabric-react';
@@ -28,7 +28,7 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
     const { currentRealm } = useRealms();
 
     const [isAddLocationOpen, { setTrue: openAddLocationPanel, setFalse: dismissAddLocationPanel }] = useBoolean(false);
-    const [isZoomToCoordianteOpen, { setTrue: openZoomToCoordinatePanel, setFalse: dismissZoomToCoordinatePanel }] = useBoolean(false);
+    const [isZoomToCoordinateOpen, { setTrue: openZoomToCoordinatePanel, setFalse: dismissZoomToCoordinatePanel }] = useBoolean(false);
     const [isRealmSelectorOpen, { setTrue: openRealmSelectorPanel, setFalse: dismissRealmSelectorPanel }] = useBoolean(false);
     const [isMapModalOpen, { setTrue: showMapModal, setFalse: hideMapModal }] = useBoolean(false);
 
@@ -99,10 +99,10 @@ export const MenuBar: React.FC<IMenuBarProps> = (props:IMenuBarProps) => {
         </Customizer>
         <Customizer>
             {
-                isZoomToCoordianteOpen && (
+                isZoomToCoordinateOpen && (
                     <ZoomToCoordinate 
                         onZoomClick={props.onZoomClick} 
-                        isOpen={isZoomToCoordianteOpen}
+                        isOpen={isZoomToCoordinateOpen}
                         dismissPanel={dismissZoomToCoordinatePanel}
                         openPanel={openZoomToCoordinatePanel} />
                 )
